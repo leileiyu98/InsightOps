@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    env:
+      APP_NAME: InsightOps
+      APP_ENV: ci
+      APP_DEBUG: "false"
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_PORT: "3306"
+      DATABASE_NAME: insightops_ci
+      DATABASE_USER: insightops_ci
+      DATABASE_PASSWORD: ci_app_password
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: insightops_ci
+          MYSQL_USER: insightops_ci
+          MYSQL_PASSWORD: ci_app_password
+          MYSQL_ROOT_PASSWORD: ci_root_password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uinsightops_ci -pci_app_password --silent"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+          --health-start-period=20s
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@v8
+        with:
+          version: "0.11.26"
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install locked dependencies
+        run: uv sync --locked
+
+      - name: Check formatting
+        run: uv run ruff format --check .
+
+      - name: Run Ruff
+        run: uv run ruff check .
+
+      - name: Run mypy
+        run: uv run mypy src tests alembic
+
+      - name: Verify migrations
+        run: |
+          uv run alembic upgrade head
+          uv run alembic downgrade base
+          uv run alembic upgrade head
+
+      - name: Run tests
+        run: uv run pytest
+
+      - name: Smoke test the running API
+        run: |
+          uv run uvicorn insightops.main:app --host 127.0.0.1 --port 8000 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8000/health; then
+              exit 0
+            fi
+            sleep 1
+          done
+          exit 1

@@ -1,0 +1,43 @@
+[project]
+name = "insightops"
+version = "0.1.0"
+description = "Enterprise business analytics application foundation"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = ["Private :: Do Not Upload"]
+dependencies = [
+    "alembic>=1.16.4,<2.0.0",
+    "fastapi>=0.116.1,<1.0.0",
+    "pydantic-settings>=2.10.1,<3.0.0",
+    "pymysql>=1.1.1,<2.0.0",
+    "sqlalchemy>=2.0.41,<3.0.0",
+    "uvicorn>=0.35.0,<1.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1,<1.0.0",
+    "mypy>=1.16.1,<2.0.0",
+    "pytest>=8.4.1,<10.0.0",
+    "ruff>=0.12.1,<1.0.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.0,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src", "tests", "alembic"]

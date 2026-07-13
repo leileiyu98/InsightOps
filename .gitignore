@@ -1,0 +1,28 @@
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+
+# Python environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.uv-cache/
+
+# Build and test artifacts
+build/
+dist/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+
+# Local database data, if a bind mount is introduced for development
+mysql-data/
