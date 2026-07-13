@@ -92,6 +92,16 @@ uv run alembic downgrade base
 uv run alembic upgrade head
 ```
 
+## 持续集成与远程验证
+
+GitHub Actions 在推送到 `main` 或创建、更新 Pull Request 时运行。CI 使用 MySQL 8.4
+service，并依次验证锁定依赖安装、Ruff 格式和 lint、mypy、Alembic 升级与回滚、pytest，
+最后启动 API 并请求 `GET /health` 进行 smoke test。
+
+推送后应在仓库的 **Actions** 页面确认 `CI` workflow 成功结束。远程检查与本地
+“开发检查”使用相同的锁文件和命令；如果远程失败，应先查看失败步骤和日志，不应通过
+降低 lint、类型检查、测试或 migration 要求绕过问题。
+
 ## 停止与清理
 
 停止容器但保留 MySQL 数据：
