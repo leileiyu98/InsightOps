@@ -6,6 +6,8 @@
 
 本文只描述产品和业务语义，不定义数据库表、物理字段、SQL、API 或后续里程碑的实现方案。
 
+M0.9 已在 [`business-definitions-v1.md`](business-definitions-v1.md) 冻结 InsightCloud V1 指标与分析口径。本文保留 M0.8 阶段背景；其中列为“未定义”的事项如已被 V1 文档覆盖，以该版本化定义为准。
+
 ## 2. 企业背景
 
 InsightOps 服务于一家名为 **InsightCloud** 的 SaaS + 电商混合企业。

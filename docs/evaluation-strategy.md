@@ -6,6 +6,8 @@
 
 M0.8 只编写策略，不创建评测数据库、业务表、种子数据、标准 SQL、评测代码、模型调用或 Agent 实现。具体阈值必须在后续具备可运行基线和经确认业务口径后设定。
 
+M0.9 已在 [`business-definitions-v1.md`](business-definitions-v1.md) 提供首个冻结的指标与分析口径版本。后续 Evaluation 数据集和 Gold 结果必须显式引用该定义版本，未被其覆盖的候选能力仍不得自行补充口径。
+
 ## 2. 评测目标
 
 Evaluation 用于回答以下问题：
