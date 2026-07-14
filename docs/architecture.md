@@ -1,4 +1,4 @@
-# M0 架构说明
+# InsightOps 架构说明
 
 ## 架构边界
 
@@ -33,8 +33,20 @@ M0 的数据库 readiness 由两个确定性步骤验证：
 
 SQLAlchemy 采用 2.x API，并在真正使用连接前保持惰性。M0 migration 只建立 Alembic 版本基线，不创建业务表。
 
+M1.1B 在模块化单体的数据库边界内增加企业身份与 SaaS 两组 ORM 映射。模型按
+`insightops.db.models.identity` 和 `insightops.db.models.saas` 组织，
+`insightops.db.models` 是唯一显式注册入口；Alembic 从该入口取得 `Base.metadata`，不依赖 FastAPI
+启动时的偶然导入。`0002` migration 独立创建 9 张表，ORM 不使用 `create_all()` 代替 migration。
+
+每个新 MySQL 物理连接通过 SQLAlchemy connect 事件执行 `SET time_zone = '+00:00'`。ORM 的
+`server_onupdate` 只标记 `updated_at` 是服务器生成字段；真正的
+`DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)` 由 migration 显式生成，并由真实
+MySQL Schema 和行为测试验证。
+
 Compose 创建的账号只用于隔离的本地开发和迁移，不代表未来执行分析 SQL 的只读账号。后续模型或 Agent 不得直接使用数据库基础设施绕过应用服务、权限和 SQL 安全校验。
 
-## 明确不在 M0 实现
+## 当前仍未实现
 
-业务数据模型、认证授权、大模型提供商、Text2SQL、RAG、Agent 工作流、SQL 安全、Memory、MCP、异步任务、缓存、前端和复杂可观测性均不属于当前架构实现。
+M1.1B 之外的商城、营销、产品使用和客服表，以及种子数据、业务 API、认证授权、大模型提供商、
+Text2SQL、RAG、Agent 工作流、SQL 安全、Memory、MCP、异步任务、缓存、前端和复杂可观测性均不属于
+当前架构实现。
