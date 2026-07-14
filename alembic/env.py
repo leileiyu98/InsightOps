@@ -4,7 +4,7 @@ from logging.config import fileConfig
 
 from alembic import context
 from insightops.core.config import load_settings
-from insightops.db.base import Base
+from insightops.db.models import Base
 from insightops.db.session import create_database_engine
 
 config = context.config
