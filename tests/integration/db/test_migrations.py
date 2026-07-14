@@ -115,6 +115,7 @@ def _assert_m1_1b_schema_matches_metadata(engine: Engine) -> None:
 
     _assert_physical_mysql_types_and_collations(engine)
     _assert_foreign_key_restrict_rules(engine)
+    _assert_subscription_effective_unique_index(engine)
     _assert_updated_at_on_update_ddl(engine)
     assert _current_revision(engine) == "0002"
 
@@ -179,6 +180,37 @@ def _assert_updated_at_on_update_ddl(engine: Engine) -> None:
         assert str(row["COLUMN_TYPE"]).lower() == "datetime(6)"
         assert str(row["COLUMN_DEFAULT"]).lower() == "current_timestamp(6)"
         assert "on update current_timestamp(6)" in str(row["EXTRA"]).lower()
+
+
+def _assert_subscription_effective_unique_index(engine: Engine) -> None:
+    with engine.connect() as connection:
+        rows = connection.execute(
+            text(
+                "SELECT INDEX_NAME, NON_UNIQUE, SEQ_IN_INDEX, COLUMN_NAME "
+                "FROM information_schema.STATISTICS "
+                "WHERE TABLE_SCHEMA = DATABASE() "
+                "AND TABLE_NAME = 'subscription_state_event' "
+                "ORDER BY INDEX_NAME, SEQ_IN_INDEX"
+            )
+        ).mappings()
+        statistics = list(rows)
+
+    index_columns: dict[str, list[str]] = {}
+    index_non_unique: dict[str, int] = {}
+    for row in statistics:
+        index_name = str(row["INDEX_NAME"])
+        index_columns.setdefault(index_name, []).append(str(row["COLUMN_NAME"]))
+        index_non_unique[index_name] = int(row["NON_UNIQUE"])
+
+    expected_columns = ("subscription_id", "effective_at")
+    unique_index_name = "uq_sub_state_event__sub_effective"
+    assert tuple(index_columns[unique_index_name]) == expected_columns
+    assert index_non_unique[unique_index_name] == 0
+    assert {
+        index_name
+        for index_name, columns in index_columns.items()
+        if tuple(columns) == expected_columns
+    } == {unique_index_name}
 
 
 def _information_schema_columns(engine: Engine) -> list[Mapping[str, Any]]:

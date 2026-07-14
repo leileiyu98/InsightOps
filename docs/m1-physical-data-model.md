@@ -481,7 +481,6 @@ Commerce 新增付费时间来自首个合格订单而不是本表。支撑 Comm
 - 状态和计费周期使用与主表一致的受控集合；金额非负；币种仅 USD。
 - 行内 Check 验证 expansion 的 MRR 增加、contraction 的 MRR 减少且 after 大于零、取消/到期的
   `normalized_mrr_after = 0`。复杂合法状态转换仍由应用校验。
-- `ix_sub_state_event__sub_effective (subscription_id, effective_at)`。
 - `ix_sub_state_event__type_effective (event_type, effective_at)`。
 - `ix_sub_state_event__before_plan (plan_version_before_id)`。
 - `ix_sub_state_event__after_plan_time (plan_version_after_id, effective_at)`。

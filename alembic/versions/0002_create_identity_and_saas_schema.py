@@ -579,12 +579,6 @@ def _create_subscription_fact_tables() -> None:
         ),
     )
     op.create_index(
-        "ix_sub_state_event__sub_effective",
-        "subscription_state_event",
-        ["subscription_id", "effective_at"],
-        unique=False,
-    )
-    op.create_index(
         "ix_sub_state_event__type_effective",
         "subscription_state_event",
         ["event_type", "effective_at"],

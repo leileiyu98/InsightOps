@@ -22,7 +22,6 @@ EXPECTED_INDEXES = {
         "ix_subscription__cancel_effective",
     },
     "subscription_state_event": {
-        "ix_sub_state_event__sub_effective",
         "ix_sub_state_event__type_effective",
         "ix_sub_state_event__before_plan",
         "ix_sub_state_event__after_plan_time",
@@ -67,6 +66,20 @@ def test_expected_named_indexes_exist() -> None:
         actual_names = {index.name for index in Base.metadata.tables[table_name].indexes}
         assert actual_names == expected_names
         assert all(name is not None and len(name) <= 64 for name in actual_names)
+
+
+def test_subscription_effective_unique_constraint_has_no_duplicate_index() -> None:
+    table = Base.metadata.tables["subscription_state_event"]
+    effective_columns = ("subscription_id", "effective_at")
+    matching_unique_constraints = {
+        constraint.name
+        for constraint in table.constraints
+        if isinstance(constraint, UniqueConstraint)
+        and tuple(constraint.columns.keys()) == effective_columns
+    }
+
+    assert matching_unique_constraints == {"uq_sub_state_event__sub_effective"}
+    assert all(tuple(index.columns.keys()) != effective_columns for index in table.indexes)
 
 
 def test_is_test_defaults_and_constraints_are_explicit() -> None:

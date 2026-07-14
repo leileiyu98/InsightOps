@@ -230,7 +230,6 @@ class SubscriptionStateEvent(Base):
             name="ck_sub_state_event__terminal_mrr",
         ),
         CheckConstraint("is_test IN (0, 1)", name="ck_sub_state_event__is_test"),
-        Index("ix_sub_state_event__sub_effective", "subscription_id", "effective_at"),
         Index("ix_sub_state_event__type_effective", "event_type", "effective_at"),
         Index("ix_sub_state_event__before_plan", "plan_version_before_id"),
         Index("ix_sub_state_event__after_plan_time", "plan_version_after_id", "effective_at"),
