@@ -34,6 +34,26 @@ EXPECTED_INDEXES = {
         "ix_invoice_payment__invoice_status",
         "ix_invoice_payment__status_success",
     },
+    "product": {"ix_product__merchant_status", "ix_product__category_status"},
+    "commerce_order": {
+        "ix_commerce_order__paid_status",
+        "ix_commerce_order__merchant_paid",
+        "ix_commerce_order__consumer_paid",
+        "ix_commerce_order__completed",
+    },
+    "commerce_order_item": {
+        "ix_order_item__product",
+        "ix_order_item__category_order",
+    },
+    "commerce_refund": {
+        "ix_commerce_refund__status_success",
+        "ix_commerce_refund__order",
+    },
+    "refund_item_allocation": {"ix_refund_alloc__order_item"},
+    "platform_fee_charge": {
+        "ix_platform_fee__status_success",
+        "ix_platform_fee__order",
+    },
 }
 
 
@@ -68,18 +88,28 @@ def test_expected_named_indexes_exist() -> None:
         assert all(name is not None and len(name) <= 64 for name in actual_names)
 
 
-def test_subscription_effective_unique_constraint_has_no_duplicate_index() -> None:
-    table = Base.metadata.tables["subscription_state_event"]
-    effective_columns = ("subscription_id", "effective_at")
-    matching_unique_constraints = {
-        constraint.name
-        for constraint in table.constraints
-        if isinstance(constraint, UniqueConstraint)
-        and tuple(constraint.columns.keys()) == effective_columns
-    }
+def test_explicit_indexes_are_not_covered_by_unique_left_prefixes() -> None:
+    for table in Base.metadata.tables.values():
+        unique_column_sets = [
+            tuple(constraint.columns.keys())
+            for constraint in table.constraints
+            if isinstance(constraint, UniqueConstraint)
+        ]
+        for index in table.indexes:
+            index_columns = tuple(index.columns.keys())
+            assert all(
+                unique_columns[: len(index_columns)] != index_columns
+                for unique_columns in unique_column_sets
+            )
 
-    assert matching_unique_constraints == {"uq_sub_state_event__sub_effective"}
-    assert all(tuple(index.columns.keys()) != effective_columns for index in table.indexes)
+    order_item_indexes = {
+        index.name for index in Base.metadata.tables["commerce_order_item"].indexes
+    }
+    refund_allocation_indexes = {
+        index.name for index in Base.metadata.tables["refund_item_allocation"].indexes
+    }
+    assert "ix_order_item__order" not in order_item_indexes
+    assert "ix_refund_alloc__refund" not in refund_allocation_indexes
 
 
 def test_is_test_defaults_and_constraints_are_explicit() -> None:
@@ -105,6 +135,10 @@ def test_updated_at_metadata_marks_server_generated_updates() -> None:
         "saas_plan_version",
         "subscription",
         "subscription_invoice",
+        "product",
+        "commerce_order",
+        "commerce_refund",
+        "refund_item_allocation",
     }
 
     for table_name in mutable_tables:
@@ -117,6 +151,8 @@ def test_updated_at_metadata_marks_server_generated_updates() -> None:
 
     assert "updated_at" not in Base.metadata.tables["subscription_state_event"].c
     assert "updated_at" not in Base.metadata.tables["invoice_payment_attempt"].c
+    assert "updated_at" not in Base.metadata.tables["commerce_order_item"].c
+    assert "updated_at" not in Base.metadata.tables["platform_fee_charge"].c
 
 
 def _constraint_table_name(table_name: str) -> str:
@@ -127,4 +163,7 @@ def _constraint_table_name(table_name: str) -> str:
         "subscription_state_event": "sub_state_event",
         "subscription_invoice": "subscription_invoice",
         "invoice_payment_attempt": "invoice_payment",
+        "commerce_order_item": "order_item",
+        "refund_item_allocation": "refund_alloc",
+        "platform_fee_charge": "platform_fee",
     }.get(table_name, table_name)

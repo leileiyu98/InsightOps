@@ -1,4 +1,4 @@
-"""Metadata-level tests for the implemented M1.1B schema."""
+"""Metadata-level tests for the implemented M1.1C schema."""
 
 from typing import cast
 
@@ -8,11 +8,17 @@ from sqlalchemy.dialects import mysql
 from insightops.db.models import Base
 
 TARGET_TABLES = {
+    "commerce_order",
+    "commerce_order_item",
+    "commerce_refund",
     "consumer",
     "invoice_payment_attempt",
     "merchant",
     "organization",
     "organization_member",
+    "platform_fee_charge",
+    "product",
+    "refund_item_allocation",
     "saas_plan_version",
     "subscription",
     "subscription_invoice",
@@ -37,10 +43,28 @@ INTERNAL_ID_COLUMNS = {
         "invoice_payment_attempt_id",
         "subscription_invoice_id",
     },
+    "product": {"product_id", "merchant_assignment_id"},
+    "commerce_order": {
+        "commerce_order_id",
+        "consumer_id",
+        "merchant_assignment_id",
+    },
+    "commerce_order_item": {
+        "commerce_order_item_id",
+        "commerce_order_id",
+        "product_id",
+    },
+    "commerce_refund": {"commerce_refund_id", "commerce_order_id"},
+    "refund_item_allocation": {
+        "refund_item_allocation_id",
+        "commerce_refund_id",
+        "commerce_order_item_id",
+    },
+    "platform_fee_charge": {"platform_fee_charge_id", "commerce_order_id"},
 }
 
 
-def test_model_registry_contains_exactly_the_m1_1b_tables() -> None:
+def test_model_registry_contains_exactly_the_m1_1c_tables() -> None:
     assert set(Base.metadata.tables) == TARGET_TABLES
 
 
@@ -87,7 +111,12 @@ def test_external_and_source_ids_are_case_sensitive_ascii() -> None:
         for table in Base.metadata.tables.values()
         for column in table.columns
         if column.name.startswith("external_")
-        or column.name in {"source_event_id", "provider_transaction_id"}
+        or column.name
+        in {
+            "source_event_id",
+            "provider_transaction_id",
+            "provider_charge_id",
+        }
     ]
 
     assert identifier_columns
@@ -95,6 +124,26 @@ def test_external_and_source_ids_are_case_sensitive_ascii() -> None:
         assert isinstance(column.type, mysql.VARCHAR)
         assert column.type.charset == "ascii"
         assert column.type.collation == "ascii_bin"
+
+
+def test_commerce_controlled_codes_are_case_sensitive_ascii() -> None:
+    controlled_codes = {
+        ("product", "category_code"),
+        ("commerce_order_item", "product_category_code"),
+        ("commerce_refund", "reason_code"),
+    }
+
+    for table_name, column_name in controlled_codes:
+        column_type = Base.metadata.tables[table_name].c[column_name].type
+        assert isinstance(column_type, mysql.VARCHAR)
+        assert column_type.charset == "ascii"
+        assert column_type.collation == "ascii_bin"
+
+
+def test_order_item_quantity_is_unsigned_integer() -> None:
+    column_type = Base.metadata.tables["commerce_order_item"].c.quantity.type
+    assert isinstance(column_type, mysql.INTEGER)
+    assert column_type.unsigned is True
 
 
 def test_schema_does_not_use_forbidden_generic_types() -> None:

@@ -13,6 +13,11 @@ def unsigned_smallint() -> mysql.SMALLINT:
     return mysql.SMALLINT(unsigned=True)
 
 
+def unsigned_integer() -> mysql.INTEGER:
+    """Return the canonical positive quantity type."""
+    return mysql.INTEGER(unsigned=True)
+
+
 def money_decimal() -> mysql.DECIMAL:
     """Return the exact monetary type used by persisted business facts."""
     return mysql.DECIMAL(precision=19, scale=4, asdecimal=True)

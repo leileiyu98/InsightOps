@@ -18,6 +18,18 @@ from alembic import command
 from insightops.db.models import Base
 
 TARGET_TABLES = set(Base.metadata.tables)
+M1_1B_TABLES = {
+    "organization",
+    "organization_member",
+    "consumer",
+    "merchant",
+    "saas_plan_version",
+    "subscription",
+    "subscription_state_event",
+    "subscription_invoice",
+    "invoice_payment_attempt",
+}
+COMMERCE_TABLES = TARGET_TABLES - M1_1B_TABLES
 UPDATED_AT_TABLES = {
     "organization",
     "organization_member",
@@ -26,34 +38,62 @@ UPDATED_AT_TABLES = {
     "saas_plan_version",
     "subscription",
     "subscription_invoice",
+    "product",
+    "commerce_order",
+    "commerce_refund",
+    "refund_item_allocation",
 }
 
 
-def test_migration_round_trip_restores_0002_head(
+def test_incremental_migration_round_trip_restores_0003_head(
+    alembic_config: Config,
+    database_engine: Engine,
+) -> None:
+    database_engine.dispose()
+    try:
+        command.downgrade(alembic_config, "0002")
+        _assert_m1_1b_schema_only(database_engine)
+
+        command.upgrade(alembic_config, "0003")
+        _assert_m1_1c_schema_matches_metadata(database_engine)
+
+        command.downgrade(alembic_config, "0002")
+        _assert_m1_1b_schema_only(database_engine)
+
+        command.upgrade(alembic_config, "0003")
+        _assert_m1_1c_schema_matches_metadata(database_engine)
+    finally:
+        database_engine.dispose()
+        command.upgrade(alembic_config, "head")
+
+    assert _current_revision(database_engine) == "0003"
+
+
+def test_full_migration_round_trip_restores_0003_head(
     alembic_config: Config,
     database_engine: Engine,
 ) -> None:
     database_engine.dispose()
     try:
         command.downgrade(alembic_config, "base")
-        _assert_m1_1b_schema_absent(database_engine)
+        _assert_m1_schema_absent(database_engine)
 
-        command.upgrade(alembic_config, "head")
-        _assert_m1_1b_schema_matches_metadata(database_engine)
+        command.upgrade(alembic_config, "0003")
+        _assert_m1_1c_schema_matches_metadata(database_engine)
 
         command.downgrade(alembic_config, "base")
-        _assert_m1_1b_schema_absent(database_engine)
+        _assert_m1_schema_absent(database_engine)
 
-        command.upgrade(alembic_config, "head")
-        _assert_m1_1b_schema_matches_metadata(database_engine)
+        command.upgrade(alembic_config, "0003")
+        _assert_m1_1c_schema_matches_metadata(database_engine)
     finally:
         database_engine.dispose()
         command.upgrade(alembic_config, "head")
 
-    assert _current_revision(database_engine) == "0002"
+    assert _current_revision(database_engine) == "0003"
 
 
-def _assert_m1_1b_schema_absent(engine: Engine) -> None:
+def _assert_m1_schema_absent(engine: Engine) -> None:
     inspector = inspect(engine)
     assert TARGET_TABLES.isdisjoint(inspector.get_table_names())
 
@@ -65,17 +105,39 @@ def _assert_m1_1b_schema_absent(engine: Engine) -> None:
                 "AND TABLE_NAME IN "
                 "('organization', 'organization_member', 'consumer', 'merchant', "
                 "'saas_plan_version', 'subscription', 'subscription_state_event', "
-                "'subscription_invoice', 'invoice_payment_attempt')"
+                "'subscription_invoice', 'invoice_payment_attempt', 'product', "
+                "'commerce_order', 'commerce_order_item', 'commerce_refund', "
+                "'refund_item_allocation', 'platform_fee_charge')"
             )
         ).scalar_one()
     assert residual_foreign_keys == 0
 
 
-def _assert_m1_1b_schema_matches_metadata(engine: Engine) -> None:
+def _assert_m1_1b_schema_only(engine: Engine) -> None:
+    inspector = inspect(engine)
+    assert set(inspector.get_table_names()) - {"alembic_version"} == M1_1B_TABLES
+    assert COMMERCE_TABLES.isdisjoint(inspector.get_table_names())
+    _assert_tables_match_metadata(engine, M1_1B_TABLES)
+    assert _current_revision(engine) == "0002"
+
+
+def _assert_m1_1c_schema_matches_metadata(engine: Engine) -> None:
     inspector = inspect(engine)
     assert set(inspector.get_table_names()) - {"alembic_version"} == TARGET_TABLES
 
-    for table_name, metadata_table in Base.metadata.tables.items():
+    _assert_tables_match_metadata(engine, TARGET_TABLES)
+    _assert_physical_mysql_types_and_collations(engine)
+    _assert_foreign_key_restrict_rules(engine)
+    _assert_no_redundant_indexes(engine)
+    _assert_updated_at_on_update_ddl(engine)
+    assert _current_revision(engine) == "0003"
+
+
+def _assert_tables_match_metadata(engine: Engine, table_names: set[str]) -> None:
+    inspector = inspect(engine)
+
+    for table_name in table_names:
+        metadata_table = Base.metadata.tables[table_name]
         reflected_columns = {column["name"]: column for column in inspector.get_columns(table_name)}
         assert set(reflected_columns) == set(metadata_table.c.keys())
 
@@ -113,12 +175,6 @@ def _assert_m1_1b_schema_matches_metadata(engine: Engine) -> None:
         }
         assert actual_foreign_keys == expected_foreign_keys
 
-    _assert_physical_mysql_types_and_collations(engine)
-    _assert_foreign_key_restrict_rules(engine)
-    _assert_subscription_effective_unique_index(engine)
-    _assert_updated_at_on_update_ddl(engine)
-    assert _current_revision(engine) == "0002"
-
 
 def _assert_physical_mysql_types_and_collations(engine: Engine) -> None:
     rows = _information_schema_columns(engine)
@@ -144,9 +200,23 @@ def _assert_physical_mysql_types_and_collations(engine: Engine) -> None:
             if column.name.startswith("external_") or column.name in {
                 "source_event_id",
                 "provider_transaction_id",
+                "provider_charge_id",
             }:
                 assert row["CHARACTER_SET_NAME"] == "ascii"
                 assert row["COLLATION_NAME"] == "ascii_bin"
+
+    for table_name, column_name in {
+        ("product", "category_code"),
+        ("commerce_order_item", "product_category_code"),
+        ("commerce_refund", "reason_code"),
+    }:
+        row = row_by_column[(table_name, column_name)]
+        assert row["CHARACTER_SET_NAME"] == "ascii"
+        assert row["COLLATION_NAME"] == "ascii_bin"
+
+    assert str(row_by_column[("commerce_order_item", "quantity")]["COLUMN_TYPE"]).lower() == (
+        "int unsigned"
+    )
 
 
 def _assert_foreign_key_restrict_rules(engine: Engine) -> None:
@@ -182,35 +252,67 @@ def _assert_updated_at_on_update_ddl(engine: Engine) -> None:
         assert "on update current_timestamp(6)" in str(row["EXTRA"]).lower()
 
 
-def _assert_subscription_effective_unique_index(engine: Engine) -> None:
+def _assert_no_redundant_indexes(engine: Engine) -> None:
     with engine.connect() as connection:
         rows = connection.execute(
             text(
-                "SELECT INDEX_NAME, NON_UNIQUE, SEQ_IN_INDEX, COLUMN_NAME "
+                "SELECT TABLE_NAME, INDEX_NAME, NON_UNIQUE, SEQ_IN_INDEX, COLUMN_NAME "
                 "FROM information_schema.STATISTICS "
                 "WHERE TABLE_SCHEMA = DATABASE() "
-                "AND TABLE_NAME = 'subscription_state_event' "
-                "ORDER BY INDEX_NAME, SEQ_IN_INDEX"
+                "ORDER BY TABLE_NAME, INDEX_NAME, SEQ_IN_INDEX"
             )
         ).mappings()
         statistics = list(rows)
 
-    index_columns: dict[str, list[str]] = {}
-    index_non_unique: dict[str, int] = {}
+    index_columns: dict[tuple[str, str], list[str]] = {}
+    index_non_unique: dict[tuple[str, str], int] = {}
     for row in statistics:
-        index_name = str(row["INDEX_NAME"])
-        index_columns.setdefault(index_name, []).append(str(row["COLUMN_NAME"]))
-        index_non_unique[index_name] = int(row["NON_UNIQUE"])
+        key = (str(row["TABLE_NAME"]), str(row["INDEX_NAME"]))
+        index_columns.setdefault(key, []).append(str(row["COLUMN_NAME"]))
+        index_non_unique[key] = int(row["NON_UNIQUE"])
 
-    expected_columns = ("subscription_id", "effective_at")
-    unique_index_name = "uq_sub_state_event__sub_effective"
-    assert tuple(index_columns[unique_index_name]) == expected_columns
-    assert index_non_unique[unique_index_name] == 0
-    assert {
-        index_name
-        for index_name, columns in index_columns.items()
-        if tuple(columns) == expected_columns
-    } == {unique_index_name}
+    for table_name in TARGET_TABLES:
+        table_indexes = {
+            index_name: tuple(columns)
+            for (index_table, index_name), columns in index_columns.items()
+            if index_table == table_name
+        }
+        by_columns: dict[tuple[str, ...], set[str]] = {}
+        for index_name, columns in table_indexes.items():
+            by_columns.setdefault(columns, set()).add(index_name)
+        assert all(len(index_names) == 1 for index_names in by_columns.values())
+
+        unique_indexes = {
+            index_name: columns
+            for index_name, columns in table_indexes.items()
+            if index_non_unique[(table_name, index_name)] == 0
+        }
+        for index_name, columns in table_indexes.items():
+            if not index_name.startswith("ix_"):
+                continue
+            assert all(
+                unique_columns[: len(columns)] != columns
+                for unique_columns in unique_indexes.values()
+            )
+
+    assert ("commerce_order_item", "ix_order_item__order") not in index_columns
+    assert ("refund_item_allocation", "ix_refund_alloc__refund") not in index_columns
+    assert all(
+        not (
+            table_name == "commerce_order_item"
+            and tuple(columns) == ("commerce_order_id",)
+            and index_non_unique[(table_name, index_name)] == 1
+        )
+        for (table_name, index_name), columns in index_columns.items()
+    )
+    assert all(
+        not (
+            table_name == "refund_item_allocation"
+            and tuple(columns) == ("commerce_refund_id",)
+            and index_non_unique[(table_name, index_name)] == 1
+        )
+        for (table_name, index_name), columns in index_columns.items()
+    )
 
 
 def _information_schema_columns(engine: Engine) -> list[Mapping[str, Any]]:
