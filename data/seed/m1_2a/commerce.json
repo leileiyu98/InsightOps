@@ -1,0 +1,1538 @@
+{
+  "source_id": "commerce",
+  "tables": [
+    {
+      "table_name": "product",
+      "match_columns": [
+        "external_product_id"
+      ],
+      "records": [
+        {
+          "record_id": "product-alpha-hardware",
+          "values": {
+            "external_product_id": "seed-product-alpha-hardware",
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "product_title": "Alpha Hardware",
+            "category_code": "hardware",
+            "status": "active",
+            "created_at": "2024-12-01 16:00:00.000000",
+            "first_published_at": "2024-12-02 16:00:00.000000",
+            "archived_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "product-alpha-software",
+          "values": {
+            "external_product_id": "seed-product-alpha-software",
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "product_title": "Alpha Software",
+            "category_code": "software",
+            "status": "active",
+            "created_at": "2024-12-01 16:00:00.000000",
+            "first_published_at": "2024-12-02 16:00:00.000000",
+            "archived_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "product-beta-services",
+          "values": {
+            "external_product_id": "seed-product-beta-services",
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-beta"
+            },
+            "product_title": "Beta Services",
+            "category_code": "services",
+            "status": "active",
+            "created_at": "2024-12-01 16:00:00.000000",
+            "first_published_at": "2024-12-02 16:00:00.000000",
+            "archived_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "product-test",
+          "values": {
+            "external_product_id": "seed-product-test",
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-test"
+            },
+            "product_title": "Synthetic Test Product",
+            "category_code": "hardware",
+            "status": "active",
+            "created_at": "2024-12-01 16:00:00.000000",
+            "first_published_at": "2024-12-02 16:00:00.000000",
+            "archived_at": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "commerce_order",
+      "match_columns": [
+        "external_order_id"
+      ],
+      "records": [
+        {
+          "record_id": "order-a-jan",
+          "values": {
+            "external_order_id": "seed-order-a-jan",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-01-15 16:00:00.000000",
+            "first_paid_at": "2025-01-15 16:00:00.000000",
+            "fulfilled_at": "2025-01-15 16:00:00.000000",
+            "completed_at": "2025-01-15 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-b-jan",
+          "values": {
+            "external_order_id": "seed-order-b-jan",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-beta"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-01-16 16:00:00.000000",
+            "first_paid_at": "2025-01-16 16:00:00.000000",
+            "fulfilled_at": "2025-01-16 16:00:00.000000",
+            "completed_at": "2025-01-16 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-a-feb",
+          "values": {
+            "external_order_id": "seed-order-a-feb",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-02-15 16:00:00.000000",
+            "first_paid_at": "2025-02-15 16:00:00.000000",
+            "fulfilled_at": "2025-02-15 16:00:00.000000",
+            "completed_at": "2025-02-15 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-b-feb",
+          "values": {
+            "external_order_id": "seed-order-b-feb",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-beta"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-02-16 16:00:00.000000",
+            "first_paid_at": "2025-02-16 16:00:00.000000",
+            "fulfilled_at": "2025-02-16 16:00:00.000000",
+            "completed_at": "2025-02-16 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-a-mar",
+          "values": {
+            "external_order_id": "seed-order-a-mar",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-03-15 16:00:00.000000",
+            "first_paid_at": "2025-03-15 16:00:00.000000",
+            "fulfilled_at": "2025-03-15 16:00:00.000000",
+            "completed_at": "2025-03-15 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-b-mar",
+          "values": {
+            "external_order_id": "seed-order-b-mar",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-beta"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-03-16 16:00:00.000000",
+            "first_paid_at": "2025-03-16 16:00:00.000000",
+            "fulfilled_at": "2025-03-16 16:00:00.000000",
+            "completed_at": "2025-03-16 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-a-apr",
+          "values": {
+            "external_order_id": "seed-order-a-apr",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-04-15 16:00:00.000000",
+            "first_paid_at": "2025-04-15 16:00:00.000000",
+            "fulfilled_at": "2025-04-15 16:00:00.000000",
+            "completed_at": "2025-04-15 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-b-apr",
+          "values": {
+            "external_order_id": "seed-order-b-apr",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-beta"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-04-16 16:00:00.000000",
+            "first_paid_at": "2025-04-16 16:00:00.000000",
+            "fulfilled_at": "2025-04-16 16:00:00.000000",
+            "completed_at": "2025-04-16 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-a-may",
+          "values": {
+            "external_order_id": "seed-order-a-may",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-05-15 16:00:00.000000",
+            "first_paid_at": "2025-05-15 16:00:00.000000",
+            "fulfilled_at": "2025-05-15 16:00:00.000000",
+            "completed_at": "2025-05-15 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-b-may",
+          "values": {
+            "external_order_id": "seed-order-b-may",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-beta"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-05-16 16:00:00.000000",
+            "first_paid_at": "2025-05-16 16:00:00.000000",
+            "fulfilled_at": "2025-05-16 16:00:00.000000",
+            "completed_at": "2025-05-16 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-a-jun",
+          "values": {
+            "external_order_id": "seed-order-a-jun",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-06-15 16:00:00.000000",
+            "first_paid_at": "2025-06-15 16:00:00.000000",
+            "fulfilled_at": "2025-06-15 16:00:00.000000",
+            "completed_at": "2025-06-15 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-b-jun",
+          "values": {
+            "external_order_id": "seed-order-b-jun",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-beta"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-06-16 16:00:00.000000",
+            "first_paid_at": "2025-06-16 16:00:00.000000",
+            "fulfilled_at": "2025-06-16 16:00:00.000000",
+            "completed_at": "2025-06-16 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-july-boundary",
+          "values": {
+            "external_order_id": "seed-order-july-boundary",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-07-01 07:00:00.000000",
+            "first_paid_at": "2025-07-01 07:00:00.000000",
+            "fulfilled_at": "2025-07-01 07:00:00.000000",
+            "completed_at": "2025-07-01 07:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-cancelled-may",
+          "values": {
+            "external_order_id": "seed-order-cancelled-may",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "cancelled",
+            "currency_code": "USD",
+            "created_at": "2025-05-20 16:00:00.000000",
+            "first_paid_at": "2025-05-20 17:00:00.000000",
+            "fulfilled_at": "2025-05-21 16:00:00.000000",
+            "completed_at": null,
+            "cancelled_at": "2025-08-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-unpaid-jun",
+          "values": {
+            "external_order_id": "seed-order-unpaid-jun",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "payment_pending",
+            "currency_code": "USD",
+            "created_at": "2025-06-20 16:00:00.000000",
+            "first_paid_at": null,
+            "fulfilled_at": null,
+            "completed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-test-fact",
+          "values": {
+            "external_order_id": "seed-order-test-fact",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-06-20 17:00:00.000000",
+            "first_paid_at": "2025-06-20 17:00:00.000000",
+            "fulfilled_at": "2025-06-20 17:00:00.000000",
+            "completed_at": "2025-06-20 17:00:00.000000",
+            "cancelled_at": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-test-consumer",
+          "values": {
+            "external_order_id": "seed-order-test-consumer",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-test"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-06-21 16:00:00.000000",
+            "first_paid_at": "2025-06-21 16:00:00.000000",
+            "fulfilled_at": "2025-06-21 16:00:00.000000",
+            "completed_at": "2025-06-21 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "order-test-merchant",
+          "values": {
+            "external_order_id": "seed-order-test-merchant",
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-test"
+            },
+            "status": "completed",
+            "currency_code": "USD",
+            "created_at": "2025-06-22 16:00:00.000000",
+            "first_paid_at": "2025-06-22 16:00:00.000000",
+            "fulfilled_at": "2025-06-22 16:00:00.000000",
+            "completed_at": "2025-06-22 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "commerce_order_item",
+      "match_columns": [
+        "commerce_order_id",
+        "external_order_item_id"
+      ],
+      "records": [
+        {
+          "record_id": "item-a-jan",
+          "values": {
+            "external_order_item_id": "seed-item-a-jan",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jan"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "100.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-b-jan",
+          "values": {
+            "external_order_item_id": "seed-item-b-jan",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-jan"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-beta-services"
+            },
+            "product_category_code": "services",
+            "quantity": 1,
+            "discounted_item_amount": "200.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-a-feb",
+          "values": {
+            "external_order_item_id": "seed-item-a-feb",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-feb"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "120.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-b-feb",
+          "values": {
+            "external_order_item_id": "seed-item-b-feb",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-feb"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-beta-services"
+            },
+            "product_category_code": "services",
+            "quantity": 1,
+            "discounted_item_amount": "200.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-a-mar",
+          "values": {
+            "external_order_item_id": "seed-item-a-mar",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-mar"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-software"
+            },
+            "product_category_code": "software",
+            "quantity": 1,
+            "discounted_item_amount": "80.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-b-mar",
+          "values": {
+            "external_order_item_id": "seed-item-b-mar",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-mar"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-beta-services"
+            },
+            "product_category_code": "services",
+            "quantity": 1,
+            "discounted_item_amount": "200.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-a-apr",
+          "values": {
+            "external_order_item_id": "seed-item-a-apr",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-apr"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "200.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-b-apr",
+          "values": {
+            "external_order_item_id": "seed-item-b-apr",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-apr"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-beta-services"
+            },
+            "product_category_code": "services",
+            "quantity": 1,
+            "discounted_item_amount": "220.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-a-may-hardware",
+          "values": {
+            "external_order_item_id": "seed-item-a-may-hardware",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-may"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "250.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-a-may-software",
+          "values": {
+            "external_order_item_id": "seed-item-a-may-software",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-may"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-software"
+            },
+            "product_category_code": "software",
+            "quantity": 1,
+            "discounted_item_amount": "50.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-b-may",
+          "values": {
+            "external_order_item_id": "seed-item-b-may",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-may"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-beta-services"
+            },
+            "product_category_code": "services",
+            "quantity": 1,
+            "discounted_item_amount": "220.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-a-jun-hardware",
+          "values": {
+            "external_order_item_id": "seed-item-a-jun-hardware",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jun"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "400.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-a-jun-software",
+          "values": {
+            "external_order_item_id": "seed-item-a-jun-software",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jun"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-software"
+            },
+            "product_category_code": "software",
+            "quantity": 1,
+            "discounted_item_amount": "100.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-b-jun",
+          "values": {
+            "external_order_item_id": "seed-item-b-jun",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-jun"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-beta-services"
+            },
+            "product_category_code": "services",
+            "quantity": 1,
+            "discounted_item_amount": "220.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-july-boundary",
+          "values": {
+            "external_order_item_id": "seed-item-july-boundary",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-july-boundary"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "50.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-cancelled-may",
+          "values": {
+            "external_order_item_id": "seed-item-cancelled-may",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-cancelled-may"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "999.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+      "record_id": "item-test-fact",
+          "values": {
+            "external_order_item_id": "seed-item-test-fact",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-test-fact"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "1000.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+        "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-test-consumer",
+          "values": {
+            "external_order_item_id": "seed-item-test-consumer",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-test-consumer"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-alpha-hardware"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "1000.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "item-test-merchant",
+          "values": {
+            "external_order_item_id": "seed-item-test-merchant",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-test-merchant"
+            },
+            "product_id": {
+              "table": "product",
+              "record_id": "product-test"
+            },
+            "product_category_code": "hardware",
+            "quantity": 1,
+            "discounted_item_amount": "1000.0000",
+            "currency_code": "USD",
+            "created_at": "2025-01-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "commerce_refund",
+      "match_columns": [
+        "external_refund_id"
+      ],
+      "records": [
+        {
+          "record_id": "refund-apr-a",
+          "values": {
+            "external_refund_id": "seed-refund-apr-a",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-apr"
+            },
+            "status": "succeeded",
+            "item_refund_amount": "10.0000",
+            "tax_refund_amount": "1.0000",
+            "shipping_refund_amount": "0.0000",
+            "total_refund_amount": "11.0000",
+            "currency_code": "USD",
+            "reason_code": "synthetic_return",
+            "requested_at": "2025-04-20 16:00:00.000000",
+            "processed_at": "2025-04-21 16:00:00.000000",
+            "succeeded_at": "2025-04-21 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "refund-may-b",
+          "values": {
+            "external_refund_id": "seed-refund-may-b",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-may"
+            },
+            "status": "succeeded",
+            "item_refund_amount": "20.0000",
+            "tax_refund_amount": "2.0000",
+            "shipping_refund_amount": "0.0000",
+            "total_refund_amount": "22.0000",
+            "currency_code": "USD",
+            "reason_code": "synthetic_return",
+            "requested_at": "2025-05-20 16:00:00.000000",
+            "processed_at": "2025-05-21 16:00:00.000000",
+            "succeeded_at": "2025-05-21 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "refund-jun-cross",
+          "values": {
+            "external_refund_id": "seed-refund-jun-cross",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-may"
+            },
+            "status": "succeeded",
+            "item_refund_amount": "150.0000",
+            "tax_refund_amount": "10.0000",
+            "shipping_refund_amount": "5.0000",
+            "total_refund_amount": "165.0000",
+            "currency_code": "USD",
+            "reason_code": "synthetic_return",
+            "requested_at": "2025-06-05 16:00:00.000000",
+            "processed_at": "2025-06-06 16:00:00.000000",
+            "succeeded_at": "2025-06-06 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "refund-jun-current",
+          "values": {
+            "external_refund_id": "seed-refund-jun-current",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jun"
+            },
+            "status": "succeeded",
+            "item_refund_amount": "200.0000",
+            "tax_refund_amount": "20.0000",
+            "shipping_refund_amount": "0.0000",
+            "total_refund_amount": "220.0000",
+            "currency_code": "USD",
+            "reason_code": "synthetic_return",
+            "requested_at": "2025-06-20 16:00:00.000000",
+            "processed_at": "2025-06-21 16:00:00.000000",
+            "succeeded_at": "2025-06-21 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "refund-jun-failed",
+          "values": {
+            "external_refund_id": "seed-refund-jun-failed",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jun"
+            },
+            "status": "failed",
+            "item_refund_amount": "1000.0000",
+            "tax_refund_amount": "0.0000",
+            "shipping_refund_amount": "0.0000",
+            "total_refund_amount": "1000.0000",
+            "currency_code": "USD",
+            "reason_code": "synthetic_return",
+            "requested_at": "2025-06-22 16:00:00.000000",
+            "processed_at": "2025-06-23 16:00:00.000000",
+            "succeeded_at": null,
+            "failed_at": "2025-06-23 16:00:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "refund-test",
+          "values": {
+            "external_refund_id": "seed-refund-test",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-test-fact"
+            },
+            "status": "succeeded",
+            "item_refund_amount": "500.0000",
+            "tax_refund_amount": "0.0000",
+            "shipping_refund_amount": "0.0000",
+            "total_refund_amount": "500.0000",
+            "currency_code": "USD",
+            "reason_code": "synthetic_return",
+            "requested_at": "2025-06-23 16:00:00.000000",
+            "processed_at": "2025-06-24 16:00:00.000000",
+            "succeeded_at": "2025-06-24 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "platform_fee_charge",
+      "match_columns": [
+        "external_fee_charge_id"
+      ],
+      "records": [
+        {
+          "record_id": "fee-order-a-jan",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-a-jan",
+            "provider_charge_id": "seed-provider-fee-order-a-jan",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jan"
+            },
+            "status": "succeeded",
+            "fee_amount": "5.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-01-15 16:00:00.000000",
+            "succeeded_at": "2025-01-15 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-b-jan",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-b-jan",
+            "provider_charge_id": "seed-provider-fee-order-b-jan",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-jan"
+            },
+            "status": "succeeded",
+            "fee_amount": "10.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-01-16 16:00:00.000000",
+            "succeeded_at": "2025-01-16 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-a-feb",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-a-feb",
+            "provider_charge_id": "seed-provider-fee-order-a-feb",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-feb"
+            },
+            "status": "succeeded",
+            "fee_amount": "6.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-02-15 16:00:00.000000",
+            "succeeded_at": "2025-02-15 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-b-feb",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-b-feb",
+            "provider_charge_id": "seed-provider-fee-order-b-feb",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-feb"
+            },
+            "status": "succeeded",
+            "fee_amount": "10.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-02-16 16:00:00.000000",
+            "succeeded_at": "2025-02-16 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-a-mar",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-a-mar",
+            "provider_charge_id": "seed-provider-fee-order-a-mar",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-mar"
+            },
+            "status": "succeeded",
+            "fee_amount": "4.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-03-15 16:00:00.000000",
+            "succeeded_at": "2025-03-15 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-b-mar",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-b-mar",
+            "provider_charge_id": "seed-provider-fee-order-b-mar",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-mar"
+            },
+            "status": "succeeded",
+            "fee_amount": "10.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-03-16 16:00:00.000000",
+            "succeeded_at": "2025-03-16 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-a-apr",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-a-apr",
+            "provider_charge_id": "seed-provider-fee-order-a-apr",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-apr"
+            },
+            "status": "succeeded",
+            "fee_amount": "10.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-04-15 16:00:00.000000",
+            "succeeded_at": "2025-04-15 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-b-apr",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-b-apr",
+            "provider_charge_id": "seed-provider-fee-order-b-apr",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-apr"
+            },
+            "status": "succeeded",
+            "fee_amount": "11.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-04-16 16:00:00.000000",
+            "succeeded_at": "2025-04-16 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-a-may",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-a-may",
+            "provider_charge_id": "seed-provider-fee-order-a-may",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-may"
+            },
+            "status": "succeeded",
+            "fee_amount": "15.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-05-15 16:00:00.000000",
+            "succeeded_at": "2025-05-15 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-b-may",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-b-may",
+            "provider_charge_id": "seed-provider-fee-order-b-may",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-may"
+            },
+            "status": "succeeded",
+            "fee_amount": "11.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-05-16 16:00:00.000000",
+            "succeeded_at": "2025-05-16 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-a-jun",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-a-jun",
+            "provider_charge_id": "seed-provider-fee-order-a-jun",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jun"
+            },
+            "status": "succeeded",
+            "fee_amount": "25.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-06-15 16:00:00.000000",
+            "succeeded_at": "2025-06-15 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-order-b-jun",
+          "values": {
+            "external_fee_charge_id": "seed-fee-order-b-jun",
+            "provider_charge_id": "seed-provider-fee-order-b-jun",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-jun"
+            },
+            "status": "succeeded",
+            "fee_amount": "11.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-06-16 16:00:00.000000",
+            "succeeded_at": "2025-06-16 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-a-jun-failed",
+          "values": {
+            "external_fee_charge_id": "seed-fee-a-jun-failed",
+            "provider_charge_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jun"
+            },
+            "status": "failed",
+            "fee_amount": "25.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-06-14 16:00:00.000000",
+            "succeeded_at": null,
+            "failed_at": "2025-06-14 16:05:00.000000",
+            "cancelled_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "fee-test",
+          "values": {
+            "external_fee_charge_id": "seed-fee-test",
+            "provider_charge_id": "seed-provider-fee-test",
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-test-fact"
+            },
+            "status": "succeeded",
+            "fee_amount": "50.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-06-20 17:00:00.000000",
+            "succeeded_at": "2025-06-20 17:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "refund_item_allocation",
+      "match_columns": [
+        "external_refund_allocation_id"
+      ],
+      "records": [
+        {
+          "record_id": "allocation-apr-a",
+          "values": {
+            "external_refund_allocation_id": "seed-allocation-apr-a",
+            "commerce_refund_id": {
+              "table": "commerce_refund",
+              "record_id": "refund-apr-a"
+            },
+            "commerce_order_item_id": {
+              "table": "commerce_order_item",
+              "record_id": "item-a-apr"
+            },
+            "allocated_item_amount": "10.0000",
+            "currency_code": "USD",
+            "created_at": "2025-12-01 00:00:00.000000",
+            "corrected_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "allocation-may-b",
+          "values": {
+            "external_refund_allocation_id": "seed-allocation-may-b",
+            "commerce_refund_id": {
+              "table": "commerce_refund",
+              "record_id": "refund-may-b"
+            },
+            "commerce_order_item_id": {
+              "table": "commerce_order_item",
+              "record_id": "item-b-may"
+            },
+            "allocated_item_amount": "20.0000",
+            "currency_code": "USD",
+            "created_at": "2025-12-01 00:00:00.000000",
+            "corrected_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "allocation-jun-cross-hardware",
+          "values": {
+            "external_refund_allocation_id": "seed-allocation-jun-cross-hardware",
+            "commerce_refund_id": {
+              "table": "commerce_refund",
+              "record_id": "refund-jun-cross"
+            },
+            "commerce_order_item_id": {
+              "table": "commerce_order_item",
+              "record_id": "item-a-may-hardware"
+            },
+            "allocated_item_amount": "100.0000",
+            "currency_code": "USD",
+            "created_at": "2025-12-01 00:00:00.000000",
+            "corrected_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "allocation-jun-cross-software",
+          "values": {
+            "external_refund_allocation_id": "seed-allocation-jun-cross-software",
+            "commerce_refund_id": {
+              "table": "commerce_refund",
+              "record_id": "refund-jun-cross"
+            },
+            "commerce_order_item_id": {
+              "table": "commerce_order_item",
+              "record_id": "item-a-may-software"
+            },
+            "allocated_item_amount": "50.0000",
+            "currency_code": "USD",
+            "created_at": "2025-12-01 00:00:00.000000",
+            "corrected_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "allocation-jun-current",
+          "values": {
+            "external_refund_allocation_id": "seed-allocation-jun-current",
+            "commerce_refund_id": {
+              "table": "commerce_refund",
+              "record_id": "refund-jun-current"
+            },
+            "commerce_order_item_id": {
+              "table": "commerce_order_item",
+              "record_id": "item-a-jun-hardware"
+            },
+            "allocated_item_amount": "200.0000",
+            "currency_code": "USD",
+            "created_at": "2025-12-01 00:00:00.000000",
+            "corrected_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "allocation-jun-failed",
+          "values": {
+            "external_refund_allocation_id": "seed-allocation-jun-failed",
+            "commerce_refund_id": {
+              "table": "commerce_refund",
+              "record_id": "refund-jun-failed"
+            },
+            "commerce_order_item_id": {
+              "table": "commerce_order_item",
+              "record_id": "item-a-jun-hardware"
+            },
+            "allocated_item_amount": "1000.0000",
+            "currency_code": "USD",
+            "created_at": "2025-12-01 00:00:00.000000",
+            "corrected_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "allocation-test",
+          "values": {
+            "external_refund_allocation_id": "seed-allocation-test",
+            "commerce_refund_id": {
+              "table": "commerce_refund",
+              "record_id": "refund-test"
+            },
+            "commerce_order_item_id": {
+              "table": "commerce_order_item",
+              "record_id": "item-test-fact"
+            },
+            "allocated_item_amount": "500.0000",
+            "currency_code": "USD",
+            "created_at": "2025-12-01 00:00:00.000000",
+            "corrected_at": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    }
+  ]
+}

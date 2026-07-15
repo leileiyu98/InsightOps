@@ -1,0 +1,52 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-COM-004",
+  "columns": [
+    "report_month",
+    "gmv",
+    "order_count",
+    "aov"
+  ],
+  "ordered_by": [
+    "report_month"
+  ],
+  "rows": [
+    {
+      "aov": "150.0000",
+      "gmv": "300.0000",
+      "order_count": 2,
+      "report_month": "2025-01"
+    },
+    {
+      "aov": "160.0000",
+      "gmv": "320.0000",
+      "order_count": 2,
+      "report_month": "2025-02"
+    },
+    {
+      "aov": "140.0000",
+      "gmv": "280.0000",
+      "order_count": 2,
+      "report_month": "2025-03"
+    },
+    {
+      "aov": "210.0000",
+      "gmv": "420.0000",
+      "order_count": 2,
+      "report_month": "2025-04"
+    },
+    {
+      "aov": "260.0000",
+      "gmv": "520.0000",
+      "order_count": 2,
+      "report_month": "2025-05"
+    },
+    {
+      "aov": "360.0000",
+      "gmv": "720.0000",
+      "order_count": 2,
+      "report_month": "2025-06"
+    }
+  ]
+}

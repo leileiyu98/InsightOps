@@ -1,0 +1,18 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-COM-001",
+  "columns": [
+    "gmv",
+    "order_count",
+    "aov"
+  ],
+  "ordered_by": [],
+  "rows": [
+    {
+      "aov": "360.0000",
+      "gmv": "720.0000",
+      "order_count": 2
+    }
+  ]
+}

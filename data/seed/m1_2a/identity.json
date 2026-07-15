@@ -1,0 +1,313 @@
+{
+  "source_id": "identity",
+  "tables": [
+    {
+      "table_name": "organization",
+      "match_columns": ["external_organization_id"],
+      "records": [
+        {
+          "record_id": "org-alpha",
+          "values": {
+            "external_organization_id": "seed-org-alpha",
+            "organization_name": "Alpha Analytics",
+            "status": "active",
+            "registered_at": "2024-10-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-beta",
+          "values": {
+            "external_organization_id": "seed-org-beta",
+            "organization_name": "Beta Systems",
+            "status": "active",
+            "registered_at": "2024-10-05 17:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-gamma",
+          "values": {
+            "external_organization_id": "seed-org-gamma",
+            "organization_name": "Gamma Labs",
+            "status": "active",
+            "registered_at": "2024-10-10 17:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-delta",
+          "values": {
+            "external_organization_id": "seed-org-delta",
+            "organization_name": "Delta Works",
+            "status": "active",
+            "registered_at": "2024-11-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-epsilon",
+          "values": {
+            "external_organization_id": "seed-org-epsilon",
+            "organization_name": "Epsilon Studio",
+            "status": "active",
+            "registered_at": "2025-03-15 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-multi",
+          "values": {
+            "external_organization_id": "seed-org-multi",
+            "organization_name": "Multi Product Co",
+            "status": "active",
+            "registered_at": "2024-09-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-scheduled",
+          "values": {
+            "external_organization_id": "seed-org-scheduled",
+            "organization_name": "Scheduled Cancel Inc",
+            "status": "active",
+            "registered_at": "2024-09-10 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-paused",
+          "values": {
+            "external_organization_id": "seed-org-paused",
+            "organization_name": "Paused Then Resumed",
+            "status": "active",
+            "registered_at": "2024-08-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-zeta",
+          "values": {
+            "external_organization_id": "seed-org-zeta",
+            "organization_name": "Zeta Enterprise",
+            "status": "active",
+            "registered_at": "2024-07-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-old",
+          "values": {
+            "external_organization_id": "seed-org-old",
+            "organization_name": "Old Enterprise",
+            "status": "active",
+            "registered_at": "2024-06-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-fact-test",
+          "values": {
+            "external_organization_id": "seed-org-fact-test",
+            "organization_name": "Formal Org Test Facts",
+            "status": "active",
+            "registered_at": "2024-12-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-test",
+          "values": {
+            "external_organization_id": "seed-org-test",
+            "organization_name": "Synthetic Test Organization",
+            "status": "active",
+            "registered_at": "2024-12-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "organization_member",
+      "match_columns": ["external_membership_id"],
+      "records": [
+        {
+          "record_id": "member-alpha",
+          "values": {
+            "external_membership_id": "seed-member-alpha",
+            "organization_id": {"table": "organization", "record_id": "org-alpha"},
+            "external_account_id": "seed-account-alpha",
+            "status": "active",
+            "first_invited_at": "2024-10-02 16:00:00.000000",
+            "accepted_at": "2024-10-03 16:00:00.000000",
+            "effective_from": "2024-10-03 16:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "member-test",
+          "values": {
+            "external_membership_id": "seed-member-test",
+            "organization_id": {"table": "organization", "record_id": "org-test"},
+            "external_account_id": "seed-account-test",
+            "status": "active",
+            "first_invited_at": "2024-12-02 16:00:00.000000",
+            "accepted_at": "2024-12-03 16:00:00.000000",
+            "effective_from": "2024-12-03 16:00:00.000000",
+            "effective_to": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "consumer",
+      "match_columns": ["external_consumer_id"],
+      "records": [
+        {
+          "record_id": "consumer-one",
+          "values": {
+            "external_consumer_id": "seed-consumer-one",
+            "status": "active",
+            "first_identified_at": "2024-12-01 16:00:00.000000",
+            "created_at": "2024-12-01 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "consumer-two",
+          "values": {
+            "external_consumer_id": "seed-consumer-two",
+            "status": "active",
+            "first_identified_at": "2024-12-02 16:00:00.000000",
+            "created_at": "2024-12-02 16:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "consumer-test",
+          "values": {
+            "external_consumer_id": "seed-consumer-test",
+            "status": "active",
+            "first_identified_at": "2024-12-03 16:00:00.000000",
+            "created_at": "2024-12-03 16:00:00.000000",
+            "closed_at": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "merchant",
+      "match_columns": ["merchant_id", "assignment_valid_from"],
+      "records": [
+        {
+          "record_id": "merchant-alpha",
+          "values": {
+            "merchant_id": 1001,
+            "external_merchant_id": "seed-merchant-alpha",
+            "organization_id": {"table": "organization", "record_id": "org-alpha"},
+            "merchant_name": "Alpha Marketplace",
+            "status": "active",
+            "applied_at": "2024-10-05 16:00:00.000000",
+            "approved_at": "2024-10-06 16:00:00.000000",
+            "activated_at": "2024-10-07 16:00:00.000000",
+            "closed_at": null,
+            "assignment_valid_from": "2024-10-07 16:00:00.000000",
+            "assignment_valid_to": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "merchant-beta",
+          "values": {
+            "merchant_id": 1002,
+            "external_merchant_id": "seed-merchant-beta",
+            "organization_id": {"table": "organization", "record_id": "org-beta"},
+            "merchant_name": "Beta Marketplace",
+            "status": "active",
+            "applied_at": "2024-10-10 16:00:00.000000",
+            "approved_at": "2024-10-11 16:00:00.000000",
+            "activated_at": "2024-10-12 16:00:00.000000",
+            "closed_at": null,
+            "assignment_valid_from": "2024-10-12 16:00:00.000000",
+            "assignment_valid_to": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "merchant-test",
+          "values": {
+            "merchant_id": 1999,
+            "external_merchant_id": "seed-merchant-test",
+            "organization_id": {"table": "organization", "record_id": "org-test"},
+            "merchant_name": "Synthetic Test Merchant",
+            "status": "active",
+            "applied_at": "2024-12-05 16:00:00.000000",
+            "approved_at": "2024-12-06 16:00:00.000000",
+            "activated_at": "2024-12-07 16:00:00.000000",
+            "closed_at": null,
+            "assignment_valid_from": "2024-12-07 16:00:00.000000",
+            "assignment_valid_to": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    }
+  ]
+}

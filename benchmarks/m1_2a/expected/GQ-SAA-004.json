@@ -1,0 +1,161 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-SAA-004",
+  "columns": [
+    "report_month",
+    "plan_name",
+    "mrr",
+    "arr"
+  ],
+  "ordered_by": [
+    "report_month",
+    "plan_name"
+  ],
+  "rows": [
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Enterprise Annual",
+      "report_month": "2025-01"
+    },
+    {
+      "arr": "40800.0000",
+      "mrr": "3400.0000",
+      "plan_name": "Enterprise Monthly",
+      "report_month": "2025-01"
+    },
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Growth Monthly",
+      "report_month": "2025-01"
+    },
+    {
+      "arr": "1200.0000",
+      "mrr": "100.0000",
+      "plan_name": "Starter Monthly",
+      "report_month": "2025-01"
+    },
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Enterprise Annual",
+      "report_month": "2025-02"
+    },
+    {
+      "arr": "33600.0000",
+      "mrr": "2800.0000",
+      "plan_name": "Enterprise Monthly",
+      "report_month": "2025-02"
+    },
+    {
+      "arr": "4800.0000",
+      "mrr": "400.0000",
+      "plan_name": "Growth Monthly",
+      "report_month": "2025-02"
+    },
+    {
+      "arr": "1200.0000",
+      "mrr": "100.0000",
+      "plan_name": "Starter Monthly",
+      "report_month": "2025-02"
+    },
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Enterprise Annual",
+      "report_month": "2025-03"
+    },
+    {
+      "arr": "33600.0000",
+      "mrr": "2800.0000",
+      "plan_name": "Enterprise Monthly",
+      "report_month": "2025-03"
+    },
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Growth Monthly",
+      "report_month": "2025-03"
+    },
+    {
+      "arr": "1200.0000",
+      "mrr": "100.0000",
+      "plan_name": "Starter Monthly",
+      "report_month": "2025-03"
+    },
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Enterprise Annual",
+      "report_month": "2025-04"
+    },
+    {
+      "arr": "33600.0000",
+      "mrr": "2800.0000",
+      "plan_name": "Enterprise Monthly",
+      "report_month": "2025-04"
+    },
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Growth Monthly",
+      "report_month": "2025-04"
+    },
+    {
+      "arr": "2400.0000",
+      "mrr": "200.0000",
+      "plan_name": "Starter Monthly",
+      "report_month": "2025-04"
+    },
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Enterprise Annual",
+      "report_month": "2025-05"
+    },
+    {
+      "arr": "31200.0000",
+      "mrr": "2600.0000",
+      "plan_name": "Enterprise Monthly",
+      "report_month": "2025-05"
+    },
+    {
+      "arr": "4800.0000",
+      "mrr": "400.0000",
+      "plan_name": "Growth Monthly",
+      "report_month": "2025-05"
+    },
+    {
+      "arr": "2400.0000",
+      "mrr": "200.0000",
+      "plan_name": "Starter Monthly",
+      "report_month": "2025-05"
+    },
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Enterprise Annual",
+      "report_month": "2025-06"
+    },
+    {
+      "arr": "31200.0000",
+      "mrr": "2600.0000",
+      "plan_name": "Enterprise Monthly",
+      "report_month": "2025-06"
+    },
+    {
+      "arr": "4800.0000",
+      "mrr": "400.0000",
+      "plan_name": "Growth Monthly",
+      "report_month": "2025-06"
+    },
+    {
+      "arr": "2400.0000",
+      "mrr": "200.0000",
+      "plan_name": "Starter Monthly",
+      "report_month": "2025-06"
+    }
+  ]
+}

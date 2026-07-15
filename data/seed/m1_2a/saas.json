@@ -1,0 +1,1650 @@
+{
+  "source_id": "saas",
+  "tables": [
+    {
+      "table_name": "saas_plan_version",
+      "match_columns": [
+        "plan_code",
+        "version_number"
+      ],
+      "records": [
+        {
+          "record_id": "plan-starter-monthly",
+          "values": {
+            "plan_code": "starter_monthly",
+            "version_number": 1,
+            "plan_name": "Starter Monthly",
+            "tier_code": "starter",
+            "billing_interval": "monthly",
+            "recurring_amount": "100.0000",
+            "currency_code": "USD",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "created_at": "2023-12-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "plan-growth-monthly",
+          "values": {
+            "plan_code": "growth_monthly",
+            "version_number": 1,
+            "plan_name": "Growth Monthly",
+            "tier_code": "growth",
+            "billing_interval": "monthly",
+            "recurring_amount": "200.0000",
+            "currency_code": "USD",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "created_at": "2023-12-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "plan-enterprise-monthly-v1",
+          "values": {
+            "plan_code": "enterprise_monthly",
+            "version_number": 1,
+            "plan_name": "Enterprise Monthly",
+            "tier_code": "enterprise",
+            "billing_interval": "monthly",
+            "recurring_amount": "600.0000",
+            "currency_code": "USD",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "created_at": "2023-12-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "plan-enterprise-monthly-v2",
+          "values": {
+            "plan_code": "enterprise_monthly",
+            "version_number": 2,
+            "plan_name": "Enterprise Monthly",
+            "tier_code": "enterprise",
+            "billing_interval": "monthly",
+            "recurring_amount": "1000.0000",
+            "currency_code": "USD",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "created_at": "2023-12-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "plan-enterprise-annual",
+          "values": {
+            "plan_code": "enterprise_annual",
+            "version_number": 1,
+            "plan_name": "Enterprise Annual",
+            "tier_code": "enterprise",
+            "billing_interval": "annual",
+            "recurring_amount": "7200.0000",
+            "currency_code": "USD",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "created_at": "2023-12-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "plan-test",
+          "values": {
+            "plan_code": "test_enterprise",
+            "version_number": 1,
+            "plan_name": "Synthetic Test Plan",
+            "tier_code": "enterprise",
+            "billing_interval": "monthly",
+            "recurring_amount": "9999.0000",
+            "currency_code": "USD",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": true,
+            "created_at": "2023-12-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "subscription",
+      "match_columns": [
+        "external_subscription_id"
+      ],
+      "records": [
+        {
+          "record_id": "sub-alpha-annual",
+          "values": {
+            "external_subscription_id": "seed-sub-alpha-annual",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-alpha"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-annual"
+            },
+            "current_status": "active",
+            "created_at": "2024-11-01 16:00:00.000000",
+            "first_activated_at": "2024-12-15 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-beta",
+          "values": {
+            "external_subscription_id": "seed-sub-beta",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v2"
+            },
+            "current_status": "active",
+            "created_at": "2024-11-02 16:00:00.000000",
+            "first_activated_at": "2024-12-20 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-gamma",
+          "values": {
+            "external_subscription_id": "seed-sub-gamma",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-gamma"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v2"
+            },
+            "current_status": "cancelled",
+            "created_at": "2024-10-15 16:00:00.000000",
+            "first_activated_at": "2024-11-01 16:00:00.000000",
+            "current_period_started_at": null,
+            "current_period_ends_at": null,
+            "cancel_scheduled_at": "2025-06-01 16:00:00.000000",
+            "cancellation_effective_at": "2025-06-10 16:00:00.000000",
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-delta",
+          "values": {
+            "external_subscription_id": "seed-sub-delta",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-starter-monthly"
+            },
+            "current_status": "active",
+            "created_at": "2024-12-20 16:00:00.000000",
+            "first_activated_at": "2025-01-10 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-delta-second",
+          "values": {
+            "external_subscription_id": "seed-sub-delta-second",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v2"
+            },
+            "current_status": "active",
+            "created_at": "2025-06-01 16:00:00.000000",
+            "first_activated_at": "2025-06-15 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-epsilon",
+          "values": {
+            "external_subscription_id": "seed-sub-epsilon",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-epsilon"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-starter-monthly"
+            },
+            "current_status": "active",
+            "created_at": "2025-03-20 16:00:00.000000",
+            "first_activated_at": "2025-04-05 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-epsilon-second",
+          "values": {
+            "external_subscription_id": "seed-sub-epsilon-second",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-epsilon"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "current_status": "active",
+            "created_at": "2025-06-01 16:00:00.000000",
+            "first_activated_at": "2025-06-25 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-multi-a",
+          "values": {
+            "external_subscription_id": "seed-sub-multi-a",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-multi"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-starter-monthly"
+            },
+            "current_status": "cancelled",
+            "created_at": "2024-08-01 16:00:00.000000",
+            "first_activated_at": "2024-09-01 16:00:00.000000",
+            "current_period_started_at": null,
+            "current_period_ends_at": null,
+            "cancel_scheduled_at": "2025-04-20 16:00:00.000000",
+            "cancellation_effective_at": "2025-05-05 16:00:00.000000",
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-multi-b",
+          "values": {
+            "external_subscription_id": "seed-sub-multi-b",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-multi"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "current_status": "cancelled",
+            "created_at": "2024-08-01 16:00:00.000000",
+            "first_activated_at": "2024-09-01 16:00:00.000000",
+            "current_period_started_at": null,
+            "current_period_ends_at": null,
+            "cancel_scheduled_at": "2025-06-01 16:00:00.000000",
+            "cancellation_effective_at": "2025-06-20 16:00:00.000000",
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-scheduled",
+          "values": {
+            "external_subscription_id": "seed-sub-scheduled",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-scheduled"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "current_status": "cancelled",
+            "created_at": "2024-08-01 16:00:00.000000",
+            "first_activated_at": "2024-09-01 16:00:00.000000",
+            "current_period_started_at": null,
+            "current_period_ends_at": null,
+            "cancel_scheduled_at": "2025-06-15 16:00:00.000000",
+            "cancellation_effective_at": "2025-07-01 07:00:00.000000",
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-paused",
+          "values": {
+            "external_subscription_id": "seed-sub-paused",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-paused"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "current_status": "active",
+            "created_at": "2024-07-01 16:00:00.000000",
+            "first_activated_at": "2024-08-01 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-zeta",
+          "values": {
+            "external_subscription_id": "seed-sub-zeta",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-zeta"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "current_status": "cancelled",
+            "created_at": "2024-06-01 16:00:00.000000",
+            "first_activated_at": "2024-07-01 16:00:00.000000",
+            "current_period_started_at": null,
+            "current_period_ends_at": null,
+            "cancel_scheduled_at": "2025-05-01 16:00:00.000000",
+            "cancellation_effective_at": "2025-05-10 16:00:00.000000",
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-old",
+          "values": {
+            "external_subscription_id": "seed-sub-old",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-old"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "current_status": "cancelled",
+            "created_at": "2024-05-01 16:00:00.000000",
+            "first_activated_at": "2024-06-01 16:00:00.000000",
+            "current_period_started_at": null,
+            "current_period_ends_at": null,
+            "cancel_scheduled_at": "2025-02-01 16:00:00.000000",
+            "cancellation_effective_at": "2025-02-10 16:00:00.000000",
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-fact-test",
+          "values": {
+            "external_subscription_id": "seed-sub-fact-test",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-fact-test"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-test"
+            },
+            "current_status": "active",
+            "created_at": "2024-12-01 16:00:00.000000",
+            "first_activated_at": "2024-12-10 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "sub-test-org",
+          "values": {
+            "external_subscription_id": "seed-sub-test-org",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-test"
+            },
+            "current_plan_version_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-test"
+            },
+            "current_status": "active",
+            "created_at": "2024-12-01 16:00:00.000000",
+            "first_activated_at": "2024-12-10 16:00:00.000000",
+            "current_period_started_at": "2025-12-01 08:00:00.000000",
+            "current_period_ends_at": "2026-01-01 08:00:00.000000",
+            "cancel_scheduled_at": null,
+            "cancellation_effective_at": null,
+            "expires_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "subscription_state_event",
+      "match_columns": [
+        "source_event_id"
+      ],
+      "records": [
+        {
+          "record_id": "event-alpha-activate",
+          "values": {
+            "source_event_id": "seed-event-alpha-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-alpha-annual"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-annual"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "annual",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "7200.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "600.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-12-15 16:00:00.000000",
+            "created_at": "2024-12-15 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-beta-activate",
+          "values": {
+            "source_event_id": "seed-event-beta-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-beta"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "600.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "600.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-12-20 16:00:00.000000",
+            "created_at": "2024-12-20 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-beta-expand",
+          "values": {
+            "source_event_id": "seed-event-beta-expand",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-beta"
+            },
+            "event_type": "expansion",
+            "status_before": "active",
+            "status_after": "active",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v2"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "600.0000",
+            "recurring_amount_after": "1000.0000",
+            "normalized_mrr_before": "600.0000",
+            "normalized_mrr_after": "1000.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-05-15 16:00:00.000000",
+            "created_at": "2025-05-15 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-gamma-activate",
+          "values": {
+            "source_event_id": "seed-event-gamma-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-gamma"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v2"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "1000.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "1000.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-11-01 16:00:00.000000",
+            "created_at": "2024-11-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-gamma-cancel",
+          "values": {
+            "source_event_id": "seed-event-gamma-cancel",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-gamma"
+            },
+            "event_type": "cancellation_effective",
+            "status_before": "cancel_scheduled",
+            "status_after": "cancelled",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v2"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v2"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "1000.0000",
+            "recurring_amount_after": "0.0000",
+            "normalized_mrr_before": "1000.0000",
+            "normalized_mrr_after": "0.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-06-10 16:00:00.000000",
+            "created_at": "2025-06-10 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-delta-activate",
+          "values": {
+            "source_event_id": "seed-event-delta-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-delta"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "200.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "200.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-01-10 16:00:00.000000",
+            "created_at": "2025-01-10 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-delta-contract",
+          "values": {
+            "source_event_id": "seed-event-delta-contract",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-delta"
+            },
+            "event_type": "contraction",
+            "status_before": "active",
+            "status_after": "active",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-starter-monthly"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "200.0000",
+            "recurring_amount_after": "100.0000",
+            "normalized_mrr_before": "200.0000",
+            "normalized_mrr_after": "100.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-05-20 16:00:00.000000",
+            "created_at": "2025-05-20 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-delta-second-activate",
+          "values": {
+            "source_event_id": "seed-event-delta-second-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-delta-second"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v2"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "1000.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "1000.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-06-15 16:00:00.000000",
+            "created_at": "2025-06-15 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-epsilon-activate",
+          "values": {
+            "source_event_id": "seed-event-epsilon-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-epsilon"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-starter-monthly"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "100.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "100.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-04-05 16:00:00.000000",
+            "created_at": "2025-04-05 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-epsilon-second-activate",
+          "values": {
+            "source_event_id": "seed-event-epsilon-second-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-epsilon-second"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "200.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "200.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-06-25 16:00:00.000000",
+            "created_at": "2025-06-25 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-multi-a-activate",
+          "values": {
+            "source_event_id": "seed-event-multi-a-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-multi-a"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-starter-monthly"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "100.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "100.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-09-01 16:00:00.000000",
+            "created_at": "2024-09-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-multi-a-cancel",
+          "values": {
+            "source_event_id": "seed-event-multi-a-cancel",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-multi-a"
+            },
+            "event_type": "cancellation_effective",
+            "status_before": "cancel_scheduled",
+            "status_after": "cancelled",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-starter-monthly"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-starter-monthly"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "100.0000",
+            "recurring_amount_after": "0.0000",
+            "normalized_mrr_before": "100.0000",
+            "normalized_mrr_after": "0.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-05-05 16:00:00.000000",
+            "created_at": "2025-05-05 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-multi-b-activate",
+          "values": {
+            "source_event_id": "seed-event-multi-b-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-multi-b"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "200.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "200.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-09-01 17:00:00.000000",
+            "created_at": "2024-09-01 17:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-multi-b-cancel",
+          "values": {
+            "source_event_id": "seed-event-multi-b-cancel",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-multi-b"
+            },
+            "event_type": "cancellation_effective",
+            "status_before": "cancel_scheduled",
+            "status_after": "cancelled",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "200.0000",
+            "recurring_amount_after": "0.0000",
+            "normalized_mrr_before": "200.0000",
+            "normalized_mrr_after": "0.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-06-20 16:00:00.000000",
+            "created_at": "2025-06-20 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-scheduled-activate",
+          "values": {
+            "source_event_id": "seed-event-scheduled-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-scheduled"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "600.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "600.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-09-01 16:00:00.000000",
+            "created_at": "2024-09-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-scheduled-cancel",
+          "values": {
+            "source_event_id": "seed-event-scheduled-cancel",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-scheduled"
+            },
+            "event_type": "cancellation_effective",
+            "status_before": "cancel_scheduled",
+            "status_after": "cancelled",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "600.0000",
+            "recurring_amount_after": "0.0000",
+            "normalized_mrr_before": "600.0000",
+            "normalized_mrr_after": "0.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-07-01 07:00:00.000000",
+            "created_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-paused-activate",
+          "values": {
+            "source_event_id": "seed-event-paused-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-paused"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "200.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "200.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-08-01 16:00:00.000000",
+            "created_at": "2024-08-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-paused-pause",
+          "values": {
+            "source_event_id": "seed-event-paused-pause",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-paused"
+            },
+            "event_type": "pause",
+            "status_before": "active",
+            "status_after": "paused",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "200.0000",
+            "recurring_amount_after": "0.0000",
+            "normalized_mrr_before": "200.0000",
+            "normalized_mrr_after": "0.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-02-15 16:00:00.000000",
+            "created_at": "2025-02-15 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-paused-resume",
+          "values": {
+            "source_event_id": "seed-event-paused-resume",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-paused"
+            },
+            "event_type": "resume",
+            "status_before": "paused",
+            "status_after": "active",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-growth-monthly"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "200.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "200.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-03-15 16:00:00.000000",
+            "created_at": "2025-03-15 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-zeta-activate",
+          "values": {
+            "source_event_id": "seed-event-zeta-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-zeta"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "600.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "600.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-07-01 16:00:00.000000",
+            "created_at": "2024-07-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-zeta-cancel",
+          "values": {
+            "source_event_id": "seed-event-zeta-cancel",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-zeta"
+            },
+            "event_type": "cancellation_effective",
+            "status_before": "cancel_scheduled",
+            "status_after": "cancelled",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "600.0000",
+            "recurring_amount_after": "0.0000",
+            "normalized_mrr_before": "600.0000",
+            "normalized_mrr_after": "0.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-05-10 16:00:00.000000",
+            "created_at": "2025-05-10 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-old-activate",
+          "values": {
+            "source_event_id": "seed-event-old-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-old"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "600.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "600.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-06-01 16:00:00.000000",
+            "created_at": "2024-06-01 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-old-cancel",
+          "values": {
+            "source_event_id": "seed-event-old-cancel",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-old"
+            },
+            "event_type": "cancellation_effective",
+            "status_before": "cancel_scheduled",
+            "status_after": "cancelled",
+            "plan_version_before_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-enterprise-monthly-v1"
+            },
+            "billing_interval_before": "monthly",
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "600.0000",
+            "recurring_amount_after": "0.0000",
+            "normalized_mrr_before": "600.0000",
+            "normalized_mrr_after": "0.0000",
+            "currency_code": "USD",
+            "effective_at": "2025-02-10 16:00:00.000000",
+            "created_at": "2025-02-10 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-fact-test-activate",
+          "values": {
+            "source_event_id": "seed-event-fact-test-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-fact-test"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-test"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "9999.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "9999.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-12-10 16:00:00.000000",
+            "created_at": "2024-12-10 16:00:00.000000",
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "event-test-org-activate",
+          "values": {
+            "source_event_id": "seed-event-test-org-activate",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-test-org"
+            },
+            "event_type": "first_activation",
+            "status_before": "pending",
+            "status_after": "active",
+            "plan_version_before_id": null,
+            "plan_version_after_id": {
+              "table": "saas_plan_version",
+              "record_id": "plan-test"
+            },
+            "billing_interval_before": null,
+            "billing_interval_after": "monthly",
+            "recurring_amount_before": "0.0000",
+            "recurring_amount_after": "9999.0000",
+            "normalized_mrr_before": "0.0000",
+            "normalized_mrr_after": "9999.0000",
+            "currency_code": "USD",
+            "effective_at": "2024-12-10 17:00:00.000000",
+            "created_at": "2024-12-10 17:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "subscription_invoice",
+      "match_columns": [
+        "external_invoice_id"
+      ],
+      "records": [
+        {
+          "record_id": "invoice-apr-alpha",
+          "values": {
+            "external_invoice_id": "seed-invoice-apr-alpha",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-alpha-annual"
+            },
+            "status": "paid",
+            "subscription_fee_amount": "7200.0000",
+            "tax_amount": "720.0000",
+            "one_time_amount": "100.0000",
+            "total_amount": "8020.0000",
+            "currency_code": "USD",
+            "issued_at": "2025-04-10 16:00:00.000000",
+            "due_at": "2025-04-10 16:00:00.000000",
+            "voided_at": null,
+            "paid_at": "2025-04-10 16:00:00.000000",
+            "created_at": "2025-04-10 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "invoice-apr-beta",
+          "values": {
+            "external_invoice_id": "seed-invoice-apr-beta",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-beta"
+            },
+            "status": "paid",
+            "subscription_fee_amount": "600.0000",
+            "tax_amount": "60.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "660.0000",
+            "currency_code": "USD",
+            "issued_at": "2025-04-15 16:00:00.000000",
+            "due_at": "2025-04-15 16:00:00.000000",
+            "voided_at": null,
+            "paid_at": "2025-04-15 16:00:00.000000",
+            "created_at": "2025-04-15 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "invoice-may-beta",
+          "values": {
+            "external_invoice_id": "seed-invoice-may-beta",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-beta"
+            },
+            "status": "paid",
+            "subscription_fee_amount": "1000.0000",
+            "tax_amount": "100.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "1100.0000",
+            "currency_code": "USD",
+            "issued_at": "2025-05-16 16:00:00.000000",
+            "due_at": "2025-05-16 16:00:00.000000",
+            "voided_at": null,
+            "paid_at": "2025-05-16 16:00:00.000000",
+            "created_at": "2025-05-16 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "invoice-may-delta",
+          "values": {
+            "external_invoice_id": "seed-invoice-may-delta",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-delta"
+            },
+            "status": "paid",
+            "subscription_fee_amount": "100.0000",
+            "tax_amount": "10.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "110.0000",
+            "currency_code": "USD",
+            "issued_at": "2025-05-25 16:00:00.000000",
+            "due_at": "2025-05-25 16:00:00.000000",
+            "voided_at": null,
+            "paid_at": "2025-05-25 16:00:00.000000",
+            "created_at": "2025-05-25 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "invoice-jun-delta",
+          "values": {
+            "external_invoice_id": "seed-invoice-jun-delta",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-delta"
+            },
+            "status": "paid",
+            "subscription_fee_amount": "100.0000",
+            "tax_amount": "10.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "110.0000",
+            "currency_code": "USD",
+            "issued_at": "2025-06-05 16:00:00.000000",
+            "due_at": "2025-06-05 16:00:00.000000",
+            "voided_at": null,
+            "paid_at": "2025-06-05 16:00:00.000000",
+            "created_at": "2025-06-05 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "invoice-jun-epsilon",
+          "values": {
+            "external_invoice_id": "seed-invoice-jun-epsilon",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-epsilon"
+            },
+            "status": "paid",
+            "subscription_fee_amount": "100.0000",
+            "tax_amount": "10.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "110.0000",
+            "currency_code": "USD",
+            "issued_at": "2025-06-08 16:00:00.000000",
+            "due_at": "2025-06-08 16:00:00.000000",
+            "voided_at": null,
+            "paid_at": "2025-06-08 16:00:00.000000",
+            "created_at": "2025-06-08 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "invoice-test-fact",
+          "values": {
+            "external_invoice_id": "seed-invoice-test-fact",
+            "subscription_id": {
+              "table": "subscription",
+              "record_id": "sub-fact-test"
+            },
+            "status": "paid",
+            "subscription_fee_amount": "9999.0000",
+            "tax_amount": "0.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "9999.0000",
+            "currency_code": "USD",
+            "issued_at": "2025-06-10 16:00:00.000000",
+            "due_at": "2025-06-10 16:00:00.000000",
+            "voided_at": null,
+            "paid_at": "2025-06-10 16:00:00.000000",
+            "created_at": "2025-06-10 16:00:00.000000",
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "invoice_payment_attempt",
+      "match_columns": [
+        "external_payment_attempt_id"
+      ],
+      "records": [
+        {
+          "record_id": "payment-apr-alpha",
+          "values": {
+            "external_payment_attempt_id": "seed-payment-apr-alpha",
+            "provider_transaction_id": "seed-provider-payment-apr-alpha",
+            "subscription_invoice_id": {
+              "table": "subscription_invoice",
+              "record_id": "invoice-apr-alpha"
+            },
+            "status": "succeeded",
+            "subscription_fee_amount": "7200.0000",
+            "tax_amount": "720.0000",
+            "one_time_amount": "100.0000",
+            "total_amount": "8020.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-04-10 15:00:00.000000",
+            "succeeded_at": "2025-04-10 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "failure_code": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "payment-apr-beta-failed",
+          "values": {
+            "external_payment_attempt_id": "seed-payment-apr-beta-failed",
+            "provider_transaction_id": null,
+            "subscription_invoice_id": {
+              "table": "subscription_invoice",
+              "record_id": "invoice-apr-beta"
+            },
+            "status": "failed",
+            "subscription_fee_amount": "600.0000",
+            "tax_amount": "60.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "660.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-04-14 16:00:00.000000",
+            "succeeded_at": null,
+            "failed_at": "2025-04-14 16:05:00.000000",
+            "cancelled_at": null,
+            "failure_code": "synthetic_decline",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "payment-apr-beta",
+          "values": {
+            "external_payment_attempt_id": "seed-payment-apr-beta",
+            "provider_transaction_id": "seed-provider-payment-apr-beta",
+            "subscription_invoice_id": {
+              "table": "subscription_invoice",
+              "record_id": "invoice-apr-beta"
+            },
+            "status": "succeeded",
+            "subscription_fee_amount": "600.0000",
+            "tax_amount": "60.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "660.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-04-15 15:00:00.000000",
+            "succeeded_at": "2025-04-15 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "failure_code": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "payment-may-beta",
+          "values": {
+            "external_payment_attempt_id": "seed-payment-may-beta",
+            "provider_transaction_id": "seed-provider-payment-may-beta",
+            "subscription_invoice_id": {
+              "table": "subscription_invoice",
+              "record_id": "invoice-may-beta"
+            },
+            "status": "succeeded",
+            "subscription_fee_amount": "1000.0000",
+            "tax_amount": "100.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "1100.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-05-16 15:00:00.000000",
+            "succeeded_at": "2025-05-16 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "failure_code": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "payment-may-delta",
+          "values": {
+            "external_payment_attempt_id": "seed-payment-may-delta",
+            "provider_transaction_id": "seed-provider-payment-may-delta",
+            "subscription_invoice_id": {
+              "table": "subscription_invoice",
+              "record_id": "invoice-may-delta"
+            },
+            "status": "succeeded",
+            "subscription_fee_amount": "100.0000",
+            "tax_amount": "10.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "110.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-05-25 15:00:00.000000",
+            "succeeded_at": "2025-05-25 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "failure_code": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "payment-jun-delta",
+          "values": {
+            "external_payment_attempt_id": "seed-payment-jun-delta",
+            "provider_transaction_id": "seed-provider-payment-jun-delta",
+            "subscription_invoice_id": {
+              "table": "subscription_invoice",
+              "record_id": "invoice-jun-delta"
+            },
+            "status": "succeeded",
+            "subscription_fee_amount": "100.0000",
+            "tax_amount": "10.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "110.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-06-05 15:00:00.000000",
+            "succeeded_at": "2025-06-05 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "failure_code": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "payment-jun-epsilon",
+          "values": {
+            "external_payment_attempt_id": "seed-payment-jun-epsilon",
+            "provider_transaction_id": "seed-provider-payment-jun-epsilon",
+            "subscription_invoice_id": {
+              "table": "subscription_invoice",
+              "record_id": "invoice-jun-epsilon"
+            },
+            "status": "succeeded",
+            "subscription_fee_amount": "100.0000",
+            "tax_amount": "10.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "110.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-06-08 15:00:00.000000",
+            "succeeded_at": "2025-06-08 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "failure_code": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "payment-test-fact",
+          "values": {
+            "external_payment_attempt_id": "seed-payment-test-fact",
+            "provider_transaction_id": "seed-provider-payment-test-fact",
+            "subscription_invoice_id": {
+              "table": "subscription_invoice",
+              "record_id": "invoice-test-fact"
+            },
+            "status": "succeeded",
+            "subscription_fee_amount": "9999.0000",
+            "tax_amount": "0.0000",
+            "one_time_amount": "0.0000",
+            "total_amount": "9999.0000",
+            "currency_code": "USD",
+            "attempted_at": "2025-06-10 15:00:00.000000",
+            "succeeded_at": "2025-06-10 16:00:00.000000",
+            "failed_at": null,
+            "cancelled_at": null,
+            "failure_code": null,
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    }
+  ]
+}

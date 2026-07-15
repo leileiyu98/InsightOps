@@ -1,0 +1,40 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-SAA-001",
+  "columns": [
+    "plan_name",
+    "mrr",
+    "arr"
+  ],
+  "ordered_by": [
+    "plan_name"
+  ],
+  "rows": [
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Enterprise Annual"
+    },
+    {
+      "arr": "31200.0000",
+      "mrr": "2600.0000",
+      "plan_name": "Enterprise Monthly"
+    },
+    {
+      "arr": "4800.0000",
+      "mrr": "400.0000",
+      "plan_name": "Growth Monthly"
+    },
+    {
+      "arr": "2400.0000",
+      "mrr": "200.0000",
+      "plan_name": "Starter Monthly"
+    },
+    {
+      "arr": "45600.0000",
+      "mrr": "3800.0000",
+      "plan_name": "TOTAL"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-SAA-003",
+  "columns": [
+    "report_month",
+    "churned_mrr"
+  ],
+  "ordered_by": [
+    "report_month"
+  ],
+  "rows": [
+    {
+      "churned_mrr": "0.0000",
+      "report_month": "2025-04"
+    },
+    {
+      "churned_mrr": "700.0000",
+      "report_month": "2025-05"
+    },
+    {
+      "churned_mrr": "1200.0000",
+      "report_month": "2025-06"
+    }
+  ]
+}

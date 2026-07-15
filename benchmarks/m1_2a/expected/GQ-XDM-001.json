@@ -1,0 +1,30 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-XDM-001",
+  "columns": [
+    "report_month",
+    "saas_revenue",
+    "commerce_revenue"
+  ],
+  "ordered_by": [
+    "report_month"
+  ],
+  "rows": [
+    {
+      "commerce_revenue": "21.0000",
+      "report_month": "2025-04",
+      "saas_revenue": "7800.0000"
+    },
+    {
+      "commerce_revenue": "26.0000",
+      "report_month": "2025-05",
+      "saas_revenue": "1100.0000"
+    },
+    {
+      "commerce_revenue": "36.0000",
+      "report_month": "2025-06",
+      "saas_revenue": "200.0000"
+    }
+  ]
+}

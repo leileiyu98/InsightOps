@@ -1,0 +1,20 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-COM-002",
+  "columns": [
+    "refund_amount",
+    "gmv",
+    "refund_rate",
+    "prior_month_order_refund_amount"
+  ],
+  "ordered_by": [],
+  "rows": [
+    {
+      "gmv": "720.0000",
+      "prior_month_order_refund_amount": "150.0000",
+      "refund_amount": "350.0000",
+      "refund_rate": "0.4861"
+    }
+  ]
+}

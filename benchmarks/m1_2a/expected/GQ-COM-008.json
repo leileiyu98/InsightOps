@@ -1,0 +1,50 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-COM-008",
+  "columns": [
+    "merchant_id",
+    "merchant_name",
+    "q1_gmv",
+    "q2_gmv",
+    "gmv_change",
+    "q1_merchant_net_sales",
+    "q2_merchant_net_sales",
+    "merchant_net_sales_change",
+    "q1_platform_revenue",
+    "q2_platform_revenue",
+    "platform_revenue_change"
+  ],
+  "ordered_by": [
+    "gmv_change",
+    "merchant_id"
+  ],
+  "rows": [
+    {
+      "gmv_change": "700.0000",
+      "merchant_id": 1001,
+      "merchant_name": "Alpha Marketplace",
+      "merchant_net_sales_change": "340.0000",
+      "platform_revenue_change": "35.0000",
+      "q1_gmv": "300.0000",
+      "q1_merchant_net_sales": "300.0000",
+      "q1_platform_revenue": "15.0000",
+      "q2_gmv": "1000.0000",
+      "q2_merchant_net_sales": "640.0000",
+      "q2_platform_revenue": "50.0000"
+    },
+    {
+      "gmv_change": "60.0000",
+      "merchant_id": 1002,
+      "merchant_name": "Beta Marketplace",
+      "merchant_net_sales_change": "40.0000",
+      "platform_revenue_change": "3.0000",
+      "q1_gmv": "600.0000",
+      "q1_merchant_net_sales": "600.0000",
+      "q1_platform_revenue": "30.0000",
+      "q2_gmv": "660.0000",
+      "q2_merchant_net_sales": "640.0000",
+      "q2_platform_revenue": "33.0000"
+    }
+  ]
+}

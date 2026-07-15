@@ -1,0 +1,37 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-SAA-005",
+  "columns": [
+    "report_month",
+    "opening_mrr",
+    "new_mrr",
+    "expansion_mrr",
+    "contraction_mrr",
+    "churned_mrr",
+    "closing_mrr"
+  ],
+  "ordered_by": [
+    "report_month"
+  ],
+  "rows": [
+    {
+      "churned_mrr": "700.0000",
+      "closing_mrr": "3800.0000",
+      "contraction_mrr": "100.0000",
+      "expansion_mrr": "400.0000",
+      "new_mrr": "0.0000",
+      "opening_mrr": "4200.0000",
+      "report_month": "2025-05"
+    },
+    {
+      "churned_mrr": "1200.0000",
+      "closing_mrr": "3800.0000",
+      "contraction_mrr": "0.0000",
+      "expansion_mrr": "0.0000",
+      "new_mrr": "1200.0000",
+      "opening_mrr": "3800.0000",
+      "report_month": "2025-06"
+    }
+  ]
+}

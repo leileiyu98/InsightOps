@@ -1,0 +1,49 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "dataset_digest": "97edd25bff257b0eb7cf803c125a761a7d485e5c51efd96725bfef7283aa987a",
+  "schema_revision": "0003",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.0",
+  "business_timezone": "America/Los_Angeles",
+  "snapshot_cutoff": "2026-01-15T08:00:00Z",
+  "source_files": [
+    "identity.json",
+    "saas.json",
+    "commerce.json"
+  ],
+  "table_order": [
+    "organization",
+    "organization_member",
+    "consumer",
+    "merchant",
+    "saas_plan_version",
+    "subscription",
+    "subscription_state_event",
+    "subscription_invoice",
+    "invoice_payment_attempt",
+    "product",
+    "commerce_order",
+    "commerce_order_item",
+    "commerce_refund",
+    "platform_fee_charge",
+    "refund_item_allocation"
+  ],
+  "expected_row_counts": {
+    "organization": 12,
+    "organization_member": 2,
+    "consumer": 3,
+    "merchant": 3,
+    "saas_plan_version": 6,
+    "subscription": 15,
+    "subscription_state_event": 25,
+    "subscription_invoice": 7,
+    "invoice_payment_attempt": 8,
+    "product": 4,
+    "commerce_order": 18,
+    "commerce_order_item": 19,
+    "commerce_refund": 6,
+    "platform_fee_charge": 14,
+    "refund_item_allocation": 7
+  }
+}

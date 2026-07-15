@@ -1,0 +1,26 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-SAA-002",
+  "columns": [
+    "report_month",
+    "saas_revenue"
+  ],
+  "ordered_by": [
+    "report_month"
+  ],
+  "rows": [
+    {
+      "report_month": "2025-04",
+      "saas_revenue": "7800.0000"
+    },
+    {
+      "report_month": "2025-05",
+      "saas_revenue": "1100.0000"
+    },
+    {
+      "report_month": "2025-06",
+      "saas_revenue": "200.0000"
+    }
+  ]
+}

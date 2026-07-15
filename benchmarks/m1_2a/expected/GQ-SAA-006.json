@@ -1,0 +1,55 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-SAA-006",
+  "columns": [
+    "plan_name",
+    "opening_logos",
+    "churned_logos",
+    "logo_churn_rate",
+    "opening_mrr",
+    "churned_mrr",
+    "revenue_churn_rate"
+  ],
+  "ordered_by": [
+    "plan_name"
+  ],
+  "rows": [
+    {
+      "churned_logos": 0,
+      "churned_mrr": "0.0000",
+      "logo_churn_rate": "0.0000",
+      "opening_logos": 1,
+      "opening_mrr": "600.0000",
+      "plan_name": "Enterprise Annual",
+      "revenue_churn_rate": "0.0000"
+    },
+    {
+      "churned_logos": 2,
+      "churned_mrr": "1600.0000",
+      "logo_churn_rate": "0.5000",
+      "opening_logos": 4,
+      "opening_mrr": "2800.0000",
+      "plan_name": "Enterprise Monthly",
+      "revenue_churn_rate": "0.5714"
+    },
+    {
+      "churned_logos": 1,
+      "churned_mrr": "200.0000",
+      "logo_churn_rate": "0.3333",
+      "opening_logos": 3,
+      "opening_mrr": "600.0000",
+      "plan_name": "Growth Monthly",
+      "revenue_churn_rate": "0.3333"
+    },
+    {
+      "churned_logos": 1,
+      "churned_mrr": "100.0000",
+      "logo_churn_rate": "1.0000",
+      "opening_logos": 1,
+      "opening_mrr": "100.0000",
+      "plan_name": "Starter Monthly",
+      "revenue_churn_rate": "1.0000"
+    }
+  ]
+}

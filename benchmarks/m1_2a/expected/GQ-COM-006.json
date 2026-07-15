@@ -1,0 +1,81 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "case_id": "GQ-COM-006",
+  "columns": [
+    "report_month",
+    "category_code",
+    "gmv",
+    "refund_amount",
+    "refund_rate"
+  ],
+  "ordered_by": [
+    "report_month",
+    "category_code"
+  ],
+  "rows": [
+    {
+      "category_code": "hardware",
+      "gmv": "200.0000",
+      "refund_amount": "10.0000",
+      "refund_rate": "0.0500",
+      "report_month": "2025-04"
+    },
+    {
+      "category_code": "services",
+      "gmv": "220.0000",
+      "refund_amount": "0.0000",
+      "refund_rate": "0.0000",
+      "report_month": "2025-04"
+    },
+    {
+      "category_code": "software",
+      "gmv": "0.0000",
+      "refund_amount": "0.0000",
+      "refund_rate": null,
+      "report_month": "2025-04"
+    },
+    {
+      "category_code": "hardware",
+      "gmv": "250.0000",
+      "refund_amount": "0.0000",
+      "refund_rate": "0.0000",
+      "report_month": "2025-05"
+    },
+    {
+      "category_code": "services",
+      "gmv": "220.0000",
+      "refund_amount": "20.0000",
+      "refund_rate": "0.0909",
+      "report_month": "2025-05"
+    },
+    {
+      "category_code": "software",
+      "gmv": "50.0000",
+      "refund_amount": "0.0000",
+      "refund_rate": "0.0000",
+      "report_month": "2025-05"
+    },
+    {
+      "category_code": "hardware",
+      "gmv": "400.0000",
+      "refund_amount": "300.0000",
+      "refund_rate": "0.7500",
+      "report_month": "2025-06"
+    },
+    {
+      "category_code": "services",
+      "gmv": "220.0000",
+      "refund_amount": "0.0000",
+      "refund_rate": "0.0000",
+      "report_month": "2025-06"
+    },
+    {
+      "category_code": "software",
+      "gmv": "100.0000",
+      "refund_amount": "50.0000",
+      "refund_rate": "0.5000",
+      "report_month": "2025-06"
+    }
+  ]
+}

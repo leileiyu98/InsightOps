@@ -1,7 +1,7 @@
 # InsightOps
 
-InsightOps 是一个面向企业经营分析场景的大模型应用项目。当前仓库已完成 M0 基础设施以及截至
-**M1.1C：商城交易 Schema** 的数据库实现，仍处于后端数据模型建设阶段。
+InsightOps 是一个面向企业经营分析场景的大模型应用项目。当前仓库已完成 M0 基础设施、截至
+**M1.1C：商城交易 Schema** 的数据库实现，以及 **M1.2A：Seed Dataset & Benchmark Foundation**。
 
 ## 当前能力
 
@@ -11,11 +11,15 @@ InsightOps 是一个面向企业经营分析场景的大模型应用项目。当
 - SQLAlchemy 2.x 引擎和 Session 工厂
 - SQLAlchemy 2.x 企业身份、SaaS 和商城 ORM（当前共 15 张表）
 - Alembic `0001`—`0003` migration，可从空库升级和回滚验证
+- 版本化、确定性的 SaaS 与商城 seed dataset（149 行，固定 SHA-256 digest）
+- 48 个 Gold Question 绑定，其中 16 个具备隔离的 Gold SQL 与冻结结果
+- 可重复的 seed `load`、`verify`、`unload` 生命周期和真实 MySQL benchmark 回归
 - MySQL 8.4 Docker Compose 开发环境
 - pytest、Ruff、mypy 和 GitHub Actions
 
-当前不包含营销、产品使用和客服 Schema，也不包含种子业务数据、业务 API、登录权限、大模型 API、
-Text2SQL、RAG、Agent、SQL 安全引擎、Memory、MCP、Redis、Celery 或前端。
+当前不包含营销、产品使用和客服 Schema，也不包含业务 API、登录权限、大模型 API、Text2SQL、RAG、
+Agent、SQL 安全引擎、Memory、MCP、Redis、Celery 或前端。Gold SQL 和 expected results 仅是 benchmark
+oracle，不是未来 Agent 的检索或 prompt 输入。
 
 ## 环境要求
 
@@ -58,13 +62,25 @@ Text2SQL、RAG、Agent、SQL 安全引擎、Memory、MCP、Redis、Celery 或前
    uv run alembic current
    ```
 
-5. 启动 API：
+5. 可选：加载并验证 M1.2A 固定数据集：
+
+   ```bash
+   uv run python -m insightops.seed digest
+   uv run python -m insightops.seed load
+   uv run python -m insightops.seed verify
+   uv run python -m insightops.seed unload
+   ```
+
+   seed 命令只允许在 `local`、`test` 或 `ci` 环境运行，要求数据库位于 Alembic `0003`，并且不会创建
+   migration 或 seed 专用数据库表。`unload` 只删除 manifest 所有的固定行。
+
+6. 启动 API：
 
    ```bash
    uv run uvicorn insightops.main:app --host 127.0.0.1 --port 8000 --reload
    ```
 
-6. 在另一个终端检查服务：
+7. 在另一个终端检查服务：
 
    ```bash
    curl --fail --silent --show-error http://127.0.0.1:8000/health
@@ -132,5 +148,6 @@ docker compose down -v
 ## 架构与后续开发
 
 当前边界和设计理由见 [`docs/architecture.md`](docs/architecture.md)，商城 Schema 实施记录见
-[`docs/plans/m1-1c-commerce-schema.md`](docs/plans/m1-1c-commerce-schema.md)。后续工作继续按明确里程碑
-规划，不提前实现 Agent、Text2SQL 或 M1.1D 范围。
+[`docs/plans/m1-1c-commerce-schema.md`](docs/plans/m1-1c-commerce-schema.md)，M1.2A 数据与评测基础见
+[`docs/plans/m1-2a-seed-benchmark-foundation.md`](docs/plans/m1-2a-seed-benchmark-foundation.md)。后续工作继续按
+明确里程碑规划，不提前实现 Agent、Text2SQL 或 M1.1D 范围。
