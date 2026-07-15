@@ -1,0 +1,1786 @@
+{
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.0.0",
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
+  "schema_revision": "0003",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.0",
+  "oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
+  "cases": [
+    {
+      "case_id": "GQ-SAA-001",
+      "question": "截至 2025 年 6 月末，各套餐的 MRR 和 ARR 分别是多少？",
+      "difficulty": "L1",
+      "status": "executable",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "MRR",
+        "ARR"
+      ],
+      "required_tables": [
+        "organization",
+        "saas_plan_version",
+        "subscription",
+        "subscription_state_event"
+      ],
+      "phenomenon_ids": [
+        "P15",
+        "P10"
+      ],
+      "scenario_ids": [
+        "annual-mrr",
+        "test-exclusion"
+      ],
+      "expected_result_shape": "按套餐的金额表和总计",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-SAA-001.sql",
+      "expected_result_path": "expected/GQ-SAA-001.json",
+      "gold_sql_digest": "c344566ccd9b3f6e512f5ef75b4c53c02c0f97a8d8972b5c386190d10b0dbcde",
+      "expected_result_digest": "61f6e33d89f49b124e14baa7130729941b3040bd88b80bd57bcac223242e272c"
+    },
+    {
+      "case_id": "GQ-SAA-002",
+      "question": "2025 年第二季度每个月的 SaaS Revenue 是多少？",
+      "difficulty": "L1",
+      "status": "executable",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "SaaS Revenue"
+      ],
+      "required_tables": [
+        "organization",
+        "subscription",
+        "subscription_invoice",
+        "invoice_payment_attempt"
+      ],
+      "phenomenon_ids": [
+        "P10"
+      ],
+      "scenario_ids": [
+        "payment-retry",
+        "test-exclusion"
+      ],
+      "expected_result_shape": "月度时间序列",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-SAA-002.sql",
+      "expected_result_path": "expected/GQ-SAA-002.json",
+      "gold_sql_digest": "03725a08377d5d32af060f84af5de94777da38b71a023224620d052ac60677af",
+      "expected_result_digest": "e0fea0a65f792ce68f07feee45c755b8e074bec360c9020040e88c09a11ceb97"
+    },
+    {
+      "case_id": "GQ-SAA-003",
+      "question": "2025 年第二季度每个月的 Churned MRR 是多少？",
+      "difficulty": "L1",
+      "status": "executable",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "Churned MRR"
+      ],
+      "required_tables": [
+        "organization",
+        "subscription",
+        "subscription_state_event",
+        "saas_plan_version"
+      ],
+      "phenomenon_ids": [
+        "P01"
+      ],
+      "scenario_ids": [
+        "enterprise-churn-spike",
+        "boundary-cancellation"
+      ],
+      "expected_result_shape": "月度金额序列",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-SAA-003.sql",
+      "expected_result_path": "expected/GQ-SAA-003.json",
+      "gold_sql_digest": "68c3b5fce81cff5e394a03bc8e6e20ba05fa03e735992b2eafcb65c7d1359093",
+      "expected_result_digest": "b4cf2eb4ce83d60b00e80939ff93bdfd18db405fdf1a2c4c2d209901c16ea87b"
+    },
+    {
+      "case_id": "GQ-SAA-004",
+      "question": "2025 年 1—6 月各月末 MRR 和 ARR 的趋势如何，按套餐展示？",
+      "difficulty": "L2",
+      "status": "executable",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "MRR",
+        "ARR"
+      ],
+      "required_tables": [
+        "organization",
+        "subscription",
+        "subscription_state_event",
+        "saas_plan_version"
+      ],
+      "phenomenon_ids": [
+        "P15"
+      ],
+      "scenario_ids": [
+        "annual-mrr",
+        "pause-resume"
+      ],
+      "expected_result_shape": "套餐分组月度双指标时间序列",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-SAA-004.sql",
+      "expected_result_path": "expected/GQ-SAA-004.json",
+      "gold_sql_digest": "84a79836fcd7291180ea766ac7b33d2a58775269da07fcce43206474ac986e08",
+      "expected_result_digest": "5a104d2df5d725969c25389d5a2f189f141945ac1fe2fc5e8229a73c17e202c6"
+    },
+    {
+      "case_id": "GQ-SAA-005",
+      "question": "2025 年 5 月到 6 月，New、Expansion、Contraction 和 Churned MRR 如何解释月末 MRR 的变化？",
+      "difficulty": "L2",
+      "status": "executable",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "MRR",
+        "New MRR",
+        "Expansion MRR",
+        "Contraction MRR",
+        "Churned MRR"
+      ],
+      "required_tables": [
+        "organization",
+        "subscription",
+        "subscription_state_event"
+      ],
+      "phenomenon_ids": [
+        "P01",
+        "P15"
+      ],
+      "scenario_ids": [
+        "mrr-bridge"
+      ],
+      "expected_result_shape": "月度 MRR 变化桥",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-SAA-005.sql",
+      "expected_result_path": "expected/GQ-SAA-005.json",
+      "gold_sql_digest": "1f20daebd970fc9cf00675926c92c862f2b590c8f284d8f213ee046afafe2a8f",
+      "expected_result_digest": "7fdc60f88fac2848043a9cfbdab0a9463e03b840ac2b85d8453cf95ecc270cb2"
+    },
+    {
+      "case_id": "GQ-SAA-006",
+      "question": "2025 年第二季度各套餐的 Logo Churn Rate 和 Revenue Churn Rate 有何差异？",
+      "difficulty": "L2",
+      "status": "executable",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "Logo Churn Rate",
+        "Revenue Churn Rate"
+      ],
+      "required_tables": [
+        "organization",
+        "subscription",
+        "subscription_state_event",
+        "saas_plan_version"
+      ],
+      "phenomenon_ids": [
+        "P01"
+      ],
+      "scenario_ids": [
+        "multi-subscription-logo-churn"
+      ],
+      "expected_result_shape": "套餐比较表及分子分母",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-SAA-006.sql",
+      "expected_result_path": "expected/GQ-SAA-006.json",
+      "gold_sql_digest": "fc159f088c9eab4dc8deb7abe01885e85d0606b5695e3aaeb3047b4b0ce7bb05",
+      "expected_result_digest": "33822de25b30380c689e57b36cddc1dc72b22597dc152a70cdc51acd8d53daaf"
+    },
+    {
+      "case_id": "GQ-SAA-007",
+      "question": "2025 年 4—6 月 SaaS Revenue 下降时，月末 MRR 是否同步下降？",
+      "difficulty": "L2",
+      "status": "executable",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "SaaS Revenue",
+        "MRR"
+      ],
+      "required_tables": [
+        "organization",
+        "subscription",
+        "subscription_state_event",
+        "subscription_invoice",
+        "invoice_payment_attempt"
+      ],
+      "phenomenon_ids": [
+        "P08",
+        "P15"
+      ],
+      "scenario_ids": [
+        "revenue-mrr-divergence"
+      ],
+      "expected_result_shape": "两条月度时间序列",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-SAA-007.sql",
+      "expected_result_path": "expected/GQ-SAA-007.json",
+      "gold_sql_digest": "4acb52c8b9ebbc0dbea3ee079910b0202a27f93c4818ac6eb94dbe6f67dbf619",
+      "expected_result_digest": "2c20772537e0844390ac8f19480c6f1f1e4df7811a63960187df76385b34eaa3"
+    },
+    {
+      "case_id": "GQ-SAA-008",
+      "question": "2025 年 5—6 月 Enterprise 套餐流失是否比第一季度明显增加，增加集中在哪个月？",
+      "difficulty": "L3",
+      "status": "executable",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "Churned MRR",
+        "Logo Churn Rate",
+        "Revenue Churn Rate"
+      ],
+      "required_tables": [
+        "organization",
+        "subscription",
+        "subscription_state_event",
+        "saas_plan_version"
+      ],
+      "phenomenon_ids": [
+        "P01"
+      ],
+      "scenario_ids": [
+        "enterprise-churn-spike"
+      ],
+      "expected_result_shape": "基线与异常月份比较表",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-SAA-008.sql",
+      "expected_result_path": "expected/GQ-SAA-008.json",
+      "gold_sql_digest": "7924ef3f13990ac8a3bd27df4784ea12a194c16224c1fc2f6130a8cc762465dc",
+      "expected_result_digest": "c3aa14c90cf952ad9e080f8515cd7a521c07279990781491a44d806822535f4f"
+    },
+    {
+      "case_id": "GQ-SAA-009",
+      "question": "Enterprise 客户在 2025 年第二季度为什么流失，能否按取消前的订阅变化下钻？",
+      "difficulty": "L3",
+      "status": "clarification_required",
+      "domains": [
+        "saas"
+      ],
+      "metrics": [
+        "Churned MRR",
+        "Contraction MRR",
+        "Logo Churn Rate"
+      ],
+      "required_tables": [
+        "organization",
+        "subscription",
+        "subscription_state_event",
+        "saas_plan_version"
+      ],
+      "phenomenon_ids": [
+        "P01"
+      ],
+      "scenario_ids": [
+        "enterprise-churn-spike"
+      ],
+      "expected_result_shape": "澄清请求",
+      "parameters": {},
+      "clarification_reason": "“为什么”必须先澄清为可观察的订阅变化下钻，不能声称因果关系。",
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-COM-001",
+      "question": "2025 年 6 月商城的 GMV、Order Count 和 AOV 分别是多少？",
+      "difficulty": "L1",
+      "status": "executable",
+      "domains": [
+        "commerce"
+      ],
+      "metrics": [
+        "GMV",
+        "Order Count",
+        "AOV"
+      ],
+      "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
+        "commerce_order",
+        "commerce_order_item"
+      ],
+      "phenomenon_ids": [
+        "P10"
+      ],
+      "scenario_ids": [
+        "multi-item-order",
+        "test-exclusion"
+      ],
+      "expected_result_shape": "三个标量及 AOV 分子分母",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-COM-001.sql",
+      "expected_result_path": "expected/GQ-COM-001.json",
+      "gold_sql_digest": "6ea79200006e5407b7faa612fcafb9cbec0fbff67e87f019b1d2840c6d56b001",
+      "expected_result_digest": "ea8d457aaef8a251b94646d1b342ee7a3beb418836c0d2db59e6a43e7546c331"
+    },
+    {
+      "case_id": "GQ-COM-002",
+      "question": "2025 年 6 月成功退款金额和 Refund Rate 是多少，其中多少退款对应 5 月支付的订单？",
+      "difficulty": "L1",
+      "status": "executable",
+      "domains": [
+        "commerce"
+      ],
+      "metrics": [
+        "Refund Amount",
+        "Refund Rate",
+        "GMV"
+      ],
+      "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
+        "commerce_order",
+        "commerce_order_item",
+        "commerce_refund",
+        "refund_item_allocation"
+      ],
+      "phenomenon_ids": [
+        "P11",
+        "P10"
+      ],
+      "scenario_ids": [
+        "cross-month-refund"
+      ],
+      "expected_result_shape": "退款标量、分母和跨期拆分",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-COM-002.sql",
+      "expected_result_path": "expected/GQ-COM-002.json",
+      "gold_sql_digest": "60723658b00afe43f17a78416149b64ee0a958af44a5589bdda1b20328792386",
+      "expected_result_digest": "3c8efa3fbc703e5b03f4e7cdd763d98bee3a74c6e23a58aa2aeced0bdf4c3d61"
+    },
+    {
+      "case_id": "GQ-COM-003",
+      "question": "2025 年 6 月各商家的 Merchant Net Sales 是多少？",
+      "difficulty": "L1",
+      "status": "executable",
+      "domains": [
+        "commerce"
+      ],
+      "metrics": [
+        "Merchant Net Sales",
+        "GMV",
+        "Refund Amount"
+      ],
+      "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
+        "commerce_order",
+        "commerce_order_item",
+        "commerce_refund",
+        "refund_item_allocation"
+      ],
+      "phenomenon_ids": [
+        "P11"
+      ],
+      "scenario_ids": [
+        "merchant-net-sales"
+      ],
+      "expected_result_shape": "商家分组金额表",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-COM-003.sql",
+      "expected_result_path": "expected/GQ-COM-003.json",
+      "gold_sql_digest": "b395de694d37aefe7023a57dc8dbc1ffc2d6310ca30a56a44268f8dc09a76186",
+      "expected_result_digest": "e82b71936f269d0d1b7c5e9ab2986c1e502fdcd76a1c0e68afb268028334f8d9"
+    },
+    {
+      "case_id": "GQ-COM-004",
+      "question": "2025 年 1—6 月 GMV、Order Count 和 AOV 的月度趋势如何？",
+      "difficulty": "L2",
+      "status": "executable",
+      "domains": [
+        "commerce"
+      ],
+      "metrics": [
+        "GMV",
+        "Order Count",
+        "AOV"
+      ],
+      "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
+        "commerce_order",
+        "commerce_order_item"
+      ],
+      "phenomenon_ids": [
+        "P10"
+      ],
+      "scenario_ids": [
+        "monthly-commerce-trend"
+      ],
+      "expected_result_shape": "三指标月度时间序列",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-COM-004.sql",
+      "expected_result_path": "expected/GQ-COM-004.json",
+      "gold_sql_digest": "e7c1750c33512586738c87efcbbb6ceae451d35234f32cd7accbc28a578b3edd",
+      "expected_result_digest": "f3d6249592a591ca6037ac8bf3f4573231277011c3e8c44326bc59a5474ccffb"
+    },
+    {
+      "case_id": "GQ-COM-005",
+      "question": "2025 年第二季度各商家的 GMV、Refund Amount、Merchant Net Sales 和 Platform Transaction Revenue 有何差异？",
+      "difficulty": "L2",
+      "status": "executable",
+      "domains": [
+        "commerce"
+      ],
+      "metrics": [
+        "GMV",
+        "Refund Amount",
+        "Merchant Net Sales",
+        "Platform Transaction Revenue"
+      ],
+      "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
+        "commerce_order",
+        "commerce_order_item",
+        "commerce_refund",
+        "refund_item_allocation",
+        "platform_fee_charge"
+      ],
+      "phenomenon_ids": [
+        "P11"
+      ],
+      "partial_phenomenon_coverage": {
+        "P07": "GMV and refund growth are covered; Marketing Cost remains deferred until M1.1D."
+      },
+      "scenario_ids": [
+        "merchant-growth-quality"
+      ],
+      "expected_result_shape": "商家比较表",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-COM-005.sql",
+      "expected_result_path": "expected/GQ-COM-005.json",
+      "gold_sql_digest": "1fa5a3c7c153d0b22d77ed07d300a444e417f8f60d2aad2b09cf75c38f962127",
+      "expected_result_digest": "f2acdb69e2576f761a4129baef72e395684f6774e21701be414baa38eb2bab73"
+    },
+    {
+      "case_id": "GQ-COM-006",
+      "question": "2025 年 6 月哪个商品类别的 Refund Rate 相比 4—5 月异常上升？",
+      "difficulty": "L2",
+      "status": "executable",
+      "domains": [
+        "commerce"
+      ],
+      "metrics": [
+        "Refund Rate",
+        "Refund Amount",
+        "GMV"
+      ],
+      "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
+        "commerce_order",
+        "commerce_order_item",
+        "commerce_refund",
+        "refund_item_allocation"
+      ],
+      "phenomenon_ids": [
+        "P06",
+        "P11"
+      ],
+      "scenario_ids": [
+        "category-refund-spike"
+      ],
+      "expected_result_shape": "类别月度趋势及分子分母",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-COM-006.sql",
+      "expected_result_path": "expected/GQ-COM-006.json",
+      "gold_sql_digest": "654a5a6ca0a171a804c848afe54bf0df9c39db4b1337d67f0ce399d307ec4607",
+      "expected_result_digest": "f33143460a557b0c26df76351cf5fb8c021431b7a0330a8b6a6d4d47c707b252"
+    },
+    {
+      "case_id": "GQ-COM-007",
+      "question": "2025 年第二季度从订单创建、支付到完成和退款的漏斗转化率是多少？",
+      "difficulty": "L3",
+      "status": "clarification_required",
+      "domains": [
+        "commerce"
+      ],
+      "metrics": [
+        "Order Count"
+      ],
+      "required_tables": [
+        "commerce_order",
+        "commerce_order_item",
+        "commerce_refund"
+      ],
+      "phenomenon_ids": [],
+      "scenario_ids": [
+        "order-lifecycle-baseline"
+      ],
+      "expected_result_shape": "澄清请求",
+      "parameters": {},
+      "clarification_reason": "V1 尚未冻结订单生命周期漏斗的 cohort、分母、观察窗口和退款阶段定义。",
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-COM-008",
+      "question": "2025 年第二季度 GMV 增长最多的商家，其 Merchant Net Sales 和 Platform Transaction Revenue 是否也同步增长？",
+      "difficulty": "L3",
+      "status": "executable",
+      "domains": [
+        "commerce"
+      ],
+      "metrics": [
+        "GMV",
+        "Merchant Net Sales",
+        "Platform Transaction Revenue",
+        "Refund Amount"
+      ],
+      "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
+        "commerce_order",
+        "commerce_order_item",
+        "commerce_refund",
+        "refund_item_allocation",
+        "platform_fee_charge"
+      ],
+      "phenomenon_ids": [
+        "P11"
+      ],
+      "partial_phenomenon_coverage": {
+        "P07": "GMV and refund growth are covered; Marketing Cost remains deferred until M1.1D."
+      },
+      "scenario_ids": [
+        "merchant-growth-quality"
+      ],
+      "expected_result_shape": "商家季度变化排名",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-COM-008.sql",
+      "expected_result_path": "expected/GQ-COM-008.json",
+      "gold_sql_digest": "4f75c368e3530be7c49118f288eca1060bf437a6af8407eb688b85a2e38644c4",
+      "expected_result_digest": "90541f38ca1d49a11eb91c5483a1320585dd39d954f7c69ea46f179847503ca5"
+    },
+    {
+      "case_id": "GQ-MKT-001",
+      "question": "2025 年第二季度各渠道的 SaaS CAC 是多少？",
+      "difficulty": "L1",
+      "status": "deferred",
+      "domains": [
+        "marketing",
+        "saas"
+      ],
+      "metrics": [
+        "SaaS CAC"
+      ],
+      "required_tables": [
+        "marketing_channel",
+        "marketing_campaign",
+        "campaign_daily_spend",
+        "attributed_conversion",
+        "invoice_payment_attempt",
+        "organization"
+      ],
+      "phenomenon_ids": [
+        "P04",
+        "P10"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-MKT-002",
+      "question": "2025 年第二季度各渠道的 Commerce CAC 是多少？",
+      "difficulty": "L1",
+      "status": "deferred",
+      "domains": [
+        "marketing",
+        "commerce"
+      ],
+      "metrics": [
+        "Commerce CAC"
+      ],
+      "required_tables": [
+        "marketing_channel",
+        "marketing_campaign",
+        "campaign_daily_spend",
+        "attributed_conversion",
+        "commerce_order",
+        "consumer"
+      ],
+      "phenomenon_ids": [
+        "P04",
+        "P10"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-MKT-003",
+      "question": "2025 年 6 月 SaaS Revenue 和 Commerce Revenue 分别归因到了哪些渠道，direct 和 unknown/unattributed 各占多少？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "marketing",
+        "saas",
+        "commerce"
+      ],
+      "metrics": [
+        "Attributed SaaS Revenue",
+        "Attributed Commerce Revenue"
+      ],
+      "required_tables": [
+        "marketing_touch",
+        "attributed_conversion",
+        "marketing_channel",
+        "invoice_payment_attempt",
+        "platform_fee_charge"
+      ],
+      "phenomenon_ids": [
+        "P12",
+        "P13"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-MKT-004",
+      "question": "2025 年第二季度从营销触达到新增付费客户的漏斗如何，SaaS 和 Commerce 分别展示？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "marketing",
+        "saas",
+        "commerce"
+      ],
+      "metrics": [
+        "新增付费客户数"
+      ],
+      "required_tables": [
+        "marketing_touch",
+        "attributed_conversion",
+        "organization",
+        "consumer",
+        "invoice_payment_attempt",
+        "commerce_order"
+      ],
+      "phenomenon_ids": [
+        "P04",
+        "P12",
+        "P13"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-MKT-005",
+      "question": "2025 年 5—6 月哪个渠道花费上升但新增付费客户数下降，SaaS 和 Commerce 分别如何？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "marketing",
+        "saas",
+        "commerce"
+      ],
+      "metrics": [
+        "CAC",
+        "新增付费客户数"
+      ],
+      "required_tables": [
+        "marketing_channel",
+        "campaign_daily_spend",
+        "attributed_conversion"
+      ],
+      "phenomenon_ids": [
+        "P04"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-MKT-006",
+      "question": "2025 年 6 月哪个活动的 ROAS 相比 4—5 月明显下降？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "marketing"
+      ],
+      "metrics": [
+        "ROAS"
+      ],
+      "required_tables": [
+        "marketing_campaign",
+        "campaign_daily_spend",
+        "attributed_conversion"
+      ],
+      "phenomenon_ids": [
+        "P05"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-MKT-007",
+      "question": "2025 年第二季度各活动的 ROAS 表现如何，哪些活动最有效？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "marketing"
+      ],
+      "metrics": [
+        "ROAS"
+      ],
+      "required_tables": [
+        "marketing_campaign",
+        "marketing_channel",
+        "campaign_daily_spend",
+        "attributed_conversion"
+      ],
+      "phenomenon_ids": [
+        "P05"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-MKT-008",
+      "question": "给定 2025 年 6 月的转化，哪些应归为 direct，哪些应归为 unknown/unattributed，边界案例是什么？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "marketing",
+        "saas",
+        "commerce"
+      ],
+      "metrics": [
+        "归因结果",
+        "Attributed Revenue"
+      ],
+      "required_tables": [
+        "marketing_touch",
+        "attributed_conversion",
+        "marketing_channel"
+      ],
+      "phenomenon_ids": [
+        "P12",
+        "P13"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-PRD-001",
+      "question": "2025 年第二季度已完成 14 日观察窗口的注册 organization，其 Activation Rate 是多少？",
+      "difficulty": "L1",
+      "status": "deferred",
+      "domains": [
+        "organization-growth"
+      ],
+      "metrics": [
+        "Activation Rate"
+      ],
+      "required_tables": [
+        "organization",
+        "organization_member",
+        "marketing_campaign",
+        "merchant",
+        "commerce_order"
+      ],
+      "phenomenon_ids": [
+        "P09",
+        "P10"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-PRD-002",
+      "question": "截至 2025 年 7 月 1 日的 Active Organization Count 是多少？",
+      "difficulty": "L1",
+      "status": "deferred",
+      "domains": [
+        "product-usage"
+      ],
+      "metrics": [
+        "Active Organization Count"
+      ],
+      "required_tables": [
+        "key_product_event",
+        "organization",
+        "organization_member",
+        "merchant"
+      ],
+      "phenomenon_ids": [
+        "P02",
+        "P10"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-PRD-003",
+      "question": "2025 年 6 月各关键功能的事件次数和使用 organization 数是多少？",
+      "difficulty": "L1",
+      "status": "deferred",
+      "domains": [
+        "product-usage"
+      ],
+      "metrics": [
+        "关键功能使用趋势"
+      ],
+      "required_tables": [
+        "key_product_event",
+        "organization"
+      ],
+      "phenomenon_ids": [
+        "P02"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-PRD-004",
+      "question": "2025 年 1—6 月各关键功能使用 organization 数的趋势如何？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "product-usage"
+      ],
+      "metrics": [
+        "关键功能使用趋势"
+      ],
+      "required_tables": [
+        "key_product_event",
+        "organization"
+      ],
+      "phenomenon_ids": [
+        "P02"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-PRD-005",
+      "question": "2025 年第二季度不同注册来源和套餐的 organization Activation Rate 有何差异？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "organization-growth",
+        "marketing",
+        "saas"
+      ],
+      "metrics": [
+        "Activation Rate"
+      ],
+      "required_tables": [
+        "organization",
+        "organization_member",
+        "marketing_campaign",
+        "attributed_conversion",
+        "subscription"
+      ],
+      "phenomenon_ids": [
+        "P09",
+        "P12"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-PRD-006",
+      "question": "2025 年第二季度注册 organization 从完成 0 项、1 项到满足 2 项激活条件的漏斗如何？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "organization-growth"
+      ],
+      "metrics": [
+        "Activation Rate"
+      ],
+      "required_tables": [
+        "organization",
+        "organization_member",
+        "marketing_campaign",
+        "merchant",
+        "commerce_order"
+      ],
+      "phenomenon_ids": [
+        "P09"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-PRD-007",
+      "question": "2025 年 5—6 月新注册 organization 增加时，成熟 cohort 的 Activation Rate 是否下降？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "organization-growth"
+      ],
+      "metrics": [
+        "Activation Rate"
+      ],
+      "required_tables": [
+        "organization",
+        "organization_member",
+        "marketing_campaign",
+        "merchant",
+        "commerce_order"
+      ],
+      "phenomenon_ids": [
+        "P09"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-PRD-008",
+      "question": "不同首次付费归因渠道的 organization，在注册后 14 日内 Activation Rate 是否有差异？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "organization-growth",
+        "marketing",
+        "saas"
+      ],
+      "metrics": [
+        "Activation Rate",
+        "SaaS 新增付费客户数"
+      ],
+      "required_tables": [
+        "organization",
+        "attributed_conversion",
+        "invoice_payment_attempt",
+        "organization_member",
+        "marketing_campaign",
+        "merchant",
+        "commerce_order"
+      ],
+      "phenomenon_ids": [
+        "P09",
+        "P12",
+        "P13"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-SUP-001",
+      "question": "截至 2025 年 7 月 1 日的 Open Ticket Count 是多少？",
+      "difficulty": "L1",
+      "status": "deferred",
+      "domains": [
+        "support"
+      ],
+      "metrics": [
+        "Open Ticket Count"
+      ],
+      "required_tables": [
+        "support_ticket",
+        "ticket_status_event"
+      ],
+      "phenomenon_ids": [
+        "P14",
+        "P10"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-SUP-002",
+      "question": "2025 年 6 月创建工单的平均 First Response Time 和 Resolution Time 是多少？",
+      "difficulty": "L1",
+      "status": "deferred",
+      "domains": [
+        "support"
+      ],
+      "metrics": [
+        "First Response Time",
+        "Resolution Time"
+      ],
+      "required_tables": [
+        "support_ticket",
+        "ticket_interaction",
+        "ticket_status_event"
+      ],
+      "phenomenon_ids": [],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-SUP-003",
+      "question": "2025 年第二季度的 Reopen Rate 和 CSAT 分别是多少？",
+      "difficulty": "L1",
+      "status": "deferred",
+      "domains": [
+        "support"
+      ],
+      "metrics": [
+        "Reopen Rate",
+        "CSAT"
+      ],
+      "required_tables": [
+        "support_ticket",
+        "ticket_status_event"
+      ],
+      "phenomenon_ids": [
+        "P14"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-SUP-004",
+      "question": "2025 年 1—6 月 First Response Time 和 Resolution Time 的月度趋势如何？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "support"
+      ],
+      "metrics": [
+        "First Response Time",
+        "Resolution Time"
+      ],
+      "required_tables": [
+        "support_ticket",
+        "ticket_interaction",
+        "ticket_status_event"
+      ],
+      "phenomenon_ids": [
+        "P03",
+        "P14"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-SUP-005",
+      "question": "2025 年第二季度不同优先级和问题分类的 First Response Time、Resolution Time 和 CSAT 有何差异？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "support"
+      ],
+      "metrics": [
+        "First Response Time",
+        "Resolution Time",
+        "CSAT"
+      ],
+      "required_tables": [
+        "support_ticket",
+        "ticket_interaction",
+        "ticket_status_event"
+      ],
+      "phenomenon_ids": [
+        "P03"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-SUP-006",
+      "question": "2025 年 5—6 月高优先级工单是否异常增加，集中在哪些问题分类？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "support"
+      ],
+      "metrics": [
+        "Open Ticket Count"
+      ],
+      "required_tables": [
+        "support_ticket",
+        "ticket_status_event"
+      ],
+      "phenomenon_ids": [
+        "P03"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-SUP-007",
+      "question": "2025 年第二季度重新开启的工单，后续 Resolution Time 和 CSAT 表现如何？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "support"
+      ],
+      "metrics": [
+        "Reopen Rate",
+        "Resolution Time",
+        "CSAT"
+      ],
+      "required_tables": [
+        "support_ticket",
+        "ticket_status_event",
+        "ticket_interaction"
+      ],
+      "phenomenon_ids": [
+        "P14"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-XDM-001",
+      "question": "2025 年第二季度 SaaS Revenue 和 Commerce Revenue 各自如何变化，是否存在不同步月份？",
+      "difficulty": "L2",
+      "status": "executable",
+      "domains": [
+        "saas",
+        "commerce"
+      ],
+      "metrics": [
+        "SaaS Revenue",
+        "Commerce Revenue"
+      ],
+      "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "subscription_invoice",
+        "invoice_payment_attempt",
+        "subscription",
+        "platform_fee_charge",
+        "commerce_order"
+      ],
+      "phenomenon_ids": [
+        "P08"
+      ],
+      "scenario_ids": [
+        "cross-domain-revenue-divergence"
+      ],
+      "expected_result_shape": "两条月度收入序列",
+      "parameters": {
+        "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "as_of_utc": "2025-07-01 07:00:00.000000",
+        "jan_start": "2025-01-01 08:00:00.000000",
+        "feb_start": "2025-02-01 08:00:00.000000",
+        "mar_start": "2025-03-01 08:00:00.000000",
+        "apr_start": "2025-04-01 07:00:00.000000",
+        "may_start": "2025-05-01 07:00:00.000000",
+        "jun_start": "2025-06-01 07:00:00.000000",
+        "jul_start": "2025-07-01 07:00:00.000000"
+      },
+      "clarification_reason": null,
+      "deferred_reason": null,
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": "sql/GQ-XDM-001.sql",
+      "expected_result_path": "expected/GQ-XDM-001.json",
+      "gold_sql_digest": "ab8bfde17c0a11afdcfe36f23e6d3b2fc871032caaefeaf851e475cda332ee8d",
+      "expected_result_digest": "6f7d92ab36d649c591f0165986e7690ccb6ee5b28cebfed11ff6f7b955c85ab5"
+    },
+    {
+      "case_id": "GQ-XDM-002",
+      "question": "2025 年第二季度各 merchant 的营销花费、Attributed Commerce Revenue 和 Commerce ROAS 如何？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "commerce",
+        "marketing"
+      ],
+      "metrics": [
+        "Attributed Commerce Revenue",
+        "Commerce ROAS"
+      ],
+      "required_tables": [
+        "merchant",
+        "organization",
+        "marketing_campaign",
+        "campaign_daily_spend",
+        "attributed_conversion",
+        "platform_fee_charge"
+      ],
+      "phenomenon_ids": [
+        "P07",
+        "P12",
+        "P13"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-XDM-003",
+      "question": "2025 年第二季度从营销触达、organization 注册、激活到 SaaS 首次付费的漏斗如何？",
+      "difficulty": "L2",
+      "status": "deferred",
+      "domains": [
+        "marketing",
+        "organization-growth",
+        "saas"
+      ],
+      "metrics": [
+        "Activation Rate",
+        "SaaS 新增付费客户数"
+      ],
+      "required_tables": [
+        "marketing_touch",
+        "organization",
+        "organization_member",
+        "marketing_campaign",
+        "merchant",
+        "commerce_order",
+        "invoice_payment_attempt",
+        "attributed_conversion"
+      ],
+      "phenomenon_ids": [
+        "P04",
+        "P09",
+        "P12"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-XDM-004",
+      "question": "2025 年第二季度流失的 Enterprise organization，在流失前 60 日是否出现关键产品使用下降？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "saas",
+        "product-usage"
+      ],
+      "metrics": [
+        "Churned MRR",
+        "关键功能使用趋势"
+      ],
+      "required_tables": [
+        "saas_plan_version",
+        "subscription",
+        "subscription_state_event",
+        "key_product_event",
+        "organization"
+      ],
+      "phenomenon_ids": [
+        "P01",
+        "P02"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-XDM-005",
+      "question": "2025 年第二季度流失的 Enterprise organization，在流失前 60 日是否出现更多高优先级客服工单？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "saas",
+        "support"
+      ],
+      "metrics": [
+        "Logo Churn Rate",
+        "Churned MRR",
+        "Open Ticket Count"
+      ],
+      "required_tables": [
+        "subscription",
+        "subscription_state_event",
+        "support_ticket",
+        "ticket_status_event",
+        "organization"
+      ],
+      "phenomenon_ids": [
+        "P01",
+        "P03",
+        "P14"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-XDM-006",
+      "question": "2025 年 6 月退款率异常上升的商品类别，相关客服工单量和问题分类是否也发生变化？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "commerce",
+        "support"
+      ],
+      "metrics": [
+        "Refund Rate",
+        "Refund Amount"
+      ],
+      "required_tables": [
+        "product",
+        "commerce_order_item",
+        "commerce_order",
+        "commerce_refund",
+        "refund_item_allocation",
+        "support_ticket",
+        "merchant"
+      ],
+      "phenomenon_ids": [
+        "P06",
+        "P11"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-XDM-007",
+      "question": "2025 年第二季度哪个 merchant 的 GMV 增长最多，同时退款和营销成本也上升？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "commerce",
+        "marketing"
+      ],
+      "metrics": [
+        "GMV",
+        "Refund Amount",
+        "Refund Rate",
+        "Merchant Net Sales"
+      ],
+      "required_tables": [
+        "merchant",
+        "organization",
+        "commerce_order",
+        "commerce_order_item",
+        "commerce_refund",
+        "refund_item_allocation",
+        "marketing_campaign",
+        "campaign_daily_spend"
+      ],
+      "phenomenon_ids": [
+        "P07",
+        "P11"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    },
+    {
+      "case_id": "GQ-XDM-008",
+      "question": "截至 2025 年 7 月 1 日，哪些 Enterprise organization 同时出现近 30 日产品使用下降和未关闭高优先级工单？",
+      "difficulty": "L3",
+      "status": "deferred",
+      "domains": [
+        "saas",
+        "product-usage",
+        "support"
+      ],
+      "metrics": [
+        "Active Organization Count",
+        "Open Ticket Count"
+      ],
+      "required_tables": [
+        "saas_plan_version",
+        "subscription",
+        "organization",
+        "key_product_event",
+        "support_ticket",
+        "ticket_status_event"
+      ],
+      "phenomenon_ids": [
+        "P02",
+        "P03",
+        "P14"
+      ],
+      "scenario_ids": [],
+      "expected_result_shape": "延期",
+      "parameters": {},
+      "clarification_reason": null,
+      "deferred_reason": "依赖尚未实施的 M1.1D 营销表或 M1.1E 产品使用/客服表。",
+      "oracle_visibility": "benchmark_only",
+      "gold_sql_path": null,
+      "expected_result_path": null
+    }
+  ]
+}

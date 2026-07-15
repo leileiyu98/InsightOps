@@ -1,0 +1,47 @@
+{
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.0.0",
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
+  "schema_revision": "0003",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.0",
+  "oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
+  "case_id": "GQ-SAA-001",
+  "columns": [
+    "plan_name",
+    "mrr",
+    "arr"
+  ],
+  "ordered_by": [
+    "plan_name"
+  ],
+  "rows": [
+    {
+      "arr": "7200.0000",
+      "mrr": "600.0000",
+      "plan_name": "Enterprise Annual"
+    },
+    {
+      "arr": "31200.0000",
+      "mrr": "2600.0000",
+      "plan_name": "Enterprise Monthly"
+    },
+    {
+      "arr": "4800.0000",
+      "mrr": "400.0000",
+      "plan_name": "Growth Monthly"
+    },
+    {
+      "arr": "2400.0000",
+      "mrr": "200.0000",
+      "plan_name": "Starter Monthly"
+    },
+    {
+      "arr": "45600.0000",
+      "mrr": "3800.0000",
+      "plan_name": "TOTAL"
+    }
+  ]
+}

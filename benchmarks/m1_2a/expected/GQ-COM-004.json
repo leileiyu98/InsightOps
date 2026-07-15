@@ -1,0 +1,59 @@
+{
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.0.0",
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
+  "schema_revision": "0003",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.0",
+  "oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
+  "case_id": "GQ-COM-004",
+  "columns": [
+    "report_month",
+    "gmv",
+    "order_count",
+    "aov"
+  ],
+  "ordered_by": [
+    "report_month"
+  ],
+  "rows": [
+    {
+      "aov": "150.0000",
+      "gmv": "300.0000",
+      "order_count": 2,
+      "report_month": "2025-01"
+    },
+    {
+      "aov": "160.0000",
+      "gmv": "320.0000",
+      "order_count": 2,
+      "report_month": "2025-02"
+    },
+    {
+      "aov": "140.0000",
+      "gmv": "280.0000",
+      "order_count": 2,
+      "report_month": "2025-03"
+    },
+    {
+      "aov": "210.0000",
+      "gmv": "420.0000",
+      "order_count": 2,
+      "report_month": "2025-04"
+    },
+    {
+      "aov": "260.0000",
+      "gmv": "520.0000",
+      "order_count": 2,
+      "report_month": "2025-05"
+    },
+    {
+      "aov": "360.0000",
+      "gmv": "720.0000",
+      "order_count": 2,
+      "report_month": "2025-06"
+    }
+  ]
+}

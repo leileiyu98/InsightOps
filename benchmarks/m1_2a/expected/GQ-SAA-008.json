@@ -1,0 +1,53 @@
+{
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.0.0",
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
+  "schema_revision": "0003",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.0",
+  "oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
+  "case_id": "GQ-SAA-008",
+  "columns": [
+    "comparison_period",
+    "opening_logos",
+    "churned_logos",
+    "logo_churn_rate",
+    "opening_mrr",
+    "churned_mrr",
+    "revenue_churn_rate"
+  ],
+  "ordered_by": [
+    "comparison_period"
+  ],
+  "rows": [
+    {
+      "churned_logos": 1,
+      "churned_mrr": "600.0000",
+      "comparison_period": "Q1 baseline",
+      "logo_churn_rate": "0.1667",
+      "opening_logos": 6,
+      "opening_mrr": "4000.0000",
+      "revenue_churn_rate": "0.1500"
+    },
+    {
+      "churned_logos": 1,
+      "churned_mrr": "600.0000",
+      "comparison_period": "2025-05",
+      "logo_churn_rate": "0.2000",
+      "opening_logos": 5,
+      "opening_mrr": "3400.0000",
+      "revenue_churn_rate": "0.1765"
+    },
+    {
+      "churned_logos": 1,
+      "churned_mrr": "1000.0000",
+      "comparison_period": "2025-06",
+      "logo_churn_rate": "0.2500",
+      "opening_logos": 4,
+      "opening_mrr": "3200.0000",
+      "revenue_churn_rate": "0.3125"
+    }
+  ]
+}
