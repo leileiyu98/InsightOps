@@ -24,13 +24,13 @@ DATASET_ROOT = PROJECT_ROOT / "data" / "seed" / "m1_2a"
 
 
 @pytest.fixture(scope="module")
-def seeded_benchmark_database(database_engine: Engine) -> Generator[Engine]:
+def seeded_benchmark_database(database_engine_at_0003: Engine) -> Generator[Engine]:
     """Load the canonical dataset for this module and remove only its owned rows."""
     dataset = load_seed_dataset(DATASET_ROOT)
-    loader = DatasetLoader(database_engine, dataset, app_env="test")
+    loader = DatasetLoader(database_engine_at_0003, dataset, app_env="test")
     loader.load()
     try:
-        yield database_engine
+        yield database_engine_at_0003
     finally:
         loader.unload()
 

@@ -1,4 +1,4 @@
-"""Metadata-level tests for the implemented M1.1C schema."""
+"""Metadata-level tests for the implemented M1.1D schema."""
 
 from typing import cast
 
@@ -8,12 +8,17 @@ from sqlalchemy.dialects import mysql
 from insightops.db.models import Base
 
 TARGET_TABLES = {
+    "attributed_conversion",
+    "campaign_daily_spend",
     "commerce_order",
     "commerce_order_item",
     "commerce_refund",
     "consumer",
     "invoice_payment_attempt",
     "merchant",
+    "marketing_campaign",
+    "marketing_channel",
+    "marketing_touch",
     "organization",
     "organization_member",
     "platform_fee_charge",
@@ -61,10 +66,40 @@ INTERNAL_ID_COLUMNS = {
         "commerce_order_item_id",
     },
     "platform_fee_charge": {"platform_fee_charge_id", "commerce_order_id"},
+    "marketing_channel": {"marketing_channel_id"},
+    "marketing_campaign": {
+        "marketing_campaign_id",
+        "organization_id",
+        "merchant_assignment_id",
+        "primary_channel_id",
+    },
+    "campaign_daily_spend": {
+        "campaign_daily_spend_id",
+        "marketing_campaign_id",
+        "supersedes_campaign_daily_spend_id",
+    },
+    "marketing_touch": {
+        "marketing_touch_id",
+        "marketing_channel_id",
+        "marketing_campaign_id",
+        "organization_id",
+        "consumer_id",
+    },
+    "attributed_conversion": {
+        "attributed_conversion_id",
+        "organization_id",
+        "consumer_id",
+        "invoice_payment_attempt_id",
+        "commerce_order_id",
+        "platform_fee_charge_id",
+        "selected_marketing_touch_id",
+        "marketing_channel_id",
+        "marketing_campaign_id",
+    },
 }
 
 
-def test_model_registry_contains_exactly_the_m1_1c_tables() -> None:
+def test_model_registry_contains_exactly_the_m1_1d_tables() -> None:
     assert set(Base.metadata.tables) == TARGET_TABLES
 
 
@@ -126,11 +161,15 @@ def test_external_and_source_ids_are_case_sensitive_ascii() -> None:
         assert column.type.collation == "ascii_bin"
 
 
-def test_commerce_controlled_codes_are_case_sensitive_ascii() -> None:
+def test_controlled_codes_are_case_sensitive_ascii() -> None:
     controlled_codes = {
         ("product", "category_code"),
         ("commerce_order_item", "product_category_code"),
         ("commerce_refund", "reason_code"),
+        ("marketing_channel", "channel_code"),
+        ("marketing_campaign", "business_scope"),
+        ("attributed_conversion", "reason_code"),
+        ("attributed_conversion", "model_version"),
     }
 
     for table_name, column_name in controlled_codes:
@@ -143,6 +182,12 @@ def test_commerce_controlled_codes_are_case_sensitive_ascii() -> None:
 def test_order_item_quantity_is_unsigned_integer() -> None:
     column_type = Base.metadata.tables["commerce_order_item"].c.quantity.type
     assert isinstance(column_type, mysql.INTEGER)
+    assert column_type.unsigned is True
+
+
+def test_campaign_spend_version_is_unsigned_smallint() -> None:
+    column_type = Base.metadata.tables["campaign_daily_spend"].c.version_number.type
+    assert isinstance(column_type, mysql.SMALLINT)
     assert column_type.unsigned is True
 
 

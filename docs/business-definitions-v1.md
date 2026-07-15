@@ -140,6 +140,9 @@ V1 对每个已确认业务转化执行一次最后非直接访问归因：
 5. 因身份无法关联、窗口历史不完整、触达时间缺失或渠道无法映射而无法判断时，归为 `unknown/unattributed`，不得伪装成 direct。
 
 渠道、活动、触达或转化被明确标记为测试时不参与归因。转化是否成立以及转化金额，以 SaaS 或交易市场域的权威事实为准，不能使用广告平台自报转化替代。
+每次归因只读取 `recorded_at <= source_data_cutoff_at` 的触达。cutoff 后到达的历史触达不覆盖已有结果，
+而是在更晚 cutoff 生成新的 append-only 结果。分析 SQL 必须读取物化的 `attributed_conversion`，不得重新
+实现本节算法。
 
 ### 5.2 新增付费客户与归因收入
 
@@ -154,15 +157,15 @@ V1 对每个已确认业务转化执行一次最后非直接访问归因：
 | --- | --- | --- | --- | --- |
 | CAC | 渠道/活动与报表周期；新增付费客户按对应身份去重 | 花费按实际花费确认时间；客户按首次付费转化时间 | 同一报表范围内 `实际营销花费 ÷ 新增付费客户数`；必须标明 SaaS CAC 或 Commerce CAC，花费、转化和归因范围一致 | 新增付费客户数为 0 时返回 `null`；CAC 不可相加或取简单平均。direct 通常无广告花费，其 CAC 为 `null` |
 | Attributed Revenue | 每个转化只对应一个归因结果 | 以权威收入的支付或收费成功时间作为转化时间 | 归因到指定渠道/活动的 SaaS Revenue 或 Commerce Revenue；必须在指标名称中标明收入类型 | 基础收入为空集合为 0；可按互斥归因渠道和不重叠转化周期相加；不同收入类型不得相加为单一“归因收入” |
-| ROAS | 渠道/活动、收入类型与报表周期 | 分子按收入转化时间；分母按实际广告花费确认时间 | 同一报表范围内 `Attributed Revenue ÷ 实际广告花费`；必须标明 SaaS ROAS 或 Commerce ROAS | 广告花费为 0 时返回 `null`；ROAS 不可相加或取简单平均 |
+| Attributed ROAS | 渠道/活动、收入类型与报表周期 | 分子按收入转化时间；分母按实际广告花费确认时间 | 同一报表范围内 `Attributed Revenue ÷ 实际广告花费`；必须标明 SaaS Attributed ROAS 或 Commerce Attributed ROAS，不得称为财务 ROI | 广告花费为 0 时返回 `null`；Attributed ROAS 不可相加或取简单平均 |
 
 ### 5.4 跨周期和缺失数据处理
 
 - 触达可以发生在报表期之前，只要位于转化前 7 天窗口内；转化和归因收入仍归入转化发生期，不回移到触达期。
-- 广告花费按实际花费确认时间归入发生期，不因后续转化而移动。CAC 和 ROAS 使用同一报表周期内各自的分子与分母，因此是周期效率指标，不是逐次触达的生命周期回报。
+- 广告花费按 business date 归期，并按查询 cutoff 选择当时可见的最终 revision，不因后续转化而移动。CAC 和 Attributed ROAS 使用同一报表周期内各自的分子与分母，因此是周期效率指标，不是逐次触达的生命周期回报。
 - 数据集开始处不足 7 天历史的转化属于未成熟归因窗口，标为 `unknown/unattributed`。数据补齐前不得归为 direct。
-- `unknown/unattributed` 转化保留在整体业务转化和收入指标中，但不强制分配到付费渠道。渠道级 CAC/ROAS 应排除无法确定渠道的转化，并披露未归因数量和金额。
-- 缺失花费或收入金额不是零；对应 CAC/ROAS 返回 `null` 并报告数据质量问题。
+- `unknown/unattributed` 转化保留在整体业务转化和收入指标中，但不强制分配到付费渠道。渠道级 CAC/Attributed ROAS 应排除无法确定渠道的转化，并披露未归因数量和金额。
+- 缺失花费或收入金额不是零；对应 CAC/Attributed ROAS 返回 `null` 并报告数据质量问题。
 
 ## 6. 企业激活与活跃度
 
@@ -248,7 +251,7 @@ MRR 和 ARR 只允许在**同一快照时点**按互斥主体或维度相加。
 下列指标不得跨周期或分组直接相加，也不得对分组结果取简单平均来代替整体重算：
 
 - MRR、ARR、Active Organization Count、Open Ticket Count 等跨时点快照；
-- Logo Churn Rate、Revenue Churn Rate、AOV、Refund Rate、Organization Activation Rate、CAC、ROAS、Reopen Rate 等比率；
+- Logo Churn Rate、Revenue Churn Rate、AOV、Refund Rate、Organization Activation Rate、CAC、Attributed ROAS、Reopen Rate 等比率；
 - CSAT、First Response Time、Resolution Time 等均值或分布指标；
 - 可能在多个非互斥分组出现的 distinct organization、消费者、订单或工单计数；
 - GMV、Merchant Net Sales、SaaS Revenue 和 Commerce Revenue 之间的混合总和，除非另有版本化且明确命名的组合指标。
@@ -263,7 +266,7 @@ V1 不支持或不定义：
 - GAAP/IFRS 收入确认、递延收入、利润、税务、商家结算和复杂佣金或服务费退回规则；
 - 月付与年付之外计费周期的 MRR、复杂按日摊销，以及同一订阅取消后的再次激活分类；
 - 把 MRR、实际收款或交易规模当作可互换的“收入”；
-- 多触点、首次触点、线性、跨设备或概率营销归因，以及未指定收入类型的通用 ROAS；
+- 多触点、首次触点、线性、跨设备或概率营销归因，以及未指定收入类型的通用 Attributed ROAS；
 - SaaS 成员与商城消费者的自动身份合并、匿名身份推断和无治理的 organization—商家合并；
 - 未在本文定义的留存、复购、客户健康、消费者激活或因果分析口径；
 - 客服工作日历、暂停计时、SLA 达标率、客服文本 RAG 和文本情感分析；M1 仅要求结构化工单数据；

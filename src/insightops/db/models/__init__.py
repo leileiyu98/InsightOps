@@ -10,6 +10,13 @@ from insightops.db.models.commerce import (
     RefundItemAllocation,
 )
 from insightops.db.models.identity import Consumer, Merchant, Organization, OrganizationMember
+from insightops.db.models.marketing import (
+    AttributedConversion,
+    CampaignDailySpend,
+    MarketingCampaign,
+    MarketingChannel,
+    MarketingTouch,
+)
 from insightops.db.models.saas import (
     InvoicePaymentAttempt,
     SaasPlanVersion,
@@ -19,13 +26,18 @@ from insightops.db.models.saas import (
 )
 
 __all__ = [
+    "AttributedConversion",
     "Base",
+    "CampaignDailySpend",
     "CommerceOrder",
     "CommerceOrderItem",
     "CommerceRefund",
     "Consumer",
     "InvoicePaymentAttempt",
     "Merchant",
+    "MarketingCampaign",
+    "MarketingChannel",
+    "MarketingTouch",
     "Organization",
     "OrganizationMember",
     "PlatformFeeCharge",
