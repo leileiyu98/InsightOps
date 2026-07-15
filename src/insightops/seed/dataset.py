@@ -40,7 +40,12 @@ def compute_dataset_digest(
     payload = {
         "manifest": manifest.model_dump(
             mode="json",
-            exclude={"dataset_digest"},
+            exclude={
+                "benchmark_catalog_id",
+                "benchmark_catalog_version",
+                "dataset_digest",
+                "oracle_assets_digest",
+            },
         ),
         "sources": [source.model_dump(mode="json") for source in sources],
     }

@@ -26,6 +26,9 @@ def _manifest() -> DatasetManifest:
         schema_revision="0003",
         business_definition_id="test-definitions",
         business_definition_version="1.0.0",
+        benchmark_catalog_id="test-catalog",
+        benchmark_catalog_version="1.0.0",
+        oracle_assets_digest="1" * 64,
         business_timezone="America/Los_Angeles",
         snapshot_cutoff=datetime(2026, 1, 15, 8, tzinfo=UTC),
         source_files=("identity.json",),
@@ -93,7 +96,21 @@ def test_m1_2a_dataset_manifest_and_digest_are_stable() -> None:
 
     assert dataset.computed_digest == dataset.manifest.dataset_digest
     assert dataset.computed_digest == (
-        "97edd25bff257b0eb7cf803c125a761a7d485e5c51efd96725bfef7283aa987a"
+        "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c"
     )
-    assert sum(dataset.manifest.expected_row_counts.values()) == 149
+    assert sum(dataset.manifest.expected_row_counts.values()) == 152
     assert len(dataset.manifest.table_order) == 15
+
+
+def test_dataset_digest_excludes_benchmark_back_references() -> None:
+    manifest = _manifest()
+    rebound = manifest.model_copy(
+        update={
+            "benchmark_catalog_version": "2.0.0",
+            "oracle_assets_digest": "f" * 64,
+        }
+    )
+
+    assert compute_dataset_digest(manifest, (_source(),)) == compute_dataset_digest(
+        rebound, (_source(),)
+    )

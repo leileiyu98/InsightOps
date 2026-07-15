@@ -1,6 +1,9 @@
 WITH ranked AS (
     SELECT
-        e.*,
+        e.subscription_id,
+        e.status_after,
+        e.plan_version_after_id,
+        e.normalized_mrr_after,
         ROW_NUMBER() OVER (
             PARTITION BY e.subscription_id
             ORDER BY e.effective_at DESC, e.subscription_state_event_id DESC

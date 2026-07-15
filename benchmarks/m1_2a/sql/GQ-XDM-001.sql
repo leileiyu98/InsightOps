@@ -27,7 +27,7 @@ commerce AS (
      AND f.recorded_at <= :snapshot_cutoff_utc
     LEFT JOIN commerce_order AS o
       ON o.commerce_order_id = f.commerce_order_id
-     AND o.status <> 'cancelled' AND o.is_test = 0
+     AND o.is_test = 0
     LEFT JOIN consumer AS c ON c.consumer_id = o.consumer_id AND c.is_test = 0
     LEFT JOIN merchant AS m
       ON m.merchant_assignment_id = o.merchant_assignment_id AND m.is_test = 0

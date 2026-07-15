@@ -1,7 +1,13 @@
 {
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.0.0",
   "dataset_id": "insightcloud-m1-2a-benchmark",
   "dataset_version": "1.0.0",
+  "dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
   "schema_revision": "0003",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.0",
+  "oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
   "cases": [
     {
       "case_id": "GQ-SAA-001",
@@ -45,7 +51,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-SAA-001.sql",
-      "expected_result_path": "expected/GQ-SAA-001.json"
+      "expected_result_path": "expected/GQ-SAA-001.json",
+      "gold_sql_digest": "c344566ccd9b3f6e512f5ef75b4c53c02c0f97a8d8972b5c386190d10b0dbcde",
+      "expected_result_digest": "61f6e33d89f49b124e14baa7130729941b3040bd88b80bd57bcac223242e272c"
     },
     {
       "case_id": "GQ-SAA-002",
@@ -87,7 +95,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-SAA-002.sql",
-      "expected_result_path": "expected/GQ-SAA-002.json"
+      "expected_result_path": "expected/GQ-SAA-002.json",
+      "gold_sql_digest": "03725a08377d5d32af060f84af5de94777da38b71a023224620d052ac60677af",
+      "expected_result_digest": "e0fea0a65f792ce68f07feee45c755b8e074bec360c9020040e88c09a11ceb97"
     },
     {
       "case_id": "GQ-SAA-003",
@@ -129,7 +139,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-SAA-003.sql",
-      "expected_result_path": "expected/GQ-SAA-003.json"
+      "expected_result_path": "expected/GQ-SAA-003.json",
+      "gold_sql_digest": "68c3b5fce81cff5e394a03bc8e6e20ba05fa03e735992b2eafcb65c7d1359093",
+      "expected_result_digest": "b4cf2eb4ce83d60b00e80939ff93bdfd18db405fdf1a2c4c2d209901c16ea87b"
     },
     {
       "case_id": "GQ-SAA-004",
@@ -172,7 +184,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-SAA-004.sql",
-      "expected_result_path": "expected/GQ-SAA-004.json"
+      "expected_result_path": "expected/GQ-SAA-004.json",
+      "gold_sql_digest": "84a79836fcd7291180ea766ac7b33d2a58775269da07fcce43206474ac986e08",
+      "expected_result_digest": "5a104d2df5d725969c25389d5a2f189f141945ac1fe2fc5e8229a73c17e202c6"
     },
     {
       "case_id": "GQ-SAA-005",
@@ -217,7 +231,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-SAA-005.sql",
-      "expected_result_path": "expected/GQ-SAA-005.json"
+      "expected_result_path": "expected/GQ-SAA-005.json",
+      "gold_sql_digest": "1f20daebd970fc9cf00675926c92c862f2b590c8f284d8f213ee046afafe2a8f",
+      "expected_result_digest": "7fdc60f88fac2848043a9cfbdab0a9463e03b840ac2b85d8453cf95ecc270cb2"
     },
     {
       "case_id": "GQ-SAA-006",
@@ -259,7 +275,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-SAA-006.sql",
-      "expected_result_path": "expected/GQ-SAA-006.json"
+      "expected_result_path": "expected/GQ-SAA-006.json",
+      "gold_sql_digest": "fc159f088c9eab4dc8deb7abe01885e85d0606b5695e3aaeb3047b4b0ce7bb05",
+      "expected_result_digest": "33822de25b30380c689e57b36cddc1dc72b22597dc152a70cdc51acd8d53daaf"
     },
     {
       "case_id": "GQ-SAA-007",
@@ -303,7 +321,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-SAA-007.sql",
-      "expected_result_path": "expected/GQ-SAA-007.json"
+      "expected_result_path": "expected/GQ-SAA-007.json",
+      "gold_sql_digest": "4acb52c8b9ebbc0dbea3ee079910b0202a27f93c4818ac6eb94dbe6f67dbf619",
+      "expected_result_digest": "2c20772537e0844390ac8f19480c6f1f1e4df7811a63960187df76385b34eaa3"
     },
     {
       "case_id": "GQ-SAA-008",
@@ -346,7 +366,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-SAA-008.sql",
-      "expected_result_path": "expected/GQ-SAA-008.json"
+      "expected_result_path": "expected/GQ-SAA-008.json",
+      "gold_sql_digest": "7924ef3f13990ac8a3bd27df4784ea12a194c16224c1fc2f6130a8cc762465dc",
+      "expected_result_digest": "c3aa14c90cf952ad9e080f8515cd7a521c07279990781491a44d806822535f4f"
     },
     {
       "case_id": "GQ-SAA-009",
@@ -425,7 +447,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-COM-001.sql",
-      "expected_result_path": "expected/GQ-COM-001.json"
+      "expected_result_path": "expected/GQ-COM-001.json",
+      "gold_sql_digest": "6ea79200006e5407b7faa612fcafb9cbec0fbff67e87f019b1d2840c6d56b001",
+      "expected_result_digest": "ea8d457aaef8a251b94646d1b342ee7a3beb418836c0d2db59e6a43e7546c331"
     },
     {
       "case_id": "GQ-COM-002",
@@ -441,6 +465,10 @@
         "GMV"
       ],
       "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
         "commerce_order",
         "commerce_order_item",
         "commerce_refund",
@@ -469,7 +497,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-COM-002.sql",
-      "expected_result_path": "expected/GQ-COM-002.json"
+      "expected_result_path": "expected/GQ-COM-002.json",
+      "gold_sql_digest": "60723658b00afe43f17a78416149b64ee0a958af44a5589bdda1b20328792386",
+      "expected_result_digest": "3c8efa3fbc703e5b03f4e7cdd763d98bee3a74c6e23a58aa2aeced0bdf4c3d61"
     },
     {
       "case_id": "GQ-COM-003",
@@ -486,7 +516,9 @@
       ],
       "required_tables": [
         "organization",
+        "consumer",
         "merchant",
+        "product",
         "commerce_order",
         "commerce_order_item",
         "commerce_refund",
@@ -514,7 +546,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-COM-003.sql",
-      "expected_result_path": "expected/GQ-COM-003.json"
+      "expected_result_path": "expected/GQ-COM-003.json",
+      "gold_sql_digest": "b395de694d37aefe7023a57dc8dbc1ffc2d6310ca30a56a44268f8dc09a76186",
+      "expected_result_digest": "e82b71936f269d0d1b7c5e9ab2986c1e502fdcd76a1c0e68afb268028334f8d9"
     },
     {
       "case_id": "GQ-COM-004",
@@ -530,6 +564,10 @@
         "AOV"
       ],
       "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "product",
         "commerce_order",
         "commerce_order_item"
       ],
@@ -555,7 +593,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-COM-004.sql",
-      "expected_result_path": "expected/GQ-COM-004.json"
+      "expected_result_path": "expected/GQ-COM-004.json",
+      "gold_sql_digest": "e7c1750c33512586738c87efcbbb6ceae451d35234f32cd7accbc28a578b3edd",
+      "expected_result_digest": "f3d6249592a591ca6037ac8bf3f4573231277011c3e8c44326bc59a5474ccffb"
     },
     {
       "case_id": "GQ-COM-005",
@@ -573,7 +613,9 @@
       ],
       "required_tables": [
         "organization",
+        "consumer",
         "merchant",
+        "product",
         "commerce_order",
         "commerce_order_item",
         "commerce_refund",
@@ -581,9 +623,11 @@
         "platform_fee_charge"
       ],
       "phenomenon_ids": [
-        "P07",
         "P11"
       ],
+      "partial_phenomenon_coverage": {
+        "P07": "GMV and refund growth are covered; Marketing Cost remains deferred until M1.1D."
+      },
       "scenario_ids": [
         "merchant-growth-quality"
       ],
@@ -603,7 +647,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-COM-005.sql",
-      "expected_result_path": "expected/GQ-COM-005.json"
+      "expected_result_path": "expected/GQ-COM-005.json",
+      "gold_sql_digest": "1fa5a3c7c153d0b22d77ed07d300a444e417f8f60d2aad2b09cf75c38f962127",
+      "expected_result_digest": "f2acdb69e2576f761a4129baef72e395684f6774e21701be414baa38eb2bab73"
     },
     {
       "case_id": "GQ-COM-006",
@@ -619,6 +665,9 @@
         "GMV"
       ],
       "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
         "product",
         "commerce_order",
         "commerce_order_item",
@@ -648,7 +697,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-COM-006.sql",
-      "expected_result_path": "expected/GQ-COM-006.json"
+      "expected_result_path": "expected/GQ-COM-006.json",
+      "gold_sql_digest": "654a5a6ca0a171a804c848afe54bf0df9c39db4b1337d67f0ce399d307ec4607",
+      "expected_result_digest": "f33143460a557b0c26df76351cf5fb8c021431b7a0330a8b6a6d4d47c707b252"
     },
     {
       "case_id": "GQ-COM-007",
@@ -694,7 +745,9 @@
       ],
       "required_tables": [
         "organization",
+        "consumer",
         "merchant",
+        "product",
         "commerce_order",
         "commerce_order_item",
         "commerce_refund",
@@ -702,9 +755,11 @@
         "platform_fee_charge"
       ],
       "phenomenon_ids": [
-        "P07",
         "P11"
       ],
+      "partial_phenomenon_coverage": {
+        "P07": "GMV and refund growth are covered; Marketing Cost remains deferred until M1.1D."
+      },
       "scenario_ids": [
         "merchant-growth-quality"
       ],
@@ -724,7 +779,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-COM-008.sql",
-      "expected_result_path": "expected/GQ-COM-008.json"
+      "expected_result_path": "expected/GQ-COM-008.json",
+      "gold_sql_digest": "4f75c368e3530be7c49118f288eca1060bf437a6af8407eb688b85a2e38644c4",
+      "expected_result_digest": "90541f38ca1d49a11eb91c5483a1320585dd39d954f7c69ea46f179847503ca5"
     },
     {
       "case_id": "GQ-MKT-001",
@@ -1440,6 +1497,10 @@
         "Commerce Revenue"
       ],
       "required_tables": [
+        "organization",
+        "consumer",
+        "merchant",
+        "subscription_invoice",
         "invoice_payment_attempt",
         "subscription",
         "platform_fee_charge",
@@ -1467,7 +1528,9 @@
       "deferred_reason": null,
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-XDM-001.sql",
-      "expected_result_path": "expected/GQ-XDM-001.json"
+      "expected_result_path": "expected/GQ-XDM-001.json",
+      "gold_sql_digest": "ab8bfde17c0a11afdcfe36f23e6d3b2fc871032caaefeaf851e475cda332ee8d",
+      "expected_result_digest": "6f7d92ab36d649c591f0165986e7690ccb6ee5b28cebfed11ff6f7b955c85ab5"
     },
     {
       "case_id": "GQ-XDM-002",

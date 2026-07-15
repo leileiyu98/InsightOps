@@ -30,11 +30,22 @@ class PublicBenchmarkCase(BaseModel):
     metrics: tuple[str, ...]
     required_tables: tuple[str, ...]
     phenomenon_ids: tuple[str, ...]
+    partial_phenomenon_coverage: dict[str, str] = Field(default_factory=dict)
     scenario_ids: tuple[str, ...]
     expected_result_shape: str = Field(min_length=1)
     parameters: dict[str, BenchmarkParameter] = Field(default_factory=dict)
     clarification_reason: str | None = None
     deferred_reason: str | None = None
+
+    @model_validator(mode="after")
+    def validate_phenomenon_coverage(self) -> Self:
+        """Keep full and explicitly partial phenomenon claims disjoint."""
+        overlap = set(self.phenomenon_ids) & set(self.partial_phenomenon_coverage)
+        if overlap:
+            raise ValueError(f"phenomena cannot be both full and partial: {sorted(overlap)}")
+        if any(not reason.strip() for reason in self.partial_phenomenon_coverage.values()):
+            raise ValueError("partial phenomenon coverage requires a non-empty reason")
+        return self
 
 
 class BenchmarkCase(PublicBenchmarkCase):
@@ -43,6 +54,8 @@ class BenchmarkCase(PublicBenchmarkCase):
     oracle_visibility: Literal["benchmark_only"] = "benchmark_only"
     gold_sql_path: str | None = None
     expected_result_path: str | None = None
+    gold_sql_digest: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    expected_result_digest: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
 
     @field_validator("gold_sql_path", "expected_result_path")
     @classmethod
@@ -55,10 +68,16 @@ class BenchmarkCase(PublicBenchmarkCase):
     @model_validator(mode="after")
     def validate_status_contract(self) -> Self:
         """Prevent deferred or clarification cases from accidentally gaining an oracle."""
-        has_oracle = self.gold_sql_path is not None or self.expected_result_path is not None
+        oracle_values = (
+            self.gold_sql_path,
+            self.expected_result_path,
+            self.gold_sql_digest,
+            self.expected_result_digest,
+        )
+        has_oracle = any(value is not None for value in oracle_values)
         if self.status is BenchmarkStatus.EXECUTABLE:
-            if self.gold_sql_path is None or self.expected_result_path is None:
-                raise ValueError("executable cases require both Gold SQL and expected result paths")
+            if any(value is None for value in oracle_values):
+                raise ValueError("executable cases require oracle paths and digests")
             if self.clarification_reason is not None or self.deferred_reason is not None:
                 raise ValueError("executable cases cannot have clarification/deferred reasons")
         elif self.status is BenchmarkStatus.CLARIFICATION_REQUIRED:
@@ -76,7 +95,15 @@ class BenchmarkCase(PublicBenchmarkCase):
     def to_public_case(self) -> PublicBenchmarkCase:
         """Drop all oracle-only fields before runtime consumption."""
         return PublicBenchmarkCase.model_validate(
-            self.model_dump(exclude={"oracle_visibility", "gold_sql_path", "expected_result_path"})
+            self.model_dump(
+                exclude={
+                    "expected_result_digest",
+                    "expected_result_path",
+                    "gold_sql_digest",
+                    "gold_sql_path",
+                    "oracle_visibility",
+                }
+            )
         )
 
 
@@ -85,9 +112,15 @@ class BenchmarkCatalog(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
+    catalog_id: str = Field(min_length=1)
+    catalog_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
     dataset_id: str = Field(min_length=1)
     dataset_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    dataset_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     schema_revision: str = Field(pattern=r"^\d{4}$")
+    business_definition_id: str = Field(min_length=1)
+    business_definition_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     cases: tuple[BenchmarkCase, ...]
 
     @model_validator(mode="after")
@@ -104,8 +137,15 @@ class ExpectedResult(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
+    catalog_id: str = Field(min_length=1)
+    catalog_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
     dataset_id: str = Field(min_length=1)
     dataset_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    dataset_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    schema_revision: str = Field(pattern=r"^\d{4}$")
+    business_definition_id: str = Field(min_length=1)
+    business_definition_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     case_id: str = Field(pattern=r"^GQ-[A-Z]{3}-\d{3}$")
     columns: tuple[str, ...] = Field(min_length=1)
     ordered_by: tuple[str, ...]

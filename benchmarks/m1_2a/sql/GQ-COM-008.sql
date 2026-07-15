@@ -8,14 +8,18 @@ merchants AS (
     JOIN organization AS org ON org.organization_id = m.organization_id
     WHERE m.is_test = 0 AND org.is_test = 0
 ),
-eligible_orders AS (
-    SELECT o.commerce_order_id, o.merchant_assignment_id, o.first_paid_at
+non_test_orders AS (
+    SELECT o.commerce_order_id, o.merchant_assignment_id, o.first_paid_at, o.status
     FROM commerce_order AS o
     JOIN consumer AS c ON c.consumer_id = o.consumer_id
     JOIN merchants AS m ON m.merchant_assignment_id = o.merchant_assignment_id
-    WHERE o.status <> 'cancelled'
-      AND o.recorded_at <= :snapshot_cutoff_utc
+    WHERE o.recorded_at <= :snapshot_cutoff_utc
       AND o.is_test = 0 AND c.is_test = 0
+),
+gmv_orders AS (
+    SELECT commerce_order_id, merchant_assignment_id, first_paid_at
+    FROM non_test_orders
+    WHERE status <> 'cancelled'
 ),
 gmv AS (
     SELECT
@@ -23,7 +27,7 @@ gmv AS (
         o.merchant_assignment_id,
         SUM(i.discounted_item_amount) AS amount
     FROM periods AS p
-    JOIN eligible_orders AS o
+    JOIN gmv_orders AS o
       ON o.first_paid_at >= p.period_start AND o.first_paid_at < p.period_end
     JOIN commerce_order_item AS i ON i.commerce_order_id = o.commerce_order_id
     JOIN product AS product ON product.product_id = i.product_id
@@ -39,7 +43,7 @@ refunds AS (
     JOIN commerce_refund AS r
       ON r.succeeded_at >= p.period_start AND r.succeeded_at < p.period_end
      AND r.status = 'succeeded'
-    JOIN eligible_orders AS o ON o.commerce_order_id = r.commerce_order_id
+    JOIN non_test_orders AS o ON o.commerce_order_id = r.commerce_order_id
     JOIN refund_item_allocation AS a ON a.commerce_refund_id = r.commerce_refund_id
     JOIN commerce_order_item AS i
       ON i.commerce_order_item_id = a.commerce_order_item_id
@@ -57,7 +61,7 @@ fees AS (
     JOIN platform_fee_charge AS f
       ON f.succeeded_at >= p.period_start AND f.succeeded_at < p.period_end
      AND f.status = 'succeeded'
-    JOIN eligible_orders AS o ON o.commerce_order_id = f.commerce_order_id
+    JOIN non_test_orders AS o ON o.commerce_order_id = f.commerce_order_id
     WHERE f.recorded_at <= :snapshot_cutoff_utc AND f.is_test = 0
     GROUP BY p.period_name, o.merchant_assignment_id
 ),

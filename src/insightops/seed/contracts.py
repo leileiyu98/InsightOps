@@ -72,6 +72,9 @@ class DatasetManifest(BaseModel):
     schema_revision: str = Field(pattern=r"^\d{4}$")
     business_definition_id: str = Field(min_length=1)
     business_definition_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    benchmark_catalog_id: str = Field(min_length=1)
+    benchmark_catalog_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     business_timezone: str = Field(min_length=1)
     snapshot_cutoff: datetime
     source_files: tuple[str, ...]

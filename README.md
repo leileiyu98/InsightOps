@@ -11,8 +11,9 @@ InsightOps 是一个面向企业经营分析场景的大模型应用项目。当
 - SQLAlchemy 2.x 引擎和 Session 工厂
 - SQLAlchemy 2.x 企业身份、SaaS 和商城 ORM（当前共 15 张表）
 - Alembic `0001`—`0003` migration，可从空库升级和回滚验证
-- 版本化、确定性的 SaaS 与商城 seed dataset（149 行，固定 SHA-256 digest）
+- 版本化、确定性的 SaaS 与商城 seed dataset（152 行，固定 SHA-256 digest）
 - 48 个 Gold Question 绑定，其中 16 个具备隔离的 Gold SQL 与冻结结果
+- dataset、schema、business definition、Gold catalog 和 oracle assets 的可校验版本链
 - 可重复的 seed `load`、`verify`、`unload` 生命周期和真实 MySQL benchmark 回归
 - MySQL 8.4 Docker Compose 开发环境
 - pytest、Ruff、mypy 和 GitHub Actions
