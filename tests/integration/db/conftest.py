@@ -12,7 +12,11 @@ from sqlalchemy.orm import Session
 from alembic import command
 from insightops.core.config import load_settings
 from insightops.db.models import (
+    CommerceOrder,
+    Consumer,
+    Merchant,
     Organization,
+    Product,
     SaasPlanVersion,
     Subscription,
     SubscriptionInvoice,
@@ -20,7 +24,7 @@ from insightops.db.models import (
 from insightops.db.session import create_database_engine
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DATABASE_TEST_LOCK = Path("/tmp/insightops-m1-1b-database-tests.lock")
+DATABASE_TEST_LOCK = Path("/tmp/insightops-m1-database-tests.lock")
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -81,6 +85,74 @@ def organization(db_session: Session) -> Organization:
     db_session.add(organization)
     db_session.flush()
     return organization
+
+
+@pytest.fixture
+def consumer(db_session: Session) -> Consumer:
+    """Insert a deterministic commerce consumer."""
+    consumer = Consumer(
+        external_consumer_id="consumer-fixture",
+        status="active",
+        first_identified_at="2025-01-01 00:00:00.000000",
+        created_at="2025-01-01 00:00:00.000000",
+    )
+    db_session.add(consumer)
+    db_session.flush()
+    return consumer
+
+
+@pytest.fixture
+def merchant(db_session: Session, organization: Organization) -> Merchant:
+    """Insert a deterministic active merchant assignment."""
+    merchant = Merchant(
+        merchant_id=9001,
+        external_merchant_id="merchant-fixture",
+        organization_id=organization.organization_id,
+        merchant_name="Fixture Merchant",
+        status="active",
+        assignment_valid_from="2025-01-01 00:00:00.000000",
+    )
+    db_session.add(merchant)
+    db_session.flush()
+    return merchant
+
+
+@pytest.fixture
+def product(db_session: Session, merchant: Merchant) -> Product:
+    """Insert a deterministic active product."""
+    product = Product(
+        external_product_id="product-fixture",
+        merchant_assignment_id=merchant.merchant_assignment_id,
+        product_title="Fixture Product",
+        category_code="software",
+        status="active",
+        created_at="2025-01-01 00:00:00.000000",
+        first_published_at="2025-01-02 00:00:00.000000",
+    )
+    db_session.add(product)
+    db_session.flush()
+    return product
+
+
+@pytest.fixture
+def commerce_order(
+    db_session: Session,
+    consumer: Consumer,
+    merchant: Merchant,
+) -> CommerceOrder:
+    """Insert a deterministic paid commerce order."""
+    commerce_order = CommerceOrder(
+        external_order_id="order-fixture",
+        consumer_id=consumer.consumer_id,
+        merchant_assignment_id=merchant.merchant_assignment_id,
+        status="paid",
+        currency_code="USD",
+        created_at="2025-01-01 00:00:00.000000",
+        first_paid_at="2025-01-02 00:00:00.000000",
+    )
+    db_session.add(commerce_order)
+    db_session.flush()
+    return commerce_order
 
 
 @pytest.fixture

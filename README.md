@@ -1,6 +1,7 @@
 # InsightOps
 
-InsightOps 是一个面向企业经营分析场景的大模型应用项目。当前仓库处于 **M0：项目骨架与本地开发环境**，只提供后续开发所需的可运行、可测试基础。
+InsightOps 是一个面向企业经营分析场景的大模型应用项目。当前仓库已完成 M0 基础设施以及截至
+**M1.1C：商城交易 Schema** 的数据库实现，仍处于后端数据模型建设阶段。
 
 ## 当前能力
 
@@ -8,11 +9,13 @@ InsightOps 是一个面向企业经营分析场景的大模型应用项目。当
 - FastAPI 应用工厂和 `GET /health` 存活检查
 - Pydantic 环境配置
 - SQLAlchemy 2.x 引擎和 Session 工厂
-- Alembic 空基线迁移
+- SQLAlchemy 2.x 企业身份、SaaS 和商城 ORM（当前共 15 张表）
+- Alembic `0001`—`0003` migration，可从空库升级和回滚验证
 - MySQL 8.4 Docker Compose 开发环境
 - pytest、Ruff、mypy 和 GitHub Actions
 
-M0 不包含业务数据表、登录权限、大模型 API、Text2SQL、RAG、Agent、SQL 安全引擎、Memory、MCP、Redis、Celery 或前端。
+当前不包含营销、产品使用和客服 Schema，也不包含种子业务数据、业务 API、登录权限、大模型 API、
+Text2SQL、RAG、Agent、SQL 安全引擎、Memory、MCP、Redis、Celery 或前端。
 
 ## 环境要求
 
@@ -128,4 +131,6 @@ docker compose down -v
 
 ## 架构与后续开发
 
-当前边界和设计理由见 [`docs/architecture.md`](docs/architecture.md)，M0 实施范围与验收见 [`docs/plans/m0-project-foundation.md`](docs/plans/m0-project-foundation.md)。M0 验收完成后的下一项工作应继续按明确里程碑规划，不提前实现 Agent 或 Text2SQL。
+当前边界和设计理由见 [`docs/architecture.md`](docs/architecture.md)，商城 Schema 实施记录见
+[`docs/plans/m1-1c-commerce-schema.md`](docs/plans/m1-1c-commerce-schema.md)。后续工作继续按明确里程碑
+规划，不提前实现 Agent、Text2SQL 或 M1.1D 范围。

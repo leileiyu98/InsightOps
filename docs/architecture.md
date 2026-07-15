@@ -33,10 +33,15 @@ M0 的数据库 readiness 由两个确定性步骤验证：
 
 SQLAlchemy 采用 2.x API，并在真正使用连接前保持惰性。M0 migration 只建立 Alembic 版本基线，不创建业务表。
 
-M1.1B 在模块化单体的数据库边界内增加企业身份与 SaaS 两组 ORM 映射。模型按
-`insightops.db.models.identity` 和 `insightops.db.models.saas` 组织，
+M1.1B 和 M1.1C 在模块化单体的数据库边界内增加企业身份、SaaS 与商城 ORM 映射。模型按
+`insightops.db.models.identity`、`insightops.db.models.saas` 和 `insightops.db.models.commerce` 组织，
 `insightops.db.models` 是唯一显式注册入口；Alembic 从该入口取得 `Base.metadata`，不依赖 FastAPI
-启动时的偶然导入。`0002` migration 独立创建 9 张表，ORM 不使用 `create_all()` 代替 migration。
+启动时的偶然导入。`0002` 独立创建 9 张身份与 SaaS 表，`0003` 独立创建 6 张商城表，ORM 不使用
+`create_all()` 代替 migration。
+
+商城 GMV 的权威金额只保存在订单商品明细，订单本身只保存首次支付时间和当前资格状态。退款和平台
+服务费是按各自成功时间归期的独立事实；退款分配只承担商品退款金额到订单明细的分配，不复制 GMV。
+跨行分配合计、退款与订单明细归属、商家有效区间和测试数据全链路排除仍属于后续应用事务或数据质量责任。
 
 每个新 MySQL 物理连接通过 SQLAlchemy connect 事件执行 `SET time_zone = '+00:00'`。ORM 的
 `server_onupdate` 只标记 `updated_at` 是服务器生成字段；真正的
@@ -47,6 +52,6 @@ Compose 创建的账号只用于隔离的本地开发和迁移，不代表未来
 
 ## 当前仍未实现
 
-M1.1B 之外的商城、营销、产品使用和客服表，以及种子数据、业务 API、认证授权、大模型提供商、
+M1.1C 之外的营销、产品使用和客服表，以及种子数据、业务 API、认证授权、大模型提供商、
 Text2SQL、RAG、Agent 工作流、SQL 安全、Memory、MCP、异步任务、缓存、前端和复杂可观测性均不属于
 当前架构实现。
