@@ -5,6 +5,37 @@ from sqlalchemy import CheckConstraint, DefaultClause, ForeignKeyConstraint, Uni
 from insightops.db.models import Base
 
 EXPECTED_INDEXES = {
+    "marketing_channel": {
+        "ix_marketing_channel__type_status",
+        "ix_marketing_channel__effective",
+    },
+    "marketing_campaign": {
+        "ix_marketing_campaign__channel_created",
+        "ix_marketing_campaign__org_created",
+        "ix_marketing_campaign__merchant_created",
+        "ix_marketing_campaign__scope_status",
+    },
+    "campaign_daily_spend": {"ix_campaign_spend__date_recorded"},
+    "marketing_touch": {
+        "ix_marketing_touch__org_time",
+        "ix_marketing_touch__consumer_time",
+        "ix_marketing_touch__channel_time",
+        "ix_marketing_touch__campaign_time",
+        "ix_marketing_touch__visibility",
+    },
+    "attributed_conversion": {
+        "ix_attr_conversion__type_time",
+        "ix_attr_conversion__channel_time",
+        "ix_attr_conversion__result_time",
+        "ix_attr_conversion__org_type_time",
+        "ix_attr_conversion__consumer_type_time",
+        "ix_attr_conversion__payment",
+        "ix_attr_conversion__order",
+        "ix_attr_conversion__fee",
+        "ix_attr_conversion__selected_touch",
+        "ix_attr_conversion__campaign",
+        "ix_attr_conversion__source_cutoff",
+    },
     "organization": {"ix_organization__test_registered", "ix_organization__status"},
     "organization_member": {
         "ix_org_member__org_effective",
@@ -139,6 +170,8 @@ def test_updated_at_metadata_marks_server_generated_updates() -> None:
         "commerce_order",
         "commerce_refund",
         "refund_item_allocation",
+        "marketing_channel",
+        "marketing_campaign",
     }
 
     for table_name in mutable_tables:
@@ -153,6 +186,9 @@ def test_updated_at_metadata_marks_server_generated_updates() -> None:
     assert "updated_at" not in Base.metadata.tables["invoice_payment_attempt"].c
     assert "updated_at" not in Base.metadata.tables["commerce_order_item"].c
     assert "updated_at" not in Base.metadata.tables["platform_fee_charge"].c
+    assert "updated_at" not in Base.metadata.tables["campaign_daily_spend"].c
+    assert "updated_at" not in Base.metadata.tables["marketing_touch"].c
+    assert "updated_at" not in Base.metadata.tables["attributed_conversion"].c
 
 
 def _constraint_table_name(table_name: str) -> str:
@@ -166,4 +202,6 @@ def _constraint_table_name(table_name: str) -> str:
         "commerce_order_item": "order_item",
         "refund_item_allocation": "refund_alloc",
         "platform_fee_charge": "platform_fee",
+        "campaign_daily_spend": "campaign_spend",
+        "attributed_conversion": "attr_conversion",
     }.get(table_name, table_name)

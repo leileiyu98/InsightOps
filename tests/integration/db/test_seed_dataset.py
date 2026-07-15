@@ -11,9 +11,9 @@ from insightops.seed.loader import DatasetLoader
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 
-def test_seed_load_verify_unload_is_repeatable(database_engine: Engine) -> None:
+def test_seed_load_verify_unload_is_repeatable(database_engine_at_0003: Engine) -> None:
     dataset = load_seed_dataset(PROJECT_ROOT / "data" / "seed" / "m1_2a")
-    loader = DatasetLoader(database_engine, dataset, app_env="test")
+    loader = DatasetLoader(database_engine_at_0003, dataset, app_env="test")
 
     first_load = loader.load()
     first_verify = loader.verify()
@@ -30,15 +30,15 @@ def test_seed_load_verify_unload_is_repeatable(database_engine: Engine) -> None:
     assert second_verify == expected
     assert second_unload == expected
 
-    with database_engine.connect() as connection:
+    with database_engine_at_0003.connect() as connection:
         for table_name in dataset.manifest.table_order:
             table = Base.metadata.tables[table_name]
             assert connection.scalar(select(func.count()).select_from(table)) == 0
 
 
-def test_seed_second_load_is_idempotent(database_engine: Engine) -> None:
+def test_seed_second_load_is_idempotent(database_engine_at_0003: Engine) -> None:
     dataset = load_seed_dataset(PROJECT_ROOT / "data" / "seed" / "m1_2a")
-    loader = DatasetLoader(database_engine, dataset, app_env="test")
+    loader = DatasetLoader(database_engine_at_0003, dataset, app_env="test")
 
     try:
         assert loader.load() == dataset.manifest.expected_row_counts

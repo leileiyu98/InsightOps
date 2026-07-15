@@ -29,7 +29,22 @@ M1_1B_TABLES = {
     "subscription_invoice",
     "invoice_payment_attempt",
 }
-COMMERCE_TABLES = TARGET_TABLES - M1_1B_TABLES
+COMMERCE_TABLES = {
+    "product",
+    "commerce_order",
+    "commerce_order_item",
+    "commerce_refund",
+    "refund_item_allocation",
+    "platform_fee_charge",
+}
+M1_1C_TABLES = M1_1B_TABLES | COMMERCE_TABLES
+MARKETING_TABLES = {
+    "marketing_channel",
+    "marketing_campaign",
+    "campaign_daily_spend",
+    "marketing_touch",
+    "attributed_conversion",
+}
 UPDATED_AT_TABLES = {
     "organization",
     "organization_member",
@@ -42,34 +57,36 @@ UPDATED_AT_TABLES = {
     "commerce_order",
     "commerce_refund",
     "refund_item_allocation",
+    "marketing_channel",
+    "marketing_campaign",
 }
 
 
-def test_incremental_migration_round_trip_restores_0003_head(
+def test_incremental_migration_round_trip_restores_0004_head(
     alembic_config: Config,
     database_engine: Engine,
 ) -> None:
     database_engine.dispose()
     try:
-        command.downgrade(alembic_config, "0002")
-        _assert_m1_1b_schema_only(database_engine)
+        command.downgrade(alembic_config, "0003")
+        _assert_m1_1c_schema_only(database_engine)
 
-        command.upgrade(alembic_config, "0003")
-        _assert_m1_1c_schema_matches_metadata(database_engine)
+        command.upgrade(alembic_config, "0004")
+        _assert_m1_1d_schema_matches_metadata(database_engine)
 
-        command.downgrade(alembic_config, "0002")
-        _assert_m1_1b_schema_only(database_engine)
+        command.downgrade(alembic_config, "0003")
+        _assert_m1_1c_schema_only(database_engine)
 
-        command.upgrade(alembic_config, "0003")
-        _assert_m1_1c_schema_matches_metadata(database_engine)
+        command.upgrade(alembic_config, "0004")
+        _assert_m1_1d_schema_matches_metadata(database_engine)
     finally:
         database_engine.dispose()
         command.upgrade(alembic_config, "head")
 
-    assert _current_revision(database_engine) == "0003"
+    assert _current_revision(database_engine) == "0004"
 
 
-def test_full_migration_round_trip_restores_0003_head(
+def test_full_migration_round_trip_restores_0004_head(
     alembic_config: Config,
     database_engine: Engine,
 ) -> None:
@@ -78,19 +95,19 @@ def test_full_migration_round_trip_restores_0003_head(
         command.downgrade(alembic_config, "base")
         _assert_m1_schema_absent(database_engine)
 
-        command.upgrade(alembic_config, "0003")
-        _assert_m1_1c_schema_matches_metadata(database_engine)
+        command.upgrade(alembic_config, "0004")
+        _assert_m1_1d_schema_matches_metadata(database_engine)
 
         command.downgrade(alembic_config, "base")
         _assert_m1_schema_absent(database_engine)
 
-        command.upgrade(alembic_config, "0003")
-        _assert_m1_1c_schema_matches_metadata(database_engine)
+        command.upgrade(alembic_config, "0004")
+        _assert_m1_1d_schema_matches_metadata(database_engine)
     finally:
         database_engine.dispose()
         command.upgrade(alembic_config, "head")
 
-    assert _current_revision(database_engine) == "0003"
+    assert _current_revision(database_engine) == "0004"
 
 
 def _assert_m1_schema_absent(engine: Engine) -> None:
@@ -107,7 +124,9 @@ def _assert_m1_schema_absent(engine: Engine) -> None:
                 "'saas_plan_version', 'subscription', 'subscription_state_event', "
                 "'subscription_invoice', 'invoice_payment_attempt', 'product', "
                 "'commerce_order', 'commerce_order_item', 'commerce_refund', "
-                "'refund_item_allocation', 'platform_fee_charge')"
+                "'refund_item_allocation', 'platform_fee_charge', 'marketing_channel', "
+                "'marketing_campaign', 'campaign_daily_spend', 'marketing_touch', "
+                "'attributed_conversion')"
             )
         ).scalar_one()
     assert residual_foreign_keys == 0
@@ -121,7 +140,15 @@ def _assert_m1_1b_schema_only(engine: Engine) -> None:
     assert _current_revision(engine) == "0002"
 
 
-def _assert_m1_1c_schema_matches_metadata(engine: Engine) -> None:
+def _assert_m1_1c_schema_only(engine: Engine) -> None:
+    inspector = inspect(engine)
+    assert set(inspector.get_table_names()) - {"alembic_version"} == M1_1C_TABLES
+    assert MARKETING_TABLES.isdisjoint(inspector.get_table_names())
+    _assert_tables_match_metadata(engine, M1_1C_TABLES)
+    assert _current_revision(engine) == "0003"
+
+
+def _assert_m1_1d_schema_matches_metadata(engine: Engine) -> None:
     inspector = inspect(engine)
     assert set(inspector.get_table_names()) - {"alembic_version"} == TARGET_TABLES
 
@@ -130,7 +157,7 @@ def _assert_m1_1c_schema_matches_metadata(engine: Engine) -> None:
     _assert_foreign_key_restrict_rules(engine)
     _assert_no_redundant_indexes(engine)
     _assert_updated_at_on_update_ddl(engine)
-    assert _current_revision(engine) == "0003"
+    assert _current_revision(engine) == "0004"
 
 
 def _assert_tables_match_metadata(engine: Engine, table_names: set[str]) -> None:
@@ -209,6 +236,10 @@ def _assert_physical_mysql_types_and_collations(engine: Engine) -> None:
         ("product", "category_code"),
         ("commerce_order_item", "product_category_code"),
         ("commerce_refund", "reason_code"),
+        ("marketing_channel", "channel_code"),
+        ("marketing_campaign", "business_scope"),
+        ("attributed_conversion", "reason_code"),
+        ("attributed_conversion", "model_version"),
     }:
         row = row_by_column[(table_name, column_name)]
         assert row["CHARACTER_SET_NAME"] == "ascii"
@@ -216,6 +247,10 @@ def _assert_physical_mysql_types_and_collations(engine: Engine) -> None:
 
     assert str(row_by_column[("commerce_order_item", "quantity")]["COLUMN_TYPE"]).lower() == (
         "int unsigned"
+    )
+    assert (
+        str(row_by_column[("campaign_daily_spend", "version_number")]["COLUMN_TYPE"]).lower()
+        == "smallint unsigned"
     )
 
 
