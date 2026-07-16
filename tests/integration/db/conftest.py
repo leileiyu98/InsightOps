@@ -58,21 +58,6 @@ def database_engine(alembic_config: Config) -> Generator[Engine]:
         command.upgrade(alembic_config, "head")
 
 
-@pytest.fixture(scope="module")
-def database_engine_at_0003(
-    alembic_config: Config,
-    database_engine: Engine,
-) -> Generator[Engine]:
-    """Run schema-bound M1.2A tests at 0003, then restore the current head."""
-    database_engine.dispose()
-    command.downgrade(alembic_config, "0003")
-    try:
-        yield database_engine
-    finally:
-        database_engine.dispose()
-        command.upgrade(alembic_config, "head")
-
-
 @pytest.fixture
 def db_session(database_engine: Engine) -> Generator[Session]:
     """Provide a transaction-isolated session for one constraint test."""

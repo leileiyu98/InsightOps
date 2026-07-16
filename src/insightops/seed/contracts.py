@@ -72,24 +72,26 @@ class DatasetManifest(BaseModel):
     schema_revision: str = Field(pattern=r"^\d{4}$")
     business_definition_id: str = Field(min_length=1)
     business_definition_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    business_definition_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     benchmark_catalog_id: str = Field(min_length=1)
     benchmark_catalog_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
     oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     business_timezone: str = Field(min_length=1)
     snapshot_cutoff: datetime
+    marketing_history_started_at: datetime
     source_files: tuple[str, ...]
     table_order: tuple[str, ...]
     expected_row_counts: dict[str, int]
 
-    @field_validator("snapshot_cutoff")
+    @field_validator("snapshot_cutoff", "marketing_history_started_at")
     @classmethod
-    def validate_snapshot_cutoff(cls, value: datetime) -> datetime:
-        """Require an explicit UTC cutoff rather than a naive wall-clock value."""
+    def validate_utc_datetime(cls, value: datetime) -> datetime:
+        """Require explicit UTC contract times rather than naive wall-clock values."""
         utc_offset = value.utcoffset()
         if value.tzinfo is None or utc_offset is None:
-            raise ValueError("snapshot_cutoff must be timezone-aware")
+            raise ValueError("contract datetime must be timezone-aware")
         if utc_offset.total_seconds() != 0:
-            raise ValueError("snapshot_cutoff must be expressed in UTC")
+            raise ValueError("contract datetime must be expressed in UTC")
         return value
 
     @field_validator("source_files")

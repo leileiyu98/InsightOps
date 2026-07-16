@@ -1,0 +1,108 @@
+{
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.1.0",
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.1.0",
+  "dataset_digest": "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c",
+  "schema_revision": "0004",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.1",
+  "business_definition_digest": "eb759951171f377c5c33a199d06d98dd4ebf0529b66d4e950ea8f622a778500d",
+  "oracle_assets_digest": "cf430092a00d1d72493b606ed3350c36108a4a61b9b19df9ea30738c960f8f14",
+  "case_id": "GQ-MKT-008",
+  "columns": [
+    "business_scope",
+    "conversion_type",
+    "authoritative_external_id",
+    "conversion_at",
+    "attribution_result",
+    "reason_code",
+    "selected_touch_source_event_id",
+    "channel_code",
+    "source_data_cutoff_at"
+  ],
+  "ordered_by": [
+    "business_scope",
+    "conversion_type",
+    "authoritative_external_id"
+  ],
+  "rows": [
+    {
+      "business_scope": "commerce",
+      "conversion_type": "attributed_gmv",
+      "authoritative_external_id": "seed-order-b-jun",
+      "conversion_at": "2025-06-16T16:00:00.000000",
+      "attribution_result": "direct",
+      "reason_code": "no_eligible_non_direct_touch",
+      "selected_touch_source_event_id": null,
+      "channel_code": "direct",
+      "source_data_cutoff_at": "2025-12-01T00:00:00.000000"
+    },
+    {
+      "business_scope": "commerce",
+      "conversion_type": "attributed_gmv",
+      "authoritative_external_id": "seed-order-jun-direct",
+      "conversion_at": "2025-06-18T18:00:00.000000",
+      "attribution_result": "direct",
+      "reason_code": "no_eligible_non_direct_touch",
+      "selected_touch_source_event_id": null,
+      "channel_code": "direct",
+      "source_data_cutoff_at": "2025-12-01T00:00:00.000000"
+    },
+    {
+      "business_scope": "commerce",
+      "conversion_type": "commerce_first_payment",
+      "authoritative_external_id": "seed-order-jun-direct",
+      "conversion_at": "2025-06-18T18:00:00.000000",
+      "attribution_result": "direct",
+      "reason_code": "no_eligible_non_direct_touch",
+      "selected_touch_source_event_id": null,
+      "channel_code": "direct",
+      "source_data_cutoff_at": "2025-12-01T00:00:00.000000"
+    },
+    {
+      "business_scope": "commerce",
+      "conversion_type": "commerce_revenue",
+      "authoritative_external_id": "seed-fee-jun-direct",
+      "conversion_at": "2025-06-18T18:00:00.000000",
+      "attribution_result": "direct",
+      "reason_code": "no_eligible_non_direct_touch",
+      "selected_touch_source_event_id": null,
+      "channel_code": "direct",
+      "source_data_cutoff_at": "2025-12-01T00:00:00.000000"
+    },
+    {
+      "business_scope": "commerce",
+      "conversion_type": "commerce_revenue",
+      "authoritative_external_id": "seed-fee-order-b-jun",
+      "conversion_at": "2025-06-16T16:00:00.000000",
+      "attribution_result": "direct",
+      "reason_code": "no_eligible_non_direct_touch",
+      "selected_touch_source_event_id": null,
+      "channel_code": "direct",
+      "source_data_cutoff_at": "2025-12-01T00:00:00.000000"
+    },
+    {
+      "business_scope": "saas",
+      "conversion_type": "saas_first_payment",
+      "authoritative_external_id": "seed-payment-jun-epsilon",
+      "conversion_at": "2025-06-08T16:00:00.000000",
+      "attribution_result": "direct",
+      "reason_code": "no_eligible_non_direct_touch",
+      "selected_touch_source_event_id": null,
+      "channel_code": "direct",
+      "source_data_cutoff_at": "2025-12-01T00:00:00.000000"
+    },
+    {
+      "business_scope": "saas",
+      "conversion_type": "saas_revenue",
+      "authoritative_external_id": "seed-payment-jun-epsilon",
+      "conversion_at": "2025-06-08T16:00:00.000000",
+      "attribution_result": "direct",
+      "reason_code": "no_eligible_non_direct_touch",
+      "selected_touch_source_event_id": null,
+      "channel_code": "direct",
+      "source_data_cutoff_at": "2025-12-01T00:00:00.000000"
+    }
+  ]
+}

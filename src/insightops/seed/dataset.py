@@ -1,10 +1,9 @@
 """Load and hash deterministic seed dataset assets."""
 
-import hashlib
-import json
 from pathlib import Path
 from typing import Any
 
+from insightops.canonical import canonical_json_digest
 from insightops.seed.contracts import DatasetManifest, SeedDataset, SeedReference, SeedSource
 from insightops.seed.validation import validate_business_dataset
 
@@ -49,13 +48,7 @@ def compute_dataset_digest(
         ),
         "sources": [source.model_dump(mode="json") for source in sources],
     }
-    canonical = json.dumps(
-        payload,
-        ensure_ascii=False,
-        separators=(",", ":"),
-        sort_keys=True,
-    ).encode("utf-8")
-    return hashlib.sha256(canonical).hexdigest()
+    return canonical_json_digest(payload)
 
 
 def canonicalize_seed_value(value: Any) -> str | int | bool | None:

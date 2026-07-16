@@ -120,6 +120,7 @@ class BenchmarkCatalog(BaseModel):
     schema_revision: str = Field(pattern=r"^\d{4}$")
     business_definition_id: str = Field(min_length=1)
     business_definition_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    business_definition_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     cases: tuple[BenchmarkCase, ...]
 
@@ -145,6 +146,7 @@ class ExpectedResult(BaseModel):
     schema_revision: str = Field(pattern=r"^\d{4}$")
     business_definition_id: str = Field(min_length=1)
     business_definition_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    business_definition_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
     case_id: str = Field(pattern=r"^GQ-[A-Z]{3}-\d{3}$")
     columns: tuple[str, ...] = Field(min_length=1)
@@ -160,4 +162,92 @@ class ExpectedResult(BaseModel):
         for row in self.rows:
             if set(row) != column_set:
                 raise ValueError("expected result row columns do not match declaration")
+        return self
+
+
+class BaselineCaseIndex(BaseModel):
+    """Compact immutable digest record for one baseline executable case."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    case_id: str = Field(pattern=r"^GQ-[A-Z]{3}-\d{3}$")
+    expected_result_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    business_result_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+
+class BaselineIndex(BaseModel):
+    """Compact v1.0.0 benchmark baseline independent of CI Git history."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    dataset_id: str = Field(min_length=1)
+    dataset_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    dataset_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    baseline_git_commit: str = Field(pattern=r"^[0-9a-f]{40}$")
+    catalog_id: str = Field(min_length=1)
+    catalog_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    catalog_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    cases: tuple[BaselineCaseIndex, ...]
+
+    @model_validator(mode="after")
+    def validate_cases(self) -> Self:
+        case_ids = [case.case_id for case in self.cases]
+        if len(case_ids) != 16 or len(case_ids) != len(set(case_ids)):
+            raise ValueError("baseline index requires 16 unique executable cases")
+        return self
+
+
+class BaselineDeltaCase(BaseModel):
+    """Reviewed business-result delta for one prior executable case."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    case_id: str = Field(pattern=r"^GQ-[A-Z]{3}-\d{3}$")
+    old_expected_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    new_expected_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    old_business_result_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    new_business_result_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    changed: bool
+    change_reason: str = Field(min_length=1)
+    scenario_ids: tuple[str, ...]
+
+    @model_validator(mode="after")
+    def validate_change_contract(self) -> Self:
+        computed_changed = self.old_business_result_digest != self.new_business_result_digest
+        if self.changed is not computed_changed:
+            raise ValueError("delta changed flag disagrees with business-result digests")
+        if self.changed:
+            if self.change_reason == "unchanged" or not self.scenario_ids:
+                raise ValueError("changed delta requires a reviewed reason and scenarios")
+        elif self.change_reason != "unchanged" or self.scenario_ids:
+            raise ValueError("unchanged delta cannot claim a reason or scenario")
+        return self
+
+
+class BaselineDeltaReport(BaseModel):
+    """Reviewed v1.0.0 to v1.1.0 benchmark delta contract."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    from_dataset_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    from_dataset_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    from_catalog_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    from_oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    from_git_commit: str = Field(pattern=r"^[0-9a-f]{40}$")
+    to_dataset_version: str = Field(pattern=r"^\d+\.\d+\.\d+$")
+    to_dataset_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    to_oracle_assets_digest: str = Field(pattern=r"^[0-9a-f]{64}$")
+    old_cases: tuple[BaselineDeltaCase, ...]
+    new_cases: tuple[str, ...]
+
+    @model_validator(mode="after")
+    def validate_case_partition(self) -> Self:
+        old_ids = [case.case_id for case in self.old_cases]
+        if len(old_ids) != 16 or len(old_ids) != len(set(old_ids)):
+            raise ValueError("delta report requires 16 unique baseline cases")
+        if len(self.new_cases) != 12 or len(self.new_cases) != len(set(self.new_cases)):
+            raise ValueError("delta report requires 12 unique new executable cases")
+        if set(old_ids) & set(self.new_cases):
+            raise ValueError("old and new delta case sets must be disjoint")
         return self

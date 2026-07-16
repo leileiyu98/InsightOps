@@ -24,35 +24,46 @@ DATASET_ROOT = PROJECT_ROOT / "data" / "seed" / "m1_2a"
 
 
 @pytest.fixture(scope="module")
-def seeded_benchmark_database(database_engine_at_0003: Engine) -> Generator[Engine]:
+def seeded_benchmark_database(database_engine: Engine) -> Generator[Engine]:
     """Load the canonical dataset for this module and remove only its owned rows."""
     dataset = load_seed_dataset(DATASET_ROOT)
-    loader = DatasetLoader(database_engine_at_0003, dataset, app_env="test")
+    loader = DatasetLoader(database_engine, dataset, app_env="test")
     loader.load()
     try:
-        yield database_engine_at_0003
+        yield database_engine
     finally:
         loader.unload()
 
 
 def test_catalog_has_current_scope_status_partition() -> None:
     catalog = load_benchmark_catalog(BENCHMARK_ROOT / "cases.json")
+    cases = {case.case_id: case for case in catalog.cases}
 
     counts = {
         status: sum(case.status is status for case in catalog.cases) for status in BenchmarkStatus
     }
     assert len(catalog.cases) == 48
     assert counts == {
-        BenchmarkStatus.EXECUTABLE: 16,
-        BenchmarkStatus.CLARIFICATION_REQUIRED: 2,
-        BenchmarkStatus.DEFERRED: 30,
+        BenchmarkStatus.EXECUTABLE: 28,
+        BenchmarkStatus.CLARIFICATION_REQUIRED: 6,
+        BenchmarkStatus.DEFERRED: 14,
     }
+    assert cases["GQ-PRD-005"].status is BenchmarkStatus.CLARIFICATION_REQUIRED
+    assert cases["GQ-PRD-005"].gold_sql_path is None
+    clarification = cases["GQ-PRD-005"].clarification_reason
+    assert clarification is not None
+    assert "registration-source attribution" in clarification
 
 
 def test_catalog_assets_have_valid_version_bindings_and_declared_tables() -> None:
     catalog = load_benchmark_catalog(BENCHMARK_ROOT / "cases.json")
     dataset = load_seed_dataset(DATASET_ROOT)
-    validate_benchmark_bundle(BENCHMARK_ROOT, catalog, dataset.manifest)
+    validate_benchmark_bundle(
+        BENCHMARK_ROOT,
+        catalog,
+        dataset.manifest,
+        PROJECT_ROOT / "docs" / "business-definitions-v1.md",
+    )
     physical_tables = set(dataset.manifest.table_order)
     table_pattern = re.compile(r"\b(?:FROM|JOIN)\s+([a-z_][a-z0-9_]*)", re.IGNORECASE)
 
@@ -65,6 +76,44 @@ def test_catalog_assets_have_valid_version_bindings_and_declared_tables() -> Non
         assert re.search(r"\b(?:NOW|CURRENT_DATE|CURRENT_TIMESTAMP)\b", sql, re.IGNORECASE) is None
         actual_tables = set(table_pattern.findall(sql)) & physical_tables
         assert set(case.required_tables) == actual_tables, case.case_id
+
+
+def test_gold_sql_consumes_materialized_attribution_and_visibility_first_spend() -> None:
+    catalog = load_benchmark_catalog(BENCHMARK_ROOT / "cases.json")
+    cases = {case.case_id: case for case in catalog.cases}
+    attribution_cases = {
+        "GQ-MKT-001",
+        "GQ-MKT-002",
+        "GQ-MKT-003",
+        "GQ-MKT-004",
+        "GQ-MKT-005",
+        "GQ-MKT-008",
+        "GQ-PRD-008",
+        "GQ-XDM-002",
+    }
+    spend_cases = {
+        "GQ-MKT-001",
+        "GQ-MKT-002",
+        "GQ-MKT-005",
+        "GQ-XDM-002",
+        "GQ-XDM-007",
+    }
+
+    for case_id in attribution_cases:
+        sql_path = cases[case_id].gold_sql_path
+        assert sql_path is not None
+        sql = (BENCHMARK_ROOT / sql_path).read_text(encoding="utf-8")
+        assert "FROM attributed_conversion" in sql
+        assert "last_non_direct_168h" not in sql.lower()
+        assert "INTERVAL 168 HOUR" not in sql.upper()
+
+    for case_id in spend_cases:
+        sql_path = cases[case_id].gold_sql_path
+        assert sql_path is not None
+        sql = (BENCHMARK_ROOT / sql_path).read_text(encoding="utf-8")
+        visibility_filter = sql.index("s.recorded_at <= :snapshot_cutoff_utc")
+        revision_filter = sql.index("s.revision_rank = 1")
+        assert visibility_filter < revision_filter
 
 
 def test_executable_gold_sql_matches_frozen_results(
@@ -84,6 +133,7 @@ def test_executable_gold_sql_matches_frozen_results(
             assert expected.schema_revision == catalog.schema_revision
             assert expected.business_definition_id == catalog.business_definition_id
             assert expected.business_definition_version == catalog.business_definition_version
+            assert expected.business_definition_digest == catalog.business_definition_digest
             assert expected.catalog_id == catalog.catalog_id
             assert expected.catalog_version == catalog.catalog_version
             assert expected.oracle_assets_digest == catalog.oracle_assets_digest
@@ -105,7 +155,7 @@ def test_business_metric_acceptance_invariants(
             BENCHMARK_ROOT,
             cases["GQ-COM-001"],
         )
-        assert commerce_rows == ({"gmv": "720.0000", "order_count": 2, "aov": "360.0000"},)
+        assert commerce_rows == ({"gmv": "1020.0000", "order_count": 4, "aov": "255.0000"},)
 
         candidate_order_count = connection.scalar(
             text(
@@ -136,9 +186,9 @@ def test_business_metric_acceptance_invariants(
                 "end": cases["GQ-COM-001"].parameters["jul_start"],
             },
         )
-        assert candidate_order_count == 5
-        assert eligible_item_count == 3
-        assert commerce_rows[0]["order_count"] == 2
+        assert candidate_order_count == 7
+        assert eligible_item_count == 5
+        assert commerce_rows[0]["order_count"] == 4
 
         refund_edge = (
             connection.execute(
@@ -177,8 +227,8 @@ def test_business_metric_acceptance_invariants(
         assert refund_rows == (
             {
                 "refund_amount": "390.0000",
-                "gmv": "720.0000",
-                "refund_rate": "0.5417",
+                "gmv": "1020.0000",
+                "refund_rate": "0.3824",
                 "prior_month_order_refund_amount": "190.0000",
             },
         )
@@ -190,8 +240,8 @@ def test_business_metric_acceptance_invariants(
         )
         assert next(row for row in revenue_rows if row["report_month"] == "2025-05") == {
             "report_month": "2025-05",
-            "saas_revenue": "1100.0000",
-            "commerce_revenue": "30.0000",
+            "saas_revenue": "1400.0000",
+            "commerce_revenue": "65.0000",
         }
 
         mrr_case = cases["GQ-SAA-001"]

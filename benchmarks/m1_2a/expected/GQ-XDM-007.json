@@ -1,0 +1,75 @@
+{
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.1.0",
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.1.0",
+  "dataset_digest": "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c",
+  "schema_revision": "0004",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.1",
+  "business_definition_digest": "eb759951171f377c5c33a199d06d98dd4ebf0529b66d4e950ea8f622a778500d",
+  "oracle_assets_digest": "cf430092a00d1d72493b606ed3350c36108a4a61b9b19df9ea30738c960f8f14",
+  "case_id": "GQ-XDM-007",
+  "columns": [
+    "merchant_id",
+    "merchant_name",
+    "q1_gmv",
+    "q2_gmv",
+    "gmv_change",
+    "q1_refund_amount",
+    "q2_refund_amount",
+    "refund_change",
+    "q1_marketing_spend",
+    "q2_marketing_spend",
+    "marketing_spend_change",
+    "all_three_increased"
+  ],
+  "ordered_by": [
+    "gmv_change",
+    "merchant_id"
+  ],
+  "rows": [
+    {
+      "merchant_id": 1001,
+      "merchant_name": "Alpha Marketplace",
+      "q1_gmv": "300.0000",
+      "q2_gmv": "1370.0000",
+      "gmv_change": "1070.0000",
+      "q1_refund_amount": "0.0000",
+      "q2_refund_amount": "400.0000",
+      "refund_change": "400.0000",
+      "q1_marketing_spend": "90.0000",
+      "q2_marketing_spend": "300.0000",
+      "marketing_spend_change": "210.0000",
+      "all_three_increased": "yes"
+    },
+    {
+      "merchant_id": 1002,
+      "merchant_name": "Beta Marketplace",
+      "q1_gmv": "600.0000",
+      "q2_gmv": "840.0000",
+      "gmv_change": "240.0000",
+      "q1_refund_amount": "0.0000",
+      "q2_refund_amount": "20.0000",
+      "refund_change": "20.0000",
+      "q1_marketing_spend": "75.0000",
+      "q2_marketing_spend": "160.0000",
+      "marketing_spend_change": "85.0000",
+      "all_three_increased": "yes"
+    },
+    {
+      "merchant_id": 1003,
+      "merchant_name": "Q2 May Marketplace",
+      "q1_gmv": "0.0000",
+      "q2_gmv": "150.0000",
+      "gmv_change": "150.0000",
+      "q1_refund_amount": "0.0000",
+      "q2_refund_amount": "0.0000",
+      "refund_change": "0.0000",
+      "q1_marketing_spend": "0.0000",
+      "q2_marketing_spend": "150.0000",
+      "marketing_spend_change": "150.0000",
+      "all_three_increased": "no"
+    }
+  ]
+}

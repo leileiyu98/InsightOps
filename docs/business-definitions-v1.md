@@ -5,12 +5,19 @@
 本文冻结 InsightCloud V1 的业务指标、时间、身份、状态和聚合口径，作为后续逻辑建模、种子数据、Gold SQL、Text2SQL 语义层与 Evaluation 的权威业务输入。
 
 - 定义集标识：`insightcloud-business-definitions`
-- 版本：`1.0.0`
+- 版本：`1.0.1`
 - 状态：已冻结
 - 生效日期：2026-07-14
 - 适用范围：InsightCloud V1 的 SaaS、交易市场、营销、组织增长、产品活跃和结构化客服工单分析
 
 本文只定义业务语义，不定义数据库表、物理字段、DDL、migration、SQL、API 或应用实现。若本文与 M0.8 文档中的“候选指标”或“待确认事项”存在差异，V1 分析以本文为准；M0.8 文档仍保留为产品背景、概念域和评测策略说明。
+
+### 1.1 变更记录
+
+- `1.0.1`（2026-07-16）：兼容性澄清版本。明确 attribution source-data cutoff、late-arriving touch
+  的 append-only re-attribution、campaign spend revision 的 visibility-first snapshot 规则、SaaS/Commerce
+  Attributed ROAS 命名，以及 Gold SQL 只能读取物化 attribution result。既有 SaaS 和 Commerce 指标公式不变。
+- `1.0.0`（2026-07-14）：首次冻结版本。
 
 ## 2. 全局分析约定
 

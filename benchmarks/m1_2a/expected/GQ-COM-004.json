@@ -1,13 +1,14 @@
 {
   "catalog_id": "insightcloud-m1-2a-gold-catalog",
-  "catalog_version": "1.0.0",
+  "catalog_version": "1.1.0",
   "dataset_id": "insightcloud-m1-2a-benchmark",
-  "dataset_version": "1.0.0",
-  "dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
-  "schema_revision": "0003",
+  "dataset_version": "1.1.0",
+  "dataset_digest": "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c",
+  "schema_revision": "0004",
   "business_definition_id": "insightcloud-business-definitions",
-  "business_definition_version": "1.0.0",
-  "oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
+  "business_definition_version": "1.0.1",
+  "business_definition_digest": "eb759951171f377c5c33a199d06d98dd4ebf0529b66d4e950ea8f622a778500d",
+  "oracle_assets_digest": "cf430092a00d1d72493b606ed3350c36108a4a61b9b19df9ea30738c960f8f14",
   "case_id": "GQ-COM-004",
   "columns": [
     "report_month",
@@ -20,40 +21,40 @@
   ],
   "rows": [
     {
-      "aov": "150.0000",
+      "report_month": "2025-01",
       "gmv": "300.0000",
       "order_count": 2,
-      "report_month": "2025-01"
+      "aov": "150.0000"
     },
     {
-      "aov": "160.0000",
+      "report_month": "2025-02",
       "gmv": "320.0000",
       "order_count": 2,
-      "report_month": "2025-02"
+      "aov": "160.0000"
     },
     {
-      "aov": "140.0000",
+      "report_month": "2025-03",
       "gmv": "280.0000",
       "order_count": 2,
-      "report_month": "2025-03"
+      "aov": "140.0000"
     },
     {
-      "aov": "210.0000",
-      "gmv": "420.0000",
-      "order_count": 2,
-      "report_month": "2025-04"
+      "report_month": "2025-04",
+      "gmv": "470.0000",
+      "order_count": 3,
+      "aov": "156.6667"
     },
     {
-      "aov": "260.0000",
-      "gmv": "520.0000",
-      "order_count": 2,
-      "report_month": "2025-05"
+      "report_month": "2025-05",
+      "gmv": "870.0000",
+      "order_count": 5,
+      "aov": "174.0000"
     },
     {
-      "aov": "360.0000",
-      "gmv": "720.0000",
-      "order_count": 2,
-      "report_month": "2025-06"
+      "report_month": "2025-06",
+      "gmv": "1020.0000",
+      "order_count": 4,
+      "aov": "255.0000"
     }
   ]
 }

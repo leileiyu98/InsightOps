@@ -7,7 +7,10 @@ from pydantic import ValidationError
 
 from insightops.benchmark.contracts import BenchmarkCase, BenchmarkStatus
 from insightops.benchmark.registry import (
+    load_baseline_delta_report,
+    load_baseline_index,
     load_benchmark_catalog,
+    validate_baseline_delta,
     validate_benchmark_bundle,
 )
 from insightops.seed.dataset import load_seed_dataset
@@ -75,7 +78,21 @@ def test_m1_2a_benchmark_bundle_has_a_valid_version_and_digest_chain() -> None:
     catalog = load_benchmark_catalog(benchmark_root / "cases.json")
     dataset = load_seed_dataset(PROJECT_ROOT / "data" / "seed" / "m1_2a")
 
-    validate_benchmark_bundle(benchmark_root, catalog, dataset.manifest)
+    validate_benchmark_bundle(
+        benchmark_root,
+        catalog,
+        dataset.manifest,
+        PROJECT_ROOT / "docs" / "business-definitions-v1.md",
+    )
+
+
+def test_baseline_delta_is_ci_self_contained_and_matches_current_assets() -> None:
+    benchmark_root = PROJECT_ROOT / "benchmarks" / "m1_2a"
+    catalog = load_benchmark_catalog(benchmark_root / "cases.json")
+    baseline = load_baseline_index(benchmark_root / "baseline_1.0.0_index.json")
+    report = load_baseline_delta_report(benchmark_root / "baseline_delta_1.0.0_to_1.1.0.json")
+
+    validate_baseline_delta(benchmark_root, catalog, baseline, report)
 
 
 def test_benchmark_bundle_rejects_a_tampered_catalog_binding() -> None:
@@ -85,4 +102,9 @@ def test_benchmark_bundle_rejects_a_tampered_catalog_binding() -> None:
     tampered = catalog.model_copy(update={"dataset_digest": "f" * 64})
 
     with pytest.raises(ValueError, match="dataset_digest"):
-        validate_benchmark_bundle(benchmark_root, tampered, dataset.manifest)
+        validate_benchmark_bundle(
+            benchmark_root,
+            tampered,
+            dataset.manifest,
+            PROJECT_ROOT / "docs" / "business-definitions-v1.md",
+        )

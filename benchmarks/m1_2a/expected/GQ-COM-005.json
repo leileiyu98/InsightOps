@@ -1,13 +1,14 @@
 {
   "catalog_id": "insightcloud-m1-2a-gold-catalog",
-  "catalog_version": "1.0.0",
+  "catalog_version": "1.1.0",
   "dataset_id": "insightcloud-m1-2a-benchmark",
-  "dataset_version": "1.0.0",
-  "dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
-  "schema_revision": "0003",
+  "dataset_version": "1.1.0",
+  "dataset_digest": "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c",
+  "schema_revision": "0004",
   "business_definition_id": "insightcloud-business-definitions",
-  "business_definition_version": "1.0.0",
-  "oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
+  "business_definition_version": "1.0.1",
+  "business_definition_digest": "eb759951171f377c5c33a199d06d98dd4ebf0529b66d4e950ea8f622a778500d",
+  "oracle_assets_digest": "cf430092a00d1d72493b606ed3350c36108a4a61b9b19df9ea30738c960f8f14",
   "case_id": "GQ-COM-005",
   "columns": [
     "merchant_id",
@@ -22,20 +23,28 @@
   ],
   "rows": [
     {
-      "gmv": "1000.0000",
       "merchant_id": 1001,
       "merchant_name": "Alpha Marketplace",
-      "merchant_net_sales": "600.0000",
-      "platform_transaction_revenue": "54.0000",
-      "refund_amount": "400.0000"
+      "gmv": "1370.0000",
+      "refund_amount": "400.0000",
+      "merchant_net_sales": "970.0000",
+      "platform_transaction_revenue": "91.0000"
     },
     {
-      "gmv": "660.0000",
       "merchant_id": 1002,
       "merchant_name": "Beta Marketplace",
-      "merchant_net_sales": "640.0000",
-      "platform_transaction_revenue": "33.0000",
-      "refund_amount": "20.0000"
+      "gmv": "840.0000",
+      "refund_amount": "20.0000",
+      "merchant_net_sales": "820.0000",
+      "platform_transaction_revenue": "51.0000"
+    },
+    {
+      "merchant_id": 1003,
+      "merchant_name": "Q2 May Marketplace",
+      "gmv": "150.0000",
+      "refund_amount": "0.0000",
+      "merchant_net_sales": "150.0000",
+      "platform_transaction_revenue": "15.0000"
     }
   ]
 }

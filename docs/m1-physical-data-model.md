@@ -1314,8 +1314,8 @@ refund/fee → allocation。
 
 ### 15.3 M1.1D：营销
 
-**实施状态**：已由 Alembic revision `0004` 实施。M1.2A dataset/catalog 仍冻结在 revision `0003`，不在
-本阶段升级。
+**实施状态**：已由 Alembic revision `0004` 实施。M1.2A dataset/catalog `1.1.0` 已绑定 revision
+`0004`，未改变本节 Schema。
 
 **创建表**：`marketing_channel`、`marketing_campaign`、`campaign_daily_spend`、`marketing_touch`、
 `attributed_conversion`。

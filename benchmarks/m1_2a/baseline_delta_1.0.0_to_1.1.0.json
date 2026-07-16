@@ -1,0 +1,213 @@
+{
+  "from_dataset_version": "1.0.0",
+  "from_dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
+  "from_catalog_digest": "28b88b3fbcdc11d027f6e80b33e9d573ef3c1330d015d443508c5fb883d3c3bb",
+  "from_oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
+  "from_git_commit": "70680bc087a739583bcd5242907f9f0c6d9b2e0b",
+  "to_dataset_version": "1.1.0",
+  "to_dataset_digest": "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c",
+  "to_oracle_assets_digest": "cf430092a00d1d72493b606ed3350c36108a4a61b9b19df9ea30738c960f8f14",
+  "old_cases": [
+    {
+      "case_id": "GQ-COM-001",
+      "old_expected_digest": "ea8d457aaef8a251b94646d1b342ee7a3beb418836c0d2db59e6a43e7546c331",
+      "new_expected_digest": "397c2e4cea1f7c27051d7e03b9396172d90fc3207c9146d002888f8bf96064eb",
+      "old_business_result_digest": "d7f7668ec064317e762d1b7c048799eff9841f6206314d551743be9222c63d96",
+      "new_business_result_digest": "e7818dc8bb6002b6edabe1f28e41d6b24f1c589657acaf70d5fedf988939d5e4",
+      "changed": true,
+      "change_reason": "Q2 completed orders extend June GMV and order count.",
+      "scenario_ids": [
+        "q2-commerce-orders"
+      ]
+    },
+    {
+      "case_id": "GQ-COM-002",
+      "old_expected_digest": "3c8efa3fbc703e5b03f4e7cdd763d98bee3a74c6e23a58aa2aeced0bdf4c3d61",
+      "new_expected_digest": "1b4031b2edd310c692f9cb0a1fa5d28326181535497767b1f85da32f68854d20",
+      "old_business_result_digest": "2750a9fbfa80ab05ea698fd82309ff928cafead0483344f6160cffabb52543b8",
+      "new_business_result_digest": "d1bea3bacfeca007cb6d6a1a91b7a5c2e7497dbbfb22d3ffa6b76141a2a291cc",
+      "changed": true,
+      "change_reason": "Q2 completed orders change the June GMV denominator.",
+      "scenario_ids": [
+        "q2-commerce-orders"
+      ]
+    },
+    {
+      "case_id": "GQ-COM-003",
+      "old_expected_digest": "e82b71936f269d0d1b7c5e9ab2986c1e502fdcd76a1c0e68afb268028334f8d9",
+      "new_expected_digest": "1e6a591aa660ba0e947272cfab9a9ca9da17c2109c53879bb6cd91f1f3091b94",
+      "old_business_result_digest": "bceb056c0cd76f862a7bf2c401d305fe920d0d62442552f6d1a9a9f364e8e127",
+      "new_business_result_digest": "26c1a0909ab991a8c6b8511960aec2159117d6e42ebe720eb73bf818d245780a",
+      "changed": true,
+      "change_reason": "Q2 merchant orders extend June merchant GMV.",
+      "scenario_ids": [
+        "q2-commerce-orders"
+      ]
+    },
+    {
+      "case_id": "GQ-COM-004",
+      "old_expected_digest": "f3d6249592a591ca6037ac8bf3f4573231277011c3e8c44326bc59a5474ccffb",
+      "new_expected_digest": "7c1402c07279ec194054aaf25e0027eaa7a0f19770fc4423db87ed3c0a2a3082",
+      "old_business_result_digest": "bb1a112269707ade2bbc4774b5c191e73cd2b2c4ffadae3a0a6af5c6fc3a2a3e",
+      "new_business_result_digest": "e56d09550cda4ca22880a1ce95687853f474ca107371882382c83b362531fac0",
+      "changed": true,
+      "change_reason": "Q2 first orders add monthly new customers.",
+      "scenario_ids": [
+        "q2-commerce-first-orders"
+      ]
+    },
+    {
+      "case_id": "GQ-COM-005",
+      "old_expected_digest": "f2acdb69e2576f761a4129baef72e395684f6774e21701be414baa38eb2bab73",
+      "new_expected_digest": "07751592519d15f966004d88b64254f6daadb633793c827f19295edb40c011eb",
+      "old_business_result_digest": "6c9536ac1eb9b4af3d5eb6bd130d999dabd3fc473113bb9c70cb059ada2412ff",
+      "new_business_result_digest": "ed60678a9c9474f30e243953752d76c23ba0096bf77801c7884c1f88b0420c6f",
+      "changed": true,
+      "change_reason": "Q2 orders and fees extend merchant take-rate results.",
+      "scenario_ids": [
+        "q2-commerce-orders"
+      ]
+    },
+    {
+      "case_id": "GQ-COM-006",
+      "old_expected_digest": "f33143460a557b0c26df76351cf5fb8c021431b7a0330a8b6a6d4d47c707b252",
+      "new_expected_digest": "bc4dd377e05788730f95d74fc9f11bf99ad8632d7fd18c56ccb60e2814a914ca",
+      "old_business_result_digest": "f5a6d2818fbb8656109560267c21ec9c4e463e6fe8ce9c1ea27c322a7f83ce50",
+      "new_business_result_digest": "8962dc675cb6e09f3e52ab41e456db28de06af309967bf08655edcfc411f0b5b",
+      "changed": true,
+      "change_reason": "Q2 order items extend category net sales.",
+      "scenario_ids": [
+        "q2-commerce-order-items"
+      ]
+    },
+    {
+      "case_id": "GQ-COM-008",
+      "old_expected_digest": "90541f38ca1d49a11eb91c5483a1320585dd39d954f7c69ea46f179847503ca5",
+      "new_expected_digest": "0c4ddb6c95313b961623fc41389813d18de527ab6c5dcb5f83a7d4620b0c22a0",
+      "old_business_result_digest": "9cba68b2960a59d683d97738081e78a460c6a2219c60af6b9dc93d1ed5eff342",
+      "new_business_result_digest": "3a21d85682d851dbdbd9ec4b49bc417c061245085ee700e96761d4dc4eed5e3f",
+      "changed": true,
+      "change_reason": "Q2 orders and fees extend the monthly merchant comparison.",
+      "scenario_ids": [
+        "q2-commerce-orders"
+      ]
+    },
+    {
+      "case_id": "GQ-SAA-001",
+      "old_expected_digest": "61f6e33d89f49b124e14baa7130729941b3040bd88b80bd57bcac223242e272c",
+      "new_expected_digest": "b7073b791f071c1a0fa225988f08fa46424b7627805452049406f1512f3a5b3d",
+      "old_business_result_digest": "0ad3788f7dfa06930aa986c40f1ad92689c2b3bcaacbcd65f8eeb1230c6c25bb",
+      "new_business_result_digest": "e8f00056c131622b89dc5388aba08791765136073752bc37a2608ee5013af3c1",
+      "changed": true,
+      "change_reason": "Q2 subscriptions extend July 1 MRR and ARR.",
+      "scenario_ids": [
+        "q2-activation-subscriptions"
+      ]
+    },
+    {
+      "case_id": "GQ-SAA-002",
+      "old_expected_digest": "e0fea0a65f792ce68f07feee45c755b8e074bec360c9020040e88c09a11ceb97",
+      "new_expected_digest": "a76d39a1ced0e660a46d4c2df839361a425590c4534308164ab304c0eef05c20",
+      "old_business_result_digest": "10d8ad179a7d63fd237b51a1c8dc46e9994e28d123c6ef4b2b22601f6d75b76f",
+      "new_business_result_digest": "93b792d1e2ed8b0ae9c0a3bafe863e961698d9356cc72228556749f669e1273b",
+      "changed": true,
+      "change_reason": "Q2 succeeded attempts add monthly SaaS revenue.",
+      "scenario_ids": [
+        "q2-first-payment-facts"
+      ]
+    },
+    {
+      "case_id": "GQ-SAA-003",
+      "old_expected_digest": "b4cf2eb4ce83d60b00e80939ff93bdfd18db405fdf1a2c4c2d209901c16ea87b",
+      "new_expected_digest": "48e6161bcc62aa3e5250a4b97c677df29decf7fb01757ee8d4abb4ac4cdfdbe6",
+      "old_business_result_digest": "d00a049b2e452d17acd1831968af1b3adee52cdfaea83e9327ef8866ce6716a0",
+      "new_business_result_digest": "d00a049b2e452d17acd1831968af1b3adee52cdfaea83e9327ef8866ce6716a0",
+      "changed": false,
+      "change_reason": "unchanged",
+      "scenario_ids": []
+    },
+    {
+      "case_id": "GQ-SAA-004",
+      "old_expected_digest": "5a104d2df5d725969c25389d5a2f189f141945ac1fe2fc5e8229a73c17e202c6",
+      "new_expected_digest": "d3e5f7fb2f5f625749f169ba67308c7cdcfdfda4f82f9f987b55ca8cf322c03c",
+      "old_business_result_digest": "5a45366c96eb6fdd6e3fb9c6b3347e65c18f3c508a2aeef9b5ae43de3d4a555b",
+      "new_business_result_digest": "ac78aeb1cb6681e2c89dc21a0713932cd83fda13c5b6df85d9d1ffa58739be08",
+      "changed": true,
+      "change_reason": "Q2 activation events extend monthly active subscriptions.",
+      "scenario_ids": [
+        "q2-activation-subscriptions"
+      ]
+    },
+    {
+      "case_id": "GQ-SAA-005",
+      "old_expected_digest": "7fdc60f88fac2848043a9cfbdab0a9463e03b840ac2b85d8453cf95ecc270cb2",
+      "new_expected_digest": "e4588612d2740b2bb5278b49dd7022d592d58a8e8fc97e2e4807c0a6e576acb2",
+      "old_business_result_digest": "dc021d8980e0ea3fff7ccda76f084d7f0f8ca6224d9d96a63348a8f0d97e9704",
+      "new_business_result_digest": "fa19695e9abcd0453ef495c47a710c1d4a352987fde3879799ec833335752192",
+      "changed": true,
+      "change_reason": "Q2 subscription events extend the monthly MRR bridge.",
+      "scenario_ids": [
+        "q2-activation-subscriptions"
+      ]
+    },
+    {
+      "case_id": "GQ-SAA-006",
+      "old_expected_digest": "33822de25b30380c689e57b36cddc1dc72b22597dc152a70cdc51acd8d53daaf",
+      "new_expected_digest": "0bd91acc6d466a9ae09bad696f173acbdd96c5b5929362b5a20f96d7aeb65575",
+      "old_business_result_digest": "94ac925d8c45bda0cf004f874df5d9f20f47b350384a6018c61408abcd78b648",
+      "new_business_result_digest": "94ac925d8c45bda0cf004f874df5d9f20f47b350384a6018c61408abcd78b648",
+      "changed": false,
+      "change_reason": "unchanged",
+      "scenario_ids": []
+    },
+    {
+      "case_id": "GQ-SAA-007",
+      "old_expected_digest": "2c20772537e0844390ac8f19480c6f1f1e4df7811a63960187df76385b34eaa3",
+      "new_expected_digest": "35a68f4c58ec0672906434a72764bd744e75bbdb726377b41d6fa0ad4ca0cf43",
+      "old_business_result_digest": "c1158c53aa6d303cb23de294fc49adbdc5e0d36189236004e0c224d92a0966b5",
+      "new_business_result_digest": "6232e3f5798ec12730899591c5ab0ef629c6910740541666f81b5dac5ed2ce42",
+      "changed": true,
+      "change_reason": "Q2 payment revenue and subscription events extend ARPA.",
+      "scenario_ids": [
+        "q2-first-payment-facts"
+      ]
+    },
+    {
+      "case_id": "GQ-SAA-008",
+      "old_expected_digest": "c3aa14c90cf952ad9e080f8515cd7a521c07279990781491a44d806822535f4f",
+      "new_expected_digest": "f37b0f5dd6019a3fc00dacfa0db39dec5d9a33f7119a9bec3adcb47a5907f245",
+      "old_business_result_digest": "589039738abd3715ca959797cd8dcd950cb39523542c3a8b61e8497787571734",
+      "new_business_result_digest": "589039738abd3715ca959797cd8dcd950cb39523542c3a8b61e8497787571734",
+      "changed": false,
+      "change_reason": "unchanged",
+      "scenario_ids": []
+    },
+    {
+      "case_id": "GQ-XDM-001",
+      "old_expected_digest": "6f7d92ab36d649c591f0165986e7690ccb6ee5b28cebfed11ff6f7b955c85ab5",
+      "new_expected_digest": "3589e973bdb641d71b36afa295850ed70d69fcaad02d3c91e8ef1304234c423d",
+      "old_business_result_digest": "681e1c94b21f8328875e0cb6cfb7f63a4ad92256f0bc5e11a90255246ed8177b",
+      "new_business_result_digest": "8e2b5828dac85f6aa47bf48dce89dae048e8f317f06c68ec72cfab278934041c",
+      "changed": true,
+      "change_reason": "Q2 SaaS payments and Commerce fees extend revenue by business line.",
+      "scenario_ids": [
+        "q2-first-payment-facts",
+        "q2-commerce-orders"
+      ]
+    }
+  ],
+  "new_cases": [
+    "GQ-MKT-001",
+    "GQ-MKT-002",
+    "GQ-MKT-003",
+    "GQ-MKT-004",
+    "GQ-MKT-005",
+    "GQ-MKT-008",
+    "GQ-PRD-001",
+    "GQ-PRD-006",
+    "GQ-PRD-007",
+    "GQ-PRD-008",
+    "GQ-XDM-002",
+    "GQ-XDM-007"
+  ]
+}
