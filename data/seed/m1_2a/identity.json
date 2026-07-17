@@ -3,7 +3,9 @@
   "tables": [
     {
       "table_name": "organization",
-      "match_columns": ["external_organization_id"],
+      "match_columns": [
+        "external_organization_id"
+      ],
       "records": [
         {
           "record_id": "org-alpha",
@@ -160,18 +162,127 @@
             "recorded_at": "2025-12-01 00:00:00.000000",
             "updated_at": "2025-12-01 00:00:00.000000"
           }
+        },
+        {
+          "record_id": "org-q2-apr-early",
+          "values": {
+            "external_organization_id": "seed-org-q2-apr-early",
+            "organization_name": "Q2 April Early",
+            "status": "active",
+            "registered_at": "2025-04-03 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-q2-apr-boundary",
+          "values": {
+            "external_organization_id": "seed-org-q2-apr-boundary",
+            "organization_name": "Q2 April Boundary",
+            "status": "active",
+            "registered_at": "2025-04-08 06:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-q2-may-a",
+          "values": {
+            "external_organization_id": "seed-org-q2-may-a",
+            "organization_name": "Q2 May Activated A",
+            "status": "active",
+            "registered_at": "2025-05-02 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-q2-may-b",
+          "values": {
+            "external_organization_id": "seed-org-q2-may-b",
+            "organization_name": "Q2 May Activated B",
+            "status": "active",
+            "registered_at": "2025-05-10 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-q2-jun-a",
+          "values": {
+            "external_organization_id": "seed-org-q2-jun-a",
+            "organization_name": "Q2 June Mature A",
+            "status": "active",
+            "registered_at": "2025-06-02 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-q2-jun-b",
+          "values": {
+            "external_organization_id": "seed-org-q2-jun-b",
+            "organization_name": "Q2 June Mature B",
+            "status": "active",
+            "registered_at": "2025-06-10 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-q2-jun-late-a",
+          "values": {
+            "external_organization_id": "seed-org-q2-jun-late-a",
+            "organization_name": "Q2 June Pending A",
+            "status": "active",
+            "registered_at": "2025-06-20 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "org-q2-jun-late-b",
+          "values": {
+            "external_organization_id": "seed-org-q2-jun-late-b",
+            "organization_name": "Q2 June Pending B",
+            "status": "active",
+            "registered_at": "2025-06-25 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
         }
       ]
     },
     {
       "table_name": "organization_member",
-      "match_columns": ["external_membership_id"],
+      "match_columns": [
+        "external_membership_id"
+      ],
       "records": [
         {
           "record_id": "member-alpha",
           "values": {
             "external_membership_id": "seed-member-alpha",
-            "organization_id": {"table": "organization", "record_id": "org-alpha"},
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-alpha"
+            },
             "external_account_id": "seed-account-alpha",
             "status": "active",
             "first_invited_at": "2024-10-02 16:00:00.000000",
@@ -187,7 +298,10 @@
           "record_id": "member-test",
           "values": {
             "external_membership_id": "seed-member-test",
-            "organization_id": {"table": "organization", "record_id": "org-test"},
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-test"
+            },
             "external_account_id": "seed-account-test",
             "status": "active",
             "first_invited_at": "2024-12-02 16:00:00.000000",
@@ -198,12 +312,109 @@
             "recorded_at": "2025-12-01 00:00:00.000000",
             "updated_at": "2025-12-01 00:00:00.000000"
           }
+        },
+        {
+          "record_id": "member-q2-apr-early",
+          "values": {
+            "external_membership_id": "seed-member-q2-apr-early",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-apr-early"
+            },
+            "external_account_id": "seed-account-member-q2-apr-early",
+            "status": "active",
+            "first_invited_at": "2025-04-04 15:00:00.000000",
+            "accepted_at": "2025-04-04 16:00:00.000000",
+            "effective_from": "2025-04-04 16:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "member-q2-may-a",
+          "values": {
+            "external_membership_id": "seed-member-q2-may-a",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-a"
+            },
+            "external_account_id": "seed-account-member-q2-may-a",
+            "status": "active",
+            "first_invited_at": "2025-05-03 15:00:00.000000",
+            "accepted_at": "2025-05-03 16:00:00.000000",
+            "effective_from": "2025-05-03 16:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "member-q2-may-b",
+          "values": {
+            "external_membership_id": "seed-member-q2-may-b",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-b"
+            },
+            "external_account_id": "seed-account-member-q2-may-b",
+            "status": "active",
+            "first_invited_at": "2025-05-11 15:00:00.000000",
+            "accepted_at": "2025-05-11 16:00:00.000000",
+            "effective_from": "2025-05-11 16:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "member-q2-jun-b",
+          "values": {
+            "external_membership_id": "seed-member-q2-jun-b",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-jun-b"
+            },
+            "external_account_id": "seed-account-member-q2-jun-b",
+            "status": "active",
+            "first_invited_at": "2025-06-11 15:00:00.000000",
+            "accepted_at": "2025-06-11 16:00:00.000000",
+            "effective_from": "2025-06-11 16:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "member-q2-jun-late-a",
+          "values": {
+            "external_membership_id": "seed-member-q2-jun-late-a",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-jun-late-a"
+            },
+            "external_account_id": "seed-account-member-q2-jun-late-a",
+            "status": "active",
+            "first_invited_at": "2025-06-21 15:00:00.000000",
+            "accepted_at": "2025-06-21 16:00:00.000000",
+            "effective_from": "2025-06-21 16:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
         }
       ]
     },
     {
       "table_name": "consumer",
-      "match_columns": ["external_consumer_id"],
+      "match_columns": [
+        "external_consumer_id"
+      ],
       "records": [
         {
           "record_id": "consumer-one",
@@ -243,19 +454,103 @@
             "recorded_at": "2025-12-01 00:00:00.000000",
             "updated_at": "2025-12-01 00:00:00.000000"
           }
+        },
+        {
+          "record_id": "consumer-apr-early",
+          "values": {
+            "external_consumer_id": "seed-consumer-apr-early",
+            "status": "active",
+            "first_identified_at": "2025-04-04 15:00:00.000000",
+            "created_at": "2025-04-04 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "consumer-may-search",
+          "values": {
+            "external_consumer_id": "seed-consumer-may-search",
+            "status": "active",
+            "first_identified_at": "2025-05-05 15:00:00.000000",
+            "created_at": "2025-05-05 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "consumer-may-search-two",
+          "values": {
+            "external_consumer_id": "seed-consumer-may-search-two",
+            "status": "active",
+            "first_identified_at": "2025-05-24 15:00:00.000000",
+            "created_at": "2025-05-24 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "consumer-may-social",
+          "values": {
+            "external_consumer_id": "seed-consumer-may-social",
+            "status": "active",
+            "first_identified_at": "2025-05-19 15:00:00.000000",
+            "created_at": "2025-05-19 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "consumer-jun-search",
+          "values": {
+            "external_consumer_id": "seed-consumer-jun-search",
+            "status": "active",
+            "first_identified_at": "2025-06-11 15:00:00.000000",
+            "created_at": "2025-06-11 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "consumer-jun-direct",
+          "values": {
+            "external_consumer_id": "seed-consumer-jun-direct",
+            "status": "active",
+            "first_identified_at": "2025-06-16 15:00:00.000000",
+            "created_at": "2025-06-16 15:00:00.000000",
+            "closed_at": null,
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
         }
       ]
     },
     {
       "table_name": "merchant",
-      "match_columns": ["merchant_id", "assignment_valid_from"],
+      "match_columns": [
+        "merchant_id",
+        "assignment_valid_from"
+      ],
       "records": [
         {
           "record_id": "merchant-alpha",
           "values": {
             "merchant_id": 1001,
             "external_merchant_id": "seed-merchant-alpha",
-            "organization_id": {"table": "organization", "record_id": "org-alpha"},
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-alpha"
+            },
             "merchant_name": "Alpha Marketplace",
             "status": "active",
             "applied_at": "2024-10-05 16:00:00.000000",
@@ -274,7 +569,10 @@
           "values": {
             "merchant_id": 1002,
             "external_merchant_id": "seed-merchant-beta",
-            "organization_id": {"table": "organization", "record_id": "org-beta"},
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
             "merchant_name": "Beta Marketplace",
             "status": "active",
             "applied_at": "2024-10-10 16:00:00.000000",
@@ -293,7 +591,10 @@
           "values": {
             "merchant_id": 1999,
             "external_merchant_id": "seed-merchant-test",
-            "organization_id": {"table": "organization", "record_id": "org-test"},
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-test"
+            },
             "merchant_name": "Synthetic Test Merchant",
             "status": "active",
             "applied_at": "2024-12-05 16:00:00.000000",
@@ -303,6 +604,28 @@
             "assignment_valid_from": "2024-12-07 16:00:00.000000",
             "assignment_valid_to": null,
             "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "merchant-q2-may-a",
+          "values": {
+            "merchant_id": 1003,
+            "external_merchant_id": "seed-merchant-q2-may-a",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-a"
+            },
+            "merchant_name": "Q2 May Marketplace",
+            "status": "active",
+            "applied_at": "2025-05-03 10:00:00.000000",
+            "approved_at": "2025-05-03 11:00:00.000000",
+            "activated_at": "2025-05-03 12:00:00.000000",
+            "closed_at": null,
+            "assignment_valid_from": "2025-05-03 12:00:00.000000",
+            "assignment_valid_to": null,
+            "is_test": false,
             "recorded_at": "2025-12-01 00:00:00.000000",
             "updated_at": "2025-12-01 00:00:00.000000"
           }

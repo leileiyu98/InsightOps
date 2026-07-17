@@ -1,0 +1,33 @@
+{
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.1.0",
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.1.0",
+  "dataset_digest": "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c",
+  "schema_revision": "0004",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.1",
+  "business_definition_digest": "eb759951171f377c5c33a199d06d98dd4ebf0529b66d4e950ea8f622a778500d",
+  "oracle_assets_digest": "356369ee2c6664e87c818082f3d73f8c41be3323a8b5224b107cd5b95fafc4d0",
+  "case_id": "GQ-MKT-004",
+  "columns": [
+    "business_scope",
+    "touched_subject_count",
+    "first_payment_subject_count"
+  ],
+  "ordered_by": [
+    "business_scope"
+  ],
+  "rows": [
+    {
+      "business_scope": "commerce",
+      "touched_subject_count": 8,
+      "first_payment_subject_count": 6
+    },
+    {
+      "business_scope": "saas",
+      "touched_subject_count": 7,
+      "first_payment_subject_count": 7
+    }
+  ]
+}

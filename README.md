@@ -11,8 +11,8 @@ InsightOps 是一个面向企业经营分析场景的大模型应用项目。当
 - SQLAlchemy 2.x 引擎和 Session 工厂
 - SQLAlchemy 2.x 企业身份、SaaS、商城和营销 ORM（当前共 20 张表）
 - Alembic `0001`—`0004` migration，可从空库升级和回滚验证
-- 版本化、确定性的 SaaS 与商城 seed dataset（152 行，固定 SHA-256 digest）
-- 48 个 Gold Question 绑定，其中 16 个具备隔离的 Gold SQL 与冻结结果
+- 版本化、确定性的身份、SaaS、商城与营销 seed dataset（334 行，固定 SHA-256 digest）
+- 48 个 Gold Question 绑定，其中 28 个具备隔离的 Gold SQL 与冻结结果
 - dataset、schema、business definition、Gold catalog 和 oracle assets 的可校验版本链
 - 可重复的 seed `load`、`verify`、`unload` 生命周期和真实 MySQL benchmark 回归
 - MySQL 8.4 Docker Compose 开发环境
@@ -66,18 +66,15 @@ oracle，不是未来 Agent 的检索或 prompt 输入。
 5. 可选：加载并验证 M1.2A 固定数据集：
 
    ```bash
-   uv run alembic downgrade 0003
    uv run python -m insightops.seed digest
    uv run python -m insightops.seed load
    uv run python -m insightops.seed verify
    uv run python -m insightops.seed unload
-   uv run alembic upgrade head
    ```
 
-   M1.2A 数据集仍冻结在 schema revision `0003`；本阶段没有把 dataset/catalog 升级到 1.1.0。因此 seed
-   命令只允许在 `local`、`test` 或 `ci` 环境运行，并要求数据库临时位于 `0003`。完成 `unload` 后再恢复
-   到 `head`（当前为 `0004`）。seed 不会创建 migration 或专用数据库表，`unload` 只删除 manifest
-   所有的固定行。
+   M1.2A dataset/catalog `1.1.0` 绑定 schema revision `0004` 和 Business Definitions `1.0.1`。
+   seed 命令只允许在 `local`、`test` 或 `ci` 环境运行，并要求数据库位于当前 `head`。seed 不会创建
+   migration 或专用数据库表，`unload` 只删除 manifest 所有的固定行。
 
 6. 启动 API：
 
@@ -104,7 +101,7 @@ oracle，不是未来 Agent 的检索或 prompt 输入。
 ```bash
 uv run ruff format --check .
 uv run ruff check .
-uv run mypy src tests alembic
+uv run mypy --strict src tests scripts alembic
 uv run pytest
 ```
 

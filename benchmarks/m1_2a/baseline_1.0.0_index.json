@@ -1,0 +1,92 @@
+{
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.0.0",
+  "dataset_digest": "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c",
+  "baseline_git_commit": "70680bc087a739583bcd5242907f9f0c6d9b2e0b",
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.0.0",
+  "catalog_digest": "28b88b3fbcdc11d027f6e80b33e9d573ef3c1330d015d443508c5fb883d3c3bb",
+  "oracle_assets_digest": "f37815846a2acebcc6da295a5996396b2114609be296303cd0c7736ba72179e4",
+  "cases": [
+    {
+      "case_id": "GQ-COM-001",
+      "expected_result_digest": "ea8d457aaef8a251b94646d1b342ee7a3beb418836c0d2db59e6a43e7546c331",
+      "business_result_digest": "d7f7668ec064317e762d1b7c048799eff9841f6206314d551743be9222c63d96"
+    },
+    {
+      "case_id": "GQ-COM-002",
+      "expected_result_digest": "3c8efa3fbc703e5b03f4e7cdd763d98bee3a74c6e23a58aa2aeced0bdf4c3d61",
+      "business_result_digest": "2750a9fbfa80ab05ea698fd82309ff928cafead0483344f6160cffabb52543b8"
+    },
+    {
+      "case_id": "GQ-COM-003",
+      "expected_result_digest": "e82b71936f269d0d1b7c5e9ab2986c1e502fdcd76a1c0e68afb268028334f8d9",
+      "business_result_digest": "bceb056c0cd76f862a7bf2c401d305fe920d0d62442552f6d1a9a9f364e8e127"
+    },
+    {
+      "case_id": "GQ-COM-004",
+      "expected_result_digest": "f3d6249592a591ca6037ac8bf3f4573231277011c3e8c44326bc59a5474ccffb",
+      "business_result_digest": "bb1a112269707ade2bbc4774b5c191e73cd2b2c4ffadae3a0a6af5c6fc3a2a3e"
+    },
+    {
+      "case_id": "GQ-COM-005",
+      "expected_result_digest": "f2acdb69e2576f761a4129baef72e395684f6774e21701be414baa38eb2bab73",
+      "business_result_digest": "6c9536ac1eb9b4af3d5eb6bd130d999dabd3fc473113bb9c70cb059ada2412ff"
+    },
+    {
+      "case_id": "GQ-COM-006",
+      "expected_result_digest": "f33143460a557b0c26df76351cf5fb8c021431b7a0330a8b6a6d4d47c707b252",
+      "business_result_digest": "f5a6d2818fbb8656109560267c21ec9c4e463e6fe8ce9c1ea27c322a7f83ce50"
+    },
+    {
+      "case_id": "GQ-COM-008",
+      "expected_result_digest": "90541f38ca1d49a11eb91c5483a1320585dd39d954f7c69ea46f179847503ca5",
+      "business_result_digest": "9cba68b2960a59d683d97738081e78a460c6a2219c60af6b9dc93d1ed5eff342"
+    },
+    {
+      "case_id": "GQ-SAA-001",
+      "expected_result_digest": "61f6e33d89f49b124e14baa7130729941b3040bd88b80bd57bcac223242e272c",
+      "business_result_digest": "0ad3788f7dfa06930aa986c40f1ad92689c2b3bcaacbcd65f8eeb1230c6c25bb"
+    },
+    {
+      "case_id": "GQ-SAA-002",
+      "expected_result_digest": "e0fea0a65f792ce68f07feee45c755b8e074bec360c9020040e88c09a11ceb97",
+      "business_result_digest": "10d8ad179a7d63fd237b51a1c8dc46e9994e28d123c6ef4b2b22601f6d75b76f"
+    },
+    {
+      "case_id": "GQ-SAA-003",
+      "expected_result_digest": "b4cf2eb4ce83d60b00e80939ff93bdfd18db405fdf1a2c4c2d209901c16ea87b",
+      "business_result_digest": "d00a049b2e452d17acd1831968af1b3adee52cdfaea83e9327ef8866ce6716a0"
+    },
+    {
+      "case_id": "GQ-SAA-004",
+      "expected_result_digest": "5a104d2df5d725969c25389d5a2f189f141945ac1fe2fc5e8229a73c17e202c6",
+      "business_result_digest": "5a45366c96eb6fdd6e3fb9c6b3347e65c18f3c508a2aeef9b5ae43de3d4a555b"
+    },
+    {
+      "case_id": "GQ-SAA-005",
+      "expected_result_digest": "7fdc60f88fac2848043a9cfbdab0a9463e03b840ac2b85d8453cf95ecc270cb2",
+      "business_result_digest": "dc021d8980e0ea3fff7ccda76f084d7f0f8ca6224d9d96a63348a8f0d97e9704"
+    },
+    {
+      "case_id": "GQ-SAA-006",
+      "expected_result_digest": "33822de25b30380c689e57b36cddc1dc72b22597dc152a70cdc51acd8d53daaf",
+      "business_result_digest": "94ac925d8c45bda0cf004f874df5d9f20f47b350384a6018c61408abcd78b648"
+    },
+    {
+      "case_id": "GQ-SAA-007",
+      "expected_result_digest": "2c20772537e0844390ac8f19480c6f1f1e4df7811a63960187df76385b34eaa3",
+      "business_result_digest": "c1158c53aa6d303cb23de294fc49adbdc5e0d36189236004e0c224d92a0966b5"
+    },
+    {
+      "case_id": "GQ-SAA-008",
+      "expected_result_digest": "c3aa14c90cf952ad9e080f8515cd7a521c07279990781491a44d806822535f4f",
+      "business_result_digest": "589039738abd3715ca959797cd8dcd950cb39523542c3a8b61e8497787571734"
+    },
+    {
+      "case_id": "GQ-XDM-001",
+      "expected_result_digest": "6f7d92ab36d649c591f0165986e7690ccb6ee5b28cebfed11ff6f7b955c85ab5",
+      "business_result_digest": "681e1c94b21f8328875e0cb6cfb7f63a4ad92256f0bc5e11a90255246ed8177b"
+    }
+  ]
+}

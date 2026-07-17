@@ -26,11 +26,13 @@ def _manifest() -> DatasetManifest:
         schema_revision="0003",
         business_definition_id="test-definitions",
         business_definition_version="1.0.0",
+        business_definition_digest="2" * 64,
         benchmark_catalog_id="test-catalog",
         benchmark_catalog_version="1.0.0",
         oracle_assets_digest="1" * 64,
         business_timezone="America/Los_Angeles",
         snapshot_cutoff=datetime(2026, 1, 15, 8, tzinfo=UTC),
+        marketing_history_started_at=datetime(2025, 4, 1, 7, tzinfo=UTC),
         source_files=("identity.json",),
         table_order=("organization",),
         expected_row_counts={"organization": 1},
@@ -96,10 +98,10 @@ def test_m1_2a_dataset_manifest_and_digest_are_stable() -> None:
 
     assert dataset.computed_digest == dataset.manifest.dataset_digest
     assert dataset.computed_digest == (
-        "93ade01290d3b0500ff7863888c64fdcdac72a291ae9bb27f7bef672f0fed46c"
+        "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c"
     )
-    assert sum(dataset.manifest.expected_row_counts.values()) == 152
-    assert len(dataset.manifest.table_order) == 15
+    assert sum(dataset.manifest.expected_row_counts.values()) == 334
+    assert len(dataset.manifest.table_order) == 20
 
 
 def test_dataset_digest_excludes_benchmark_back_references() -> None:

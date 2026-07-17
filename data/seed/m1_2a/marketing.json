@@ -1,0 +1,3535 @@
+{
+  "source_id": "marketing",
+  "tables": [
+    {
+      "table_name": "marketing_channel",
+      "match_columns": [
+        "channel_code"
+      ],
+      "records": [
+        {
+          "record_id": "channel-paid-search",
+          "values": {
+            "channel_code": "paid_search",
+            "channel_name": "Paid Search",
+            "channel_type": "paid",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "created_at": "2024-01-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "channel-paid-social",
+          "values": {
+            "channel_code": "paid_social",
+            "channel_name": "Paid Social",
+            "channel_type": "paid",
+            "status": "inactive",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": "2025-06-15 12:00:00.000000",
+            "is_test": false,
+            "created_at": "2024-01-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "channel-organic",
+          "values": {
+            "channel_code": "organic",
+            "channel_name": "Organic",
+            "channel_type": "organic",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "created_at": "2024-01-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "channel-direct",
+          "values": {
+            "channel_code": "direct",
+            "channel_name": "Direct",
+            "channel_type": "direct",
+            "status": "inactive",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": false,
+            "created_at": "2024-01-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "channel-test",
+          "values": {
+            "channel_code": "test_paid",
+            "channel_name": "Synthetic Test Channel",
+            "channel_type": "paid",
+            "status": "active",
+            "effective_from": "2024-01-01 08:00:00.000000",
+            "effective_to": null,
+            "is_test": true,
+            "created_at": "2024-01-01 08:00:00.000000",
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "marketing_campaign",
+      "match_columns": [
+        "external_campaign_id"
+      ],
+      "records": [
+        {
+          "record_id": "campaign-saas-alpha-search",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-alpha-search",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-alpha"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas Alpha Search",
+            "status": "completed",
+            "created_at": "2025-04-01 08:00:00.000000",
+            "started_at": "2025-04-01 08:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-beta-social",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-beta-social",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas Beta Social",
+            "status": "completed",
+            "created_at": "2025-04-01 08:00:00.000000",
+            "started_at": "2025-04-01 08:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-delta-search",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-delta-search",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas Delta Search",
+            "status": "completed",
+            "created_at": "2025-05-01 08:00:00.000000",
+            "started_at": "2025-05-01 08:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-apr-early",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-apr-early",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-apr-early"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas Apr Early",
+            "status": "completed",
+            "created_at": "2025-04-05 15:00:00.000000",
+            "started_at": "2025-04-05 15:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-apr-boundary",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-apr-boundary",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-apr-boundary"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-organic"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas Apr Boundary",
+            "status": "completed",
+            "created_at": "2025-04-09 15:00:00.000000",
+            "started_at": "2025-04-09 15:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-may-a",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-may-a",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-a"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas May A",
+            "status": "completed",
+            "created_at": "2025-05-04 15:00:00.000000",
+            "started_at": "2025-05-04 15:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-may-b",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-may-b",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-b"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas May B",
+            "status": "completed",
+            "created_at": "2025-05-12 15:00:00.000000",
+            "started_at": "2025-05-12 15:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-jun-a",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-jun-a",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-jun-a"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas Jun A",
+            "status": "completed",
+            "created_at": "2025-06-03 15:00:00.000000",
+            "started_at": "2025-06-03 15:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-jun-b",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-jun-b",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-jun-b"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas Jun B",
+            "status": "completed",
+            "created_at": "2025-06-11 15:00:00.000000",
+            "started_at": "2025-06-11 15:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-saas-jun-late-b",
+          "values": {
+            "external_campaign_id": "seed-campaign-saas-jun-late-b",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-jun-late-b"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-organic"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Saas Jun Late B",
+            "status": "completed",
+            "created_at": "2025-06-26 15:00:00.000000",
+            "started_at": "2025-06-26 15:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-commerce-alpha-search",
+          "values": {
+            "external_campaign_id": "seed-campaign-commerce-alpha-search",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-alpha"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-alpha"
+            },
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "business_scope": "commerce",
+            "campaign_name": "Campaign Commerce Alpha Search",
+            "status": "completed",
+            "created_at": "2024-12-15 16:00:00.000000",
+            "started_at": "2024-12-15 16:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-commerce-beta-social",
+          "values": {
+            "external_campaign_id": "seed-campaign-commerce-beta-social",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-beta"
+            },
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "business_scope": "commerce",
+            "campaign_name": "Campaign Commerce Beta Social",
+            "status": "completed",
+            "created_at": "2024-12-15 16:00:00.000000",
+            "started_at": "2024-12-15 16:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-commerce-q2-search",
+          "values": {
+            "external_campaign_id": "seed-campaign-commerce-q2-search",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-a"
+            },
+            "merchant_assignment_id": {
+              "table": "merchant",
+              "record_id": "merchant-q2-may-a"
+            },
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "business_scope": "commerce",
+            "campaign_name": "Campaign Commerce Q2 Search",
+            "status": "completed",
+            "created_at": "2025-05-04 15:00:00.000000",
+            "started_at": "2025-05-04 15:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "campaign-test",
+          "values": {
+            "external_campaign_id": "seed-campaign-test",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-test"
+            },
+            "merchant_assignment_id": null,
+            "primary_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-test"
+            },
+            "business_scope": "saas",
+            "campaign_name": "Campaign Test",
+            "status": "completed",
+            "created_at": "2025-04-01 08:00:00.000000",
+            "started_at": "2025-04-01 08:00:00.000000",
+            "ended_at": "2025-07-01 07:00:00.000000",
+            "status_updated_at": "2025-07-01 07:00:00.000000",
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000",
+            "updated_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "campaign_daily_spend",
+      "match_columns": [
+        "marketing_campaign_id",
+        "business_date",
+        "version_number"
+      ],
+      "records": [
+        {
+          "record_id": "spend-saas-alpha-apr",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-alpha-search"
+            },
+            "business_date": "2025-04-10",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "80.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-beta-apr",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-beta-social"
+            },
+            "business_date": "2025-04-15",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "60.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-beta-may",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-beta-social"
+            },
+            "business_date": "2025-05-16",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "80.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-delta-may",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-delta-search"
+            },
+            "business_date": "2025-05-25",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "100.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-delta-jun",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-delta-search"
+            },
+            "business_date": "2025-06-05",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "180.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-apr-early",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-apr-early"
+            },
+            "business_date": "2025-04-03",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "20.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-may-a",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-may-a"
+            },
+            "business_date": "2025-05-06",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "70.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-may-b",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-may-b"
+            },
+            "business_date": "2025-05-13",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "60.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-jun-a",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-jun-a"
+            },
+            "business_date": "2025-06-12",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "120.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-saas-jun-b",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-jun-b"
+            },
+            "business_date": "2025-06-11",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "90.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-alpha-jan",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "business_date": "2025-01-15",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "20.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-alpha-feb",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "business_date": "2025-02-15",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "30.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-alpha-mar",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "business_date": "2025-03-15",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "40.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-alpha-apr",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "business_date": "2025-04-15",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "60.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-alpha-may",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "business_date": "2025-05-15",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "100.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-alpha-jun-v1",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "business_date": "2025-06-15",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "120.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-beta-jan",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "business_date": "2025-01-16",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "25.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-beta-feb",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "business_date": "2025-02-16",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "25.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-beta-mar",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "business_date": "2025-03-16",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "25.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-beta-apr",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "business_date": "2025-04-16",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "30.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-beta-may",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "business_date": "2025-05-16",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "50.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-beta-jun",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "business_date": "2025-06-16",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "80.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-q2-may",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-q2-search"
+            },
+            "business_date": "2025-05-06",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "60.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-q2-jun",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-q2-search"
+            },
+            "business_date": "2025-06-06",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "90.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-07-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-com-alpha-jun-v2",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "business_date": "2025-06-15",
+            "version_number": 2,
+            "supersedes_campaign_daily_spend_id": {
+              "table": "campaign_daily_spend",
+              "record_id": "spend-com-alpha-jun-v1"
+            },
+            "spend_amount": "140.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "spend-test",
+          "values": {
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-test"
+            },
+            "business_date": "2025-06-10",
+            "version_number": 1,
+            "supersedes_campaign_daily_spend_id": null,
+            "spend_amount": "9999.0000",
+            "currency_code": "USD",
+            "finalized_at": "2025-12-01 00:00:00.000000",
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "marketing_touch",
+      "match_columns": [
+        "source_event_id"
+      ],
+      "records": [
+        {
+          "record_id": "touch-saas-alpha-apr",
+          "values": {
+            "source_event_id": "seed-touch-saas-alpha-apr",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-alpha-search"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-alpha"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-04-09 16:00:00.000000",
+            "received_at": "2025-04-09 16:05:00.000000",
+            "processed_at": "2025-04-09 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-04-09 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-saas-beta-apr",
+          "values": {
+            "source_event_id": "seed-touch-saas-beta-apr",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-beta-social"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-04-14 16:00:00.000000",
+            "received_at": "2025-04-14 16:05:00.000000",
+            "processed_at": "2025-04-14 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-04-14 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-saas-beta-may",
+          "values": {
+            "source_event_id": "seed-touch-saas-beta-may",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-beta-social"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-15 16:00:00.000000",
+            "received_at": "2025-05-15 16:05:00.000000",
+            "processed_at": "2025-05-15 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-15 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-saas-delta-may",
+          "values": {
+            "source_event_id": "seed-touch-saas-delta-may",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-delta-search"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-24 16:00:00.000000",
+            "received_at": "2025-05-24 16:05:00.000000",
+            "processed_at": "2025-05-24 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-24 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-saas-delta-jun-late",
+          "values": {
+            "source_event_id": "seed-touch-saas-delta-jun-late",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-delta-search"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-06-04 16:00:00.000000",
+            "received_at": "2025-06-04 16:05:00.000000",
+            "processed_at": "2025-07-10 16:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-07-10 16:00:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-saas-apr-early",
+          "values": {
+            "source_event_id": "seed-touch-saas-apr-early",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": null,
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-apr-early"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-04-02 16:00:00.000000",
+            "received_at": "2025-04-02 16:05:00.000000",
+            "processed_at": "2025-04-02 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-04-02 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-saas-may-a",
+          "values": {
+            "source_event_id": "seed-touch-saas-may-a",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-may-a"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-a"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-05 16:00:00.000000",
+            "received_at": "2025-05-05 16:05:00.000000",
+            "processed_at": "2025-05-05 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-05 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-saas-may-b",
+          "values": {
+            "source_event_id": "seed-touch-saas-may-b",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-may-b"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-b"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-12 16:00:00.000000",
+            "received_at": "2025-05-12 16:05:00.000000",
+            "processed_at": "2025-05-12 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-12 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-saas-jun-b",
+          "values": {
+            "source_event_id": "seed-touch-saas-jun-b",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-jun-b"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-jun-b"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-06-10 16:00:00.000000",
+            "received_at": "2025-06-10 16:05:00.000000",
+            "processed_at": "2025-06-10 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-06-10 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-apr-early",
+          "values": {
+            "source_event_id": "seed-touch-commerce-apr-early",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": null,
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-apr-early"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-04-04 16:00:00.000000",
+            "received_at": "2025-04-04 16:05:00.000000",
+            "processed_at": "2025-04-04 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-04-04 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-may-search",
+          "values": {
+            "source_event_id": "seed-touch-commerce-may-search",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-q2-search"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-05 18:00:00.000000",
+            "received_at": "2025-05-05 18:05:00.000000",
+            "processed_at": "2025-05-05 18:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-05 18:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-may-search-two-a",
+          "values": {
+            "source_event_id": "seed-touch-commerce-may-search-two-a",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-organic"
+            },
+            "marketing_campaign_id": null,
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search-two"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-24 18:00:00.000000",
+            "received_at": "2025-05-24 18:05:00.000000",
+            "processed_at": "2025-05-24 18:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-24 18:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-may-search-two-z",
+          "values": {
+            "source_event_id": "seed-touch-commerce-may-search-two-z",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search-two"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-24 18:00:00.000000",
+            "received_at": "2025-05-24 18:05:00.000000",
+            "processed_at": "2025-05-24 18:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-24 18:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-may-social",
+          "values": {
+            "source_event_id": "seed-touch-commerce-may-social",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-social"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-19 18:00:00.000000",
+            "received_at": "2025-05-19 18:05:00.000000",
+            "processed_at": "2025-05-19 18:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-19 18:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-jun-search",
+          "values": {
+            "source_event_id": "seed-touch-commerce-jun-search",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-search"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-06-11 18:00:00.000000",
+            "received_at": "2025-06-11 18:05:00.000000",
+            "processed_at": "2025-06-11 18:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-06-11 18:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-jun-expired-social",
+          "values": {
+            "source_event_id": "seed-touch-commerce-jun-expired-social",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-direct"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-06-16 18:00:00.000000",
+            "received_at": "2025-06-16 18:05:00.000000",
+            "processed_at": "2025-06-16 18:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-06-16 18:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-one-apr",
+          "values": {
+            "source_event_id": "seed-touch-commerce-one-apr",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-04-14 16:00:00.000000",
+            "received_at": "2025-04-14 16:05:00.000000",
+            "processed_at": "2025-04-14 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-04-14 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-one-may",
+          "values": {
+            "source_event_id": "seed-touch-commerce-one-may",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-14 16:00:00.000000",
+            "received_at": "2025-05-14 16:05:00.000000",
+            "processed_at": "2025-05-14 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-14 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-one-jun",
+          "values": {
+            "source_event_id": "seed-touch-commerce-one-jun",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-06-14 16:00:00.000000",
+            "received_at": "2025-06-14 16:05:00.000000",
+            "processed_at": "2025-06-14 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-06-14 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-two-apr",
+          "values": {
+            "source_event_id": "seed-touch-commerce-two-apr",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-04-15 16:00:00.000000",
+            "received_at": "2025-04-15 16:05:00.000000",
+            "processed_at": "2025-04-15 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-04-15 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-commerce-two-may",
+          "values": {
+            "source_event_id": "seed-touch-commerce-two-may",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-05-15 16:00:00.000000",
+            "received_at": "2025-05-15 16:05:00.000000",
+            "processed_at": "2025-05-15 16:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-05-15 16:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-direct-audit",
+          "values": {
+            "source_event_id": "seed-touch-direct-audit",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-direct"
+            },
+            "touch_type": "direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-06-17 12:00:00.000000",
+            "received_at": "2025-06-17 12:05:00.000000",
+            "processed_at": "2025-06-17 12:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-06-17 12:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-rejected-audit",
+          "values": {
+            "source_event_id": "seed-touch-rejected-audit",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": null,
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-direct"
+            },
+            "touch_type": "non_direct",
+            "quality_status": "rejected",
+            "occurred_at": "2025-06-17 13:00:00.000000",
+            "received_at": "2025-06-17 13:05:00.000000",
+            "processed_at": "2025-06-17 13:10:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-06-17 13:10:00.000000"
+          }
+        },
+        {
+          "record_id": "touch-test",
+          "values": {
+            "source_event_id": "seed-touch-test",
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-test"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-test"
+            },
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-test"
+            },
+            "consumer_id": null,
+            "touch_type": "non_direct",
+            "quality_status": "accepted",
+            "occurred_at": "2025-06-09 16:00:00.000000",
+            "received_at": "2025-06-09 16:05:00.000000",
+            "processed_at": "2025-06-09 16:10:00.000000",
+            "is_test": true,
+            "recorded_at": "2025-06-09 16:10:00.000000"
+          }
+        }
+      ]
+    },
+    {
+      "table_name": "attributed_conversion",
+      "match_columns": [
+        "conversion_type",
+        "invoice_payment_attempt_id",
+        "commerce_order_id",
+        "platform_fee_charge_id",
+        "model_version",
+        "source_data_cutoff_at"
+      ],
+      "records": [
+        {
+          "record_id": "attr-payment-apr-alpha-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-alpha"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-apr-alpha"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-alpha-apr"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-10 16:00:00.000000",
+            "window_started_at": "2025-04-03 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-apr-alpha-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-alpha"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-apr-alpha"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-alpha-apr"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-10 16:00:00.000000",
+            "window_started_at": "2025-04-03 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-apr-beta-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-apr-beta"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-beta-apr"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-15 16:00:00.000000",
+            "window_started_at": "2025-04-08 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-apr-beta-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-apr-beta"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-beta-apr"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-15 16:00:00.000000",
+            "window_started_at": "2025-04-08 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-may-beta-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-beta"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-may-beta"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-beta-may"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-16 16:00:00.000000",
+            "window_started_at": "2025-05-09 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-may-delta-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-may-delta"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-delta-may"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-delta-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-25 16:00:00.000000",
+            "window_started_at": "2025-05-18 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-may-delta-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-may-delta"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-delta-may"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-delta-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-25 16:00:00.000000",
+            "window_started_at": "2025-05-18 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-jun-epsilon-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-epsilon"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-jun-epsilon"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-08 16:00:00.000000",
+            "window_started_at": "2025-06-01 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-jun-epsilon-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-epsilon"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-jun-epsilon"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-08 16:00:00.000000",
+            "window_started_at": "2025-06-01 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-apr-early-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-apr-early"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-apr-early"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": null,
+            "marketing_campaign_id": null,
+            "attribution_result": "unknown_unattributed",
+            "reason_code": "window_history_incomplete",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-03 16:00:00.000000",
+            "window_started_at": "2025-03-27 16:00:00.000000",
+            "history_complete": false,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-apr-early-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-apr-early"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-apr-early"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": null,
+            "marketing_campaign_id": null,
+            "attribution_result": "unknown_unattributed",
+            "reason_code": "window_history_incomplete",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-03 16:00:00.000000",
+            "window_started_at": "2025-03-27 16:00:00.000000",
+            "history_complete": false,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-apr-boundary-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-apr-boundary"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-apr-boundary"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-08 07:00:00.000000",
+            "window_started_at": "2025-04-01 07:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-apr-boundary-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-apr-boundary"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-apr-boundary"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-08 07:00:00.000000",
+            "window_started_at": "2025-04-01 07:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-may-a-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-a"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-may-a"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-may-a"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-may-a"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-06 16:00:00.000000",
+            "window_started_at": "2025-04-29 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-may-a-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-a"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-may-a"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-may-a"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-may-a"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-06 16:00:00.000000",
+            "window_started_at": "2025-04-29 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-may-b-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-b"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-may-b"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-may-b"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-may-b"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-13 16:00:00.000000",
+            "window_started_at": "2025-05-06 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-may-b-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-may-b"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-may-b"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-may-b"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-may-b"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-13 16:00:00.000000",
+            "window_started_at": "2025-05-06 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-jun-b-first",
+          "values": {
+            "conversion_type": "saas_first_payment",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-jun-b"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-jun-b"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-jun-b"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-jun-b"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-11 16:00:00.000000",
+            "window_started_at": "2025-06-04 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-q2-jun-b-revenue",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-q2-jun-b"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-q2-jun-b"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-jun-b"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-jun-b"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-11 16:00:00.000000",
+            "window_started_at": "2025-06-04 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-jun-delta-revenue-early",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-jun-delta"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-05 16:00:00.000000",
+            "window_started_at": "2025-05-29 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-06-30 23:59:59.000000",
+            "attributed_at": "2025-06-30 23:59:59.000000",
+            "is_test": false,
+            "recorded_at": "2025-06-30 23:59:59.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-jun-delta-revenue-final",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-delta"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-jun-delta"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-saas-delta-jun-late"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-saas-delta-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-05 16:00:00.000000",
+            "window_started_at": "2025-05-29 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-payment-test",
+          "values": {
+            "conversion_type": "saas_revenue",
+            "organization_id": {
+              "table": "organization",
+              "record_id": "org-fact-test"
+            },
+            "consumer_id": null,
+            "invoice_payment_attempt_id": {
+              "table": "invoice_payment_attempt",
+              "record_id": "payment-test-fact"
+            },
+            "commerce_order_id": null,
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-10 16:00:00.000000",
+            "window_started_at": "2025-06-03 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-apr-early-first",
+          "values": {
+            "conversion_type": "commerce_first_payment",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-apr-early"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-apr-early"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": null,
+            "marketing_campaign_id": null,
+            "attribution_result": "unknown_unattributed",
+            "reason_code": "window_history_incomplete",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-05 16:00:00.000000",
+            "window_started_at": "2025-03-29 16:00:00.000000",
+            "history_complete": false,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-apr-early-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-apr-early"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-apr-early"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": null,
+            "marketing_campaign_id": null,
+            "attribution_result": "unknown_unattributed",
+            "reason_code": "window_history_incomplete",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-05 16:00:00.000000",
+            "window_started_at": "2025-03-29 16:00:00.000000",
+            "history_complete": false,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-apr-early-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-apr-early"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-apr-early"
+            },
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": null,
+            "marketing_campaign_id": null,
+            "attribution_result": "unknown_unattributed",
+            "reason_code": "window_history_incomplete",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-05 16:00:00.000000",
+            "window_started_at": "2025-03-29 16:00:00.000000",
+            "history_complete": false,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-may-search-first",
+          "values": {
+            "conversion_type": "commerce_first_payment",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-may-search"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-search"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-q2-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-06 18:00:00.000000",
+            "window_started_at": "2025-04-29 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-may-search-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-may-search"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-search"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-q2-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-06 18:00:00.000000",
+            "window_started_at": "2025-04-29 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-may-search-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-may-search"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-search"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-q2-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-06 18:00:00.000000",
+            "window_started_at": "2025-04-29 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-may-search-two-first",
+          "values": {
+            "conversion_type": "commerce_first_payment",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-may-search-two"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-search-two-z"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-25 18:00:00.000000",
+            "window_started_at": "2025-05-18 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-may-search-two-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-may-search-two"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-search-two-z"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-25 18:00:00.000000",
+            "window_started_at": "2025-05-18 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-may-search-two-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-search-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-may-search-two"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-search-two-z"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-25 18:00:00.000000",
+            "window_started_at": "2025-05-18 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-may-social-first",
+          "values": {
+            "conversion_type": "commerce_first_payment",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-social"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-may-social"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-social"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-20 18:00:00.000000",
+            "window_started_at": "2025-05-13 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-may-social-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-social"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-may-social"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-social"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-20 18:00:00.000000",
+            "window_started_at": "2025-05-13 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-may-social-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-may-social"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-may-social"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-may-social"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-20 18:00:00.000000",
+            "window_started_at": "2025-05-13 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-jun-search-first",
+          "values": {
+            "conversion_type": "commerce_first_payment",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-search"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-jun-search"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-jun-search"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-12 18:00:00.000000",
+            "window_started_at": "2025-06-05 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-jun-search-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-search"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-jun-search"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-jun-search"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-12 18:00:00.000000",
+            "window_started_at": "2025-06-05 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-jun-search-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-search"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-jun-search"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-jun-search"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-12 18:00:00.000000",
+            "window_started_at": "2025-06-05 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-jun-direct-first",
+          "values": {
+            "conversion_type": "commerce_first_payment",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-direct"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-jun-direct"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-18 18:00:00.000000",
+            "window_started_at": "2025-06-11 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-jun-direct-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-direct"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-jun-direct"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-18 18:00:00.000000",
+            "window_started_at": "2025-06-11 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-jun-direct-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-jun-direct"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-jun-direct"
+            },
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-18 18:00:00.000000",
+            "window_started_at": "2025-06-11 18:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-a-apr-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-apr"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-one-apr"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-15 16:00:00.000000",
+            "window_started_at": "2025-04-08 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-order-a-apr-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-order-a-apr"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-one-apr"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-15 16:00:00.000000",
+            "window_started_at": "2025-04-08 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-b-apr-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-apr"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-two-apr"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-16 16:00:00.000000",
+            "window_started_at": "2025-04-09 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-order-b-apr-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-order-b-apr"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-two-apr"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-04-16 16:00:00.000000",
+            "window_started_at": "2025-04-09 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-a-may-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-may"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-one-may"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-15 16:00:00.000000",
+            "window_started_at": "2025-05-08 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-order-a-may-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-order-a-may"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-one-may"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-15 16:00:00.000000",
+            "window_started_at": "2025-05-08 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-b-may-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-may"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-two-may"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-16 16:00:00.000000",
+            "window_started_at": "2025-05-09 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-order-b-may-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-order-b-may"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-two-may"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-social"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-beta-social"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-16 16:00:00.000000",
+            "window_started_at": "2025-05-09 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-a-jun-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-a-jun"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-one-jun"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-15 16:00:00.000000",
+            "window_started_at": "2025-06-08 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-order-a-jun-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-order-a-jun"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-one-jun"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-15 16:00:00.000000",
+            "window_started_at": "2025-06-08 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-order-b-jun-gmv",
+          "values": {
+            "conversion_type": "attributed_gmv",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": {
+              "table": "commerce_order",
+              "record_id": "order-b-jun"
+            },
+            "platform_fee_charge_id": null,
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-16 16:00:00.000000",
+            "window_started_at": "2025-06-09 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-order-b-jun-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-two"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-order-b-jun"
+            },
+            "selected_marketing_touch_id": null,
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-direct"
+            },
+            "marketing_campaign_id": null,
+            "attribution_result": "direct",
+            "reason_code": "no_eligible_non_direct_touch",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-16 16:00:00.000000",
+            "window_started_at": "2025-06-09 16:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-cancelled-order-may-revenue",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-cancelled-order-may"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-one-may"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-05-20 17:05:00.000000",
+            "window_started_at": "2025-05-13 17:05:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": false,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        },
+        {
+          "record_id": "attr-fee-test",
+          "values": {
+            "conversion_type": "commerce_revenue",
+            "organization_id": null,
+            "consumer_id": {
+              "table": "consumer",
+              "record_id": "consumer-one"
+            },
+            "invoice_payment_attempt_id": null,
+            "commerce_order_id": null,
+            "platform_fee_charge_id": {
+              "table": "platform_fee_charge",
+              "record_id": "fee-test"
+            },
+            "selected_marketing_touch_id": {
+              "table": "marketing_touch",
+              "record_id": "touch-commerce-one-jun"
+            },
+            "marketing_channel_id": {
+              "table": "marketing_channel",
+              "record_id": "channel-paid-search"
+            },
+            "marketing_campaign_id": {
+              "table": "marketing_campaign",
+              "record_id": "campaign-commerce-alpha-search"
+            },
+            "attribution_result": "non_direct",
+            "reason_code": "selected_last_non_direct",
+            "model_version": "last_non_direct_168h_v1",
+            "conversion_at": "2025-06-20 17:00:00.000000",
+            "window_started_at": "2025-06-13 17:00:00.000000",
+            "history_complete": true,
+            "source_data_cutoff_at": "2025-12-01 00:00:00.000000",
+            "attributed_at": "2025-12-01 00:00:00.000000",
+            "is_test": true,
+            "recorded_at": "2025-12-01 00:00:00.000000"
+          }
+        }
+      ]
+    }
+  ]
+}

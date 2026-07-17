@@ -1,7 +1,7 @@
 """Transactional load, verify, and unload lifecycle for deterministic seed data."""
 
 from collections.abc import Mapping
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from decimal import Decimal
 from typing import Any
 
@@ -207,6 +207,8 @@ class DatasetLoader:
             if parsed.tzinfo is not None:
                 parsed = parsed.astimezone(UTC).replace(tzinfo=None)
             return actual == parsed
+        if isinstance(actual, date) and isinstance(expected, str):
+            return actual == date.fromisoformat(expected)
         if isinstance(actual, bool):
             return actual is bool(expected)
         return bool(actual == expected)

@@ -1,0 +1,76 @@
+{
+  "catalog_id": "insightcloud-m1-2a-gold-catalog",
+  "catalog_version": "1.1.0",
+  "dataset_id": "insightcloud-m1-2a-benchmark",
+  "dataset_version": "1.1.0",
+  "dataset_digest": "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c",
+  "schema_revision": "0004",
+  "business_definition_id": "insightcloud-business-definitions",
+  "business_definition_version": "1.0.1",
+  "business_definition_digest": "eb759951171f377c5c33a199d06d98dd4ebf0529b66d4e950ea8f622a778500d",
+  "oracle_assets_digest": "356369ee2c6664e87c818082f3d73f8c41be3323a8b5224b107cd5b95fafc4d0",
+  "case_id": "GQ-MKT-003",
+  "columns": [
+    "business_scope",
+    "channel_code",
+    "attribution_result",
+    "attributed_revenue",
+    "revenue_share"
+  ],
+  "ordered_by": [
+    "business_scope",
+    "attribution_result",
+    "channel_code"
+  ],
+  "rows": [
+    {
+      "business_scope": "commerce",
+      "channel_code": "direct",
+      "attribution_result": "direct",
+      "attributed_revenue": "21.0000",
+      "revenue_share": "0.3182"
+    },
+    {
+      "business_scope": "commerce",
+      "channel_code": "paid_search",
+      "attribution_result": "non_direct",
+      "attributed_revenue": "45.0000",
+      "revenue_share": "0.6818"
+    },
+    {
+      "business_scope": "commerce",
+      "channel_code": "unknown_unattributed",
+      "attribution_result": "unknown_unattributed",
+      "attributed_revenue": "0.0000",
+      "revenue_share": "0.0000"
+    },
+    {
+      "business_scope": "saas",
+      "channel_code": "direct",
+      "attribution_result": "direct",
+      "attributed_revenue": "100.0000",
+      "revenue_share": "0.2500"
+    },
+    {
+      "business_scope": "saas",
+      "channel_code": "paid_search",
+      "attribution_result": "non_direct",
+      "attributed_revenue": "100.0000",
+      "revenue_share": "0.2500"
+    },
+    {
+      "business_scope": "saas",
+      "channel_code": "paid_social",
+      "attribution_result": "non_direct",
+      "attributed_revenue": "200.0000",
+      "revenue_share": "0.5000"
+    },
+    {
+      "business_scope": "saas",
+      "channel_code": "unknown_unattributed",
+      "attribution_result": "unknown_unattributed",
+      "attributed_revenue": "0.0000",
+      "revenue_share": "0.0000"
+    }
+  ]
+}
