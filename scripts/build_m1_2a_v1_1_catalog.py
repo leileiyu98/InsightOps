@@ -9,7 +9,7 @@ from typing import Any
 
 from insightops.canonical import compute_business_definition_digest
 from insightops.seed.contracts import DatasetManifest, SeedSource
-from insightops.seed.dataset import compute_dataset_digest
+from insightops.seed.dataset import compute_dataset_digest, load_seed_dataset
 
 ROOT = Path(__file__).resolve().parents[1]
 BENCHMARK_ROOT = ROOT / "benchmarks" / "m1_2a"
@@ -50,9 +50,15 @@ SCENARIOS = {
     "GQ-MKT-001": ["saas-channel-cac", "spend-up-customers-down", "history-boundary-saas"],
     "GQ-MKT-002": ["commerce-channel-cac", "spend-up-customers-down", "history-boundary-commerce"],
     "GQ-MKT-003": ["june-attributed-revenue", "direct-vs-unknown"],
-    "GQ-MKT-004": ["q2-touch-and-first-payment-counts"],
+    "GQ-MKT-004": ["q2-same-cohort-touch-to-first-payment"],
     "GQ-MKT-005": ["spend-up-customers-down"],
-    "GQ-MKT-008": ["direct-vs-unknown", "late-arriving-touch", "inactive-channel-history"],
+    "GQ-MKT-008": [
+        "direct-vs-unknown",
+        "history-boundary-saas",
+        "history-boundary-commerce",
+        "late-arriving-touch",
+        "inactive-channel-history",
+    ],
     "GQ-PRD-001": ["q2-activation-cohort", "activation-observation-cutoff"],
     "GQ-PRD-006": ["activation-zero-one-two-conditions"],
     "GQ-PRD-007": ["may-june-registration-activation-divergence"],
@@ -65,6 +71,7 @@ SCENARIOS = {
 def parameters_for(sql: str) -> dict[str, str]:
     values = {
         "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000",
+        "marketing_history_started_at": "2025-04-01 07:00:00.000000",
         "activation_observation_as_of_utc": "2025-07-01 07:00:00.000000",
         "jan_start": "2025-01-01 08:00:00.000000",
         "apr_start": "2025-04-01 07:00:00.000000",
@@ -128,6 +135,7 @@ def refresh_manifest_content_digests() -> tuple[str, str]:
         json.dumps(manifest_payload, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    load_seed_dataset(SEED_ROOT)
     return definition_digest, dataset_digest
 
 
@@ -189,6 +197,16 @@ def main() -> None:
         if case_id == "GQ-XDM-002":
             case["metrics"] = ["Attributed Commerce Revenue", "Commerce Attributed ROAS"]
             case["question"] = case["question"].replace("Commerce ROAS", "Commerce Attributed ROAS")
+        if case_id == "GQ-MKT-004":
+            case["question"] = (
+                "2025 年第二季度从营销触达到新增付费客户的同 cohort 漏斗如何，"
+                "SaaS 和 Commerce 分别展示？"
+            )
+        if case_id == "GQ-MKT-008":
+            case["question"] = (
+                "给定 2025 年第二季度的转化，direct、unknown/unattributed、晚到触达重归因和"
+                "历史渠道失效边界分别是什么？"
+            )
 
     CATALOG_PATH.write_text(
         json.dumps(catalog, ensure_ascii=False, indent=2) + "\n",

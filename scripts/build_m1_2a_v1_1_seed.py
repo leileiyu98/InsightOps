@@ -10,6 +10,9 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, cast
 
+from insightops.seed.contracts import DatasetManifest, SeedSource
+from insightops.seed.dataset import compute_dataset_digest, load_seed_dataset
+
 ROOT = Path(__file__).resolve().parents[1]
 SEED_ROOT = ROOT / "data" / "seed" / "m1_2a"
 RECORDED_AT = "2025-12-01 00:00:00.000000"
@@ -1300,6 +1303,14 @@ def main() -> None:
     dump("saas.json", saas)
     dump("commerce.json", commerce)
     dump("marketing.json", marketing)
+    manifest_payload = load("manifest.json")
+    manifest = DatasetManifest.model_validate(manifest_payload)
+    sources = tuple(
+        SeedSource.model_validate(load(source_file)) for source_file in manifest.source_files
+    )
+    manifest_payload["dataset_digest"] = compute_dataset_digest(manifest, sources)
+    dump("manifest.json", manifest_payload)
+    load_seed_dataset(SEED_ROOT)
 
 
 if __name__ == "__main__":

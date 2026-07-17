@@ -1,5 +1,7 @@
 """Unit tests for benchmark status, coverage, and oracle-isolation contracts."""
 
+import json
+import shutil
 from pathlib import Path
 
 import pytest
@@ -93,6 +95,30 @@ def test_baseline_delta_is_ci_self_contained_and_matches_current_assets() -> Non
     report = load_baseline_delta_report(benchmark_root / "baseline_delta_1.0.0_to_1.1.0.json")
 
     validate_baseline_delta(benchmark_root, catalog, baseline, report)
+
+
+def test_baseline_delta_rejects_a_new_digest_for_a_previously_changed_case(
+    tmp_path: Path,
+) -> None:
+    benchmark_root = PROJECT_ROOT / "benchmarks" / "m1_2a"
+    isolated_root = tmp_path / "m1_2a"
+    shutil.copytree(benchmark_root / "expected", isolated_root / "expected")
+    catalog = load_benchmark_catalog(benchmark_root / "cases.json")
+    baseline = load_baseline_index(benchmark_root / "baseline_1.0.0_index.json")
+    report = load_baseline_delta_report(benchmark_root / "baseline_delta_1.0.0_to_1.1.0.json")
+    changed_case_ids = {case.case_id for case in report.old_cases if case.changed}
+    assert "GQ-COM-001" in changed_case_ids
+
+    expected_path = isolated_root / "expected" / "GQ-COM-001.json"
+    payload = json.loads(expected_path.read_text(encoding="utf-8"))
+    payload["rows"][0]["gmv"] = "9999.0000"
+    expected_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="new_business_result_digest"):
+        validate_baseline_delta(isolated_root, catalog, baseline, report)
 
 
 def test_benchmark_bundle_rejects_a_tampered_catalog_binding() -> None:

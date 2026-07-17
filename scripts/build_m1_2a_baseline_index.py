@@ -1,12 +1,14 @@
-"""Build the immutable M1.2A v1.0.0 baseline index from its merge commit."""
+"""Compare the immutable M1.2A v1.0.0 baseline index with its merge commit."""
 
 from __future__ import annotations
 
+import argparse
 import json
 import subprocess
 from pathlib import Path
 from typing import Any, cast
 
+from insightops.benchmark.authoring import require_clean_worktree
 from insightops.canonical import canonical_json_digest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,7 +38,7 @@ def business_result_digest(expected: dict[str, Any]) -> str:
     )
 
 
-def main() -> None:
+def build_payload() -> dict[str, Any]:
     manifest = git_json("data/seed/m1_2a/manifest.json")
     catalog = git_json("benchmarks/m1_2a/cases.json")
     cases: list[dict[str, str]] = []
@@ -64,10 +66,24 @@ def main() -> None:
     }
     if len(cases) != 16:
         raise ValueError(f"baseline must contain 16 executable cases, got {len(cases)}")
-    OUTPUT.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    return payload
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--write-reviewed", action="store_true")
+    args = parser.parse_args()
+    payload = build_payload()
+    rendered = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+    if args.write_reviewed:
+        require_clean_worktree(ROOT)
+        OUTPUT.write_text(rendered, encoding="utf-8")
+        return
+    if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != rendered:
+        raise ValueError(
+            "reviewed baseline index differs from its fixed commit; "
+            "inspect before using --write-reviewed"
+        )
 
 
 if __name__ == "__main__":

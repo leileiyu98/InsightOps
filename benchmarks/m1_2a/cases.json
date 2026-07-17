@@ -7,7 +7,7 @@
   "schema_revision": "0004",
   "business_definition_id": "insightcloud-business-definitions",
   "business_definition_version": "1.0.1",
-  "oracle_assets_digest": "cf430092a00d1d72493b606ed3350c36108a4a61b9b19df9ea30738c960f8f14",
+  "oracle_assets_digest": "356369ee2c6664e87c818082f3d73f8c41be3323a8b5224b107cd5b95fafc4d0",
   "cases": [
     {
       "case_id": "GQ-SAA-001",
@@ -927,7 +927,7 @@
     },
     {
       "case_id": "GQ-MKT-004",
-      "question": "2025 年第二季度从营销触达到新增付费客户的漏斗如何，SaaS 和 Commerce 分别展示？",
+      "question": "2025 年第二季度从营销触达到新增付费客户的同 cohort 漏斗如何，SaaS 和 Commerce 分别展示？",
       "difficulty": "L2",
       "status": "executable",
       "domains": [
@@ -940,10 +940,16 @@
       ],
       "required_tables": [
         "attributed_conversion",
+        "commerce_order",
         "consumer",
+        "invoice_payment_attempt",
+        "marketing_campaign",
         "marketing_channel",
         "marketing_touch",
-        "organization"
+        "merchant",
+        "organization",
+        "subscription",
+        "subscription_invoice"
       ],
       "phenomenon_ids": [
         "P04",
@@ -951,7 +957,7 @@
         "P13"
       ],
       "scenario_ids": [
-        "q2-touch-and-first-payment-counts"
+        "q2-same-cohort-touch-to-first-payment"
       ],
       "expected_result_shape": "冻结的 typed rows",
       "parameters": {
@@ -964,8 +970,8 @@
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-MKT-004.sql",
       "expected_result_path": "expected/GQ-MKT-004.json",
-      "gold_sql_digest": "c723ea4667bfc625ae6c5688bb22270163d7de23f1a0c1247ea1bdf453a00953",
-      "expected_result_digest": "e95bfd50c4606a2bf8b854da4412bd2269b55631af21016ad37688863afeedee"
+      "gold_sql_digest": "5f9c51c587be8423a93bf123e68b8d628f3181251488c31e569fd4295d580000",
+      "expected_result_digest": "a16964eec0011f4f0155998f92a0dd4249a90fc928aa045cb1a4d3cbe6e73b90"
     },
     {
       "case_id": "GQ-MKT-005",
@@ -1013,7 +1019,7 @@
     },
     {
       "case_id": "GQ-MKT-006",
-      "question": "2025 年 6 月哪个活动的 Attributed ROAS 相比 4—5 月明显下降？",
+      "question": "2025 年 6 月哪个活动的 Attributed Attributed Attributed Attributed ROAS 相比 4—5 月明显下降？",
       "difficulty": "L2",
       "status": "clarification_required",
       "domains": [
@@ -1041,7 +1047,7 @@
     },
     {
       "case_id": "GQ-MKT-007",
-      "question": "2025 年第二季度各活动的 Attributed ROAS 表现如何，哪些活动最有效？",
+      "question": "2025 年第二季度各活动的 Attributed Attributed Attributed Attributed ROAS 表现如何，哪些活动最有效？",
       "difficulty": "L3",
       "status": "clarification_required",
       "domains": [
@@ -1070,7 +1076,7 @@
     },
     {
       "case_id": "GQ-MKT-008",
-      "question": "给定 2025 年 6 月的转化，哪些应归为 direct，哪些应归为 unknown/unattributed，边界案例是什么？",
+      "question": "给定 2025 年第二季度的转化，direct、unknown/unattributed、晚到触达重归因和历史渠道失效边界分别是什么？",
       "difficulty": "L3",
       "status": "executable",
       "domains": [
@@ -1086,6 +1092,7 @@
         "attributed_conversion",
         "commerce_order",
         "invoice_payment_attempt",
+        "marketing_campaign",
         "marketing_channel",
         "marketing_touch",
         "platform_fee_charge"
@@ -1096,13 +1103,16 @@
       ],
       "scenario_ids": [
         "direct-vs-unknown",
+        "history-boundary-saas",
+        "history-boundary-commerce",
         "late-arriving-touch",
         "inactive-channel-history"
       ],
       "expected_result_shape": "冻结的 typed rows",
       "parameters": {
+        "apr_start": "2025-04-01 07:00:00.000000",
         "jul_start": "2025-07-01 07:00:00.000000",
-        "jun_start": "2025-06-01 07:00:00.000000",
+        "marketing_history_started_at": "2025-04-01 07:00:00.000000",
         "snapshot_cutoff_utc": "2026-01-15 08:00:00.000000"
       },
       "clarification_reason": null,
@@ -1110,8 +1120,8 @@
       "oracle_visibility": "benchmark_only",
       "gold_sql_path": "sql/GQ-MKT-008.sql",
       "expected_result_path": "expected/GQ-MKT-008.json",
-      "gold_sql_digest": "38c0ecf42d2541554d8c843c5cb1b513567300c8ec3486d91d07498677bfb335",
-      "expected_result_digest": "d34d0897aa24ee9507818868d7bf63d89d49354699b9335516412d9189513676"
+      "gold_sql_digest": "b1eebb1e8a9a065e169bf2c65ca6ceab7c5528c701434874e0f519c5e5761ce9",
+      "expected_result_digest": "4e1a1bc17635d76270f2c5b6ff7a115971ed2497cc9a21cccd38c1199a1a4f93"
     },
     {
       "case_id": "GQ-PRD-001",

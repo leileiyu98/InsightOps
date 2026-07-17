@@ -8,7 +8,7 @@
   "business_definition_id": "insightcloud-business-definitions",
   "business_definition_version": "1.0.1",
   "business_definition_digest": "eb759951171f377c5c33a199d06d98dd4ebf0529b66d4e950ea8f622a778500d",
-  "oracle_assets_digest": "cf430092a00d1d72493b606ed3350c36108a4a61b9b19df9ea30738c960f8f14",
+  "oracle_assets_digest": "356369ee2c6664e87c818082f3d73f8c41be3323a8b5224b107cd5b95fafc4d0",
   "case_id": "GQ-COM-001",
   "columns": [
     "gmv",

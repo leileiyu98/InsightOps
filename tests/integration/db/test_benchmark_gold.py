@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 from sqlalchemy import Engine, text
 
-from insightops.benchmark.contracts import BenchmarkStatus
+from insightops.benchmark.contracts import BenchmarkStatus, ExpectedValue
 from insightops.benchmark.oracle import execute_gold_case
 from insightops.benchmark.registry import (
     load_benchmark_catalog,
@@ -140,6 +140,133 @@ def test_executable_gold_sql_matches_frozen_results(
             assert expected.case_id == case.case_id
             assert columns == expected.columns
             assert rows == expected.rows
+
+
+def test_marketing_boundary_oracle_uses_real_materialized_revisions(
+    seeded_benchmark_database: Engine,
+) -> None:
+    """Prove GQ-MKT-008 exposes every frozen boundary from persisted facts."""
+    catalog = load_benchmark_catalog(BENCHMARK_ROOT / "cases.json")
+    case = next(case for case in catalog.cases if case.case_id == "GQ-MKT-008")
+
+    with seeded_benchmark_database.connect() as connection:
+        _columns, rows = execute_gold_case(connection, BENCHMARK_ROOT, case)
+        by_boundary: dict[str, list[dict[str, ExpectedValue]]] = {}
+        for result_row in rows:
+            by_boundary.setdefault(str(result_row["boundary_case"]), []).append(dict(result_row))
+
+        assert set(by_boundary) == {
+            "direct_no_eligible_touch",
+            "history_coverage_equality",
+            "history_incomplete_unknown",
+            "inactive_historical_channel_selected",
+            "late_arriving_re_attribution",
+        }
+        assert {row["business_scope"] for row in by_boundary["direct_no_eligible_touch"]} == {
+            "commerce",
+            "saas",
+        }
+        for boundary_row in by_boundary["history_incomplete_unknown"]:
+            assert boundary_row["attribution_result"] == "unknown_unattributed"
+            assert boundary_row["attribution_reason_code"] == "window_history_incomplete"
+            assert boundary_row["selected_touch_source_event_id"] is None
+            assert boundary_row["selected_channel_code"] is None
+
+        late_rows = by_boundary["late_arriving_re_attribution"]
+        assert len(late_rows) == 2
+        assert {row["authoritative_external_id"] for row in late_rows} == {"seed-payment-jun-delta"}
+        assert [(row["attribution_result"], row["is_latest_revision"]) for row in late_rows] == [
+            ("direct", 0),
+            ("non_direct", 1),
+        ]
+        assert str(late_rows[0]["source_data_cutoff_at"]) < str(
+            late_rows[1]["source_data_cutoff_at"]
+        )
+        assert late_rows[0]["selected_touch_source_event_id"] is None
+        assert late_rows[1]["selected_touch_source_event_id"] == ("seed-touch-saas-delta-jun-late")
+
+        for boundary_row in by_boundary["inactive_historical_channel_selected"]:
+            assert boundary_row["attribution_result"] == "non_direct"
+            assert boundary_row["selected_channel_current_status"] == "inactive"
+            assert boundary_row["selected_touch_source_event_id"] is not None
+        inactive_interval_violations = connection.scalar(
+            text(
+                "SELECT COUNT(*) FROM attributed_conversion AS ac "
+                "JOIN marketing_touch AS t "
+                "ON t.marketing_touch_id = ac.selected_marketing_touch_id "
+                "JOIN marketing_channel AS ch "
+                "ON ch.marketing_channel_id = ac.marketing_channel_id "
+                "WHERE ch.status = 'inactive' AND ac.attribution_result = 'non_direct' "
+                "AND NOT (ch.effective_from <= t.occurred_at "
+                "AND (ch.effective_to IS NULL OR t.occurred_at < ch.effective_to))"
+            )
+        )
+        assert inactive_interval_violations == 0
+
+
+def test_marketing_funnel_uses_one_touched_cohort(
+    seeded_benchmark_database: Engine,
+) -> None:
+    """Keep first-payment subjects inside the accepted Q2 touch cohort."""
+    catalog = load_benchmark_catalog(BENCHMARK_ROOT / "cases.json")
+    case = next(case for case in catalog.cases if case.case_id == "GQ-MKT-004")
+
+    with seeded_benchmark_database.connect() as connection:
+        rows: tuple[dict[str, ExpectedValue], ...]
+        _columns, rows = execute_gold_case(connection, BENCHMARK_ROOT, case)
+        assert rows == (
+            {
+                "business_scope": "commerce",
+                "touched_subject_count": 8,
+                "first_payment_subject_count": 6,
+            },
+            {
+                "business_scope": "saas",
+                "touched_subject_count": 7,
+                "first_payment_subject_count": 7,
+            },
+        )
+        funnel_row: dict[str, ExpectedValue]
+        for funnel_row in rows:
+            first_payment_count: ExpectedValue = funnel_row["first_payment_subject_count"]
+            touched_count: ExpectedValue = funnel_row["touched_subject_count"]
+            assert isinstance(first_payment_count, int)
+            assert isinstance(touched_count, int)
+            assert first_payment_count <= touched_count
+
+        counterexample = (
+            connection.execute(
+                text(
+                    "SELECT ac.organization_id, ac.conversion_at, "
+                    "COUNT(t.marketing_touch_id) AS qualifying_touch_count "
+                    "FROM attributed_conversion AS ac "
+                    "JOIN invoice_payment_attempt AS p "
+                    "ON p.invoice_payment_attempt_id = ac.invoice_payment_attempt_id "
+                    "LEFT JOIN marketing_touch AS t "
+                    "ON t.organization_id = ac.organization_id "
+                    "AND t.quality_status = 'accepted' AND t.is_test = 0 "
+                    "AND t.occurred_at >= :apr_start AND t.occurred_at < :jul_start "
+                    "AND t.occurred_at <= ac.conversion_at "
+                    "WHERE p.external_payment_attempt_id = 'seed-payment-jun-epsilon' "
+                    "AND ac.conversion_type = 'saas_first_payment' "
+                    "GROUP BY ac.organization_id, ac.conversion_at"
+                ),
+                {
+                    "apr_start": case.parameters["apr_start"],
+                    "jul_start": case.parameters["jul_start"],
+                },
+            )
+            .mappings()
+            .one()
+        )
+        conversion_at = str(counterexample["conversion_at"])
+        apr_start = case.parameters["apr_start"]
+        jul_start = case.parameters["jul_start"]
+        assert isinstance(apr_start, str)
+        assert isinstance(jul_start, str)
+        assert conversion_at >= apr_start
+        assert conversion_at < jul_start
+        assert counterexample["qualifying_touch_count"] == 0
 
 
 def test_business_metric_acceptance_invariants(

@@ -6,7 +6,7 @@
   "from_git_commit": "70680bc087a739583bcd5242907f9f0c6d9b2e0b",
   "to_dataset_version": "1.1.0",
   "to_dataset_digest": "bf3efd9079bd434fe8f400fac161735e012548565fce9277e3bcf30ace44c18c",
-  "to_oracle_assets_digest": "cf430092a00d1d72493b606ed3350c36108a4a61b9b19df9ea30738c960f8f14",
+  "to_oracle_assets_digest": "356369ee2c6664e87c818082f3d73f8c41be3323a8b5224b107cd5b95fafc4d0",
   "old_cases": [
     {
       "case_id": "GQ-COM-001",
