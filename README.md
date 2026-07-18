@@ -2,7 +2,8 @@
 
 InsightOps 是一个面向企业经营分析场景的大模型应用项目。当前仓库已完成 M0 基础设施、截至
 **M1.1D：Marketing Schema** 的数据库实现，以及 **M1.2A：Seed Dataset & Benchmark Foundation**。
-当前 feature milestone 还提供 **M1.2B：Deterministic SQL Evaluation Harness v1** 的端到端 MVP。
+当前 feature milestone 还提供 **M1.2B：Deterministic SQL Evaluation Harness v1**，以及
+**M1.3：Text2SQL Demo MVP** 的端到端查询路径。
 
 ## 当前能力
 
@@ -18,11 +19,13 @@ InsightOps 是一个面向企业经营分析场景的大模型应用项目。当
 - 可重复的 seed `load`、`verify`、`unload` 生命周期和真实 MySQL benchmark 回归
 - MySQL 8.4 Docker Compose 开发环境
 - MySQL AST 校验、独立 readonly identity、严格结果比较和确定性 JSON evaluation report
+- `POST /v1/query` 与 CLI Text2SQL 演示入口
+- oracle-free context builder、结构化 provider 合同、离线 fake provider 和单一 OpenAI adapter
+- benchmark 单 case 评测、自由问题安全执行与基于实际结果的简短业务摘要
 - pytest、Ruff、mypy 和 GitHub Actions
 
-当前不包含产品使用和客服 Schema，也不包含业务 API、登录权限、大模型 API、Text2SQL 生成、RAG、
-Agent、生产级 SQL sandbox、Memory、MCP、Redis、Celery 或前端。Gold SQL 和 expected results 仅是 benchmark
-oracle，不是未来 Agent 的检索或 prompt 输入。
+当前不包含产品使用和客服 Schema，也不包含登录权限、RAG、Agent、生产级 SQL sandbox、Memory、MCP、
+Redis、Celery 或前端。Gold SQL 和 expected results 仅是 benchmark oracle，不是 provider 的检索或 prompt 输入。
 
 ## 环境要求
 
@@ -72,12 +75,12 @@ oracle，不是未来 Agent 的检索或 prompt 输入。
    uv run python -m insightops.seed digest
    uv run python -m insightops.seed load
    uv run python -m insightops.seed verify
-   uv run python -m insightops.seed unload
    ```
 
    M1.2A dataset/catalog `1.1.0` 绑定 schema revision `0004` 和 Business Definitions `1.0.1`。
    seed 命令只允许在 `local`、`test` 或 `ci` 环境运行，并要求数据库位于当前 `head`。seed 不会创建
-   migration 或专用数据库表，`unload` 只删除 manifest 所有的固定行。
+   migration 或专用数据库表。演示与 evaluation 期间应保持 dataset 已加载；不再使用时可运行
+   `uv run python -m insightops.seed unload`，它只删除 manifest 所有的固定行。
 
 6. 可选：运行确定性 SQL evaluation。先保持固定 dataset 已加载，再提供包含 28 个 `execute_sql` 和
    6 个 `request_clarification` response 的 submission JSON：
@@ -114,6 +117,103 @@ oracle，不是未来 Agent 的检索或 prompt 输入。
    ```
 
 `/health` 只表示 API 进程存活，不检查数据库。数据库就绪由 Compose healthcheck 和 Alembic 命令分别验证。
+
+## 五分钟 Text2SQL 演示
+
+以下步骤可从 clean checkout 直接执行。默认 `QUERY_PROVIDER=fake`，不需要 `OPENAI_API_KEY`，整个演示不访问
+外部网络。
+
+1. 创建本地配置并安装锁定依赖：
+
+   ```bash
+   cp .env.example .env
+   uv sync --locked
+   ```
+
+2. 启动 MySQL：
+
+   ```bash
+   docker compose up -d --wait mysql
+   ```
+
+3. 创建并验证独立 readonly identity：
+
+   ```bash
+   docker compose --profile tools run --rm mysql-readonly-bootstrap
+   ```
+
+4. 升级到冻结 Schema head：
+
+   ```bash
+   uv run alembic upgrade head
+   uv run alembic current
+   ```
+
+5. 加载并验证固定 dataset；后续演示期间不要执行 `seed unload`：
+
+   ```bash
+   uv run python -m insightops.seed load
+   uv run python -m insightops.seed verify
+   ```
+
+6. 启动 FastAPI：
+
+   ```bash
+   uv run uvicorn insightops.main:app --host 127.0.0.1 --port 8000
+   ```
+
+7. 在另一个终端运行 fake provider API executable 与 clarification 示例：
+
+   ```bash
+   curl --fail --silent --show-error \
+     -H 'Content-Type: application/json' \
+     -d '{"question":"2025 年 6 月商城的 GMV、Order Count 和 AOV 分别是多少？","case_id":"GQ-COM-001"}' \
+     http://127.0.0.1:8000/v1/query
+
+   curl --fail --silent --show-error \
+     -H 'Content-Type: application/json' \
+     -d '{"question":"2025 年 6 月哪个活动的 ROAS 相比 4—5 月明显下降？","case_id":"GQ-MKT-006"}' \
+     http://127.0.0.1:8000/v1/query
+   ```
+
+8. 在任一已加载 `.env` 的终端运行 CLI executable 与 clarification 示例：
+
+   ```bash
+   uv run python -m insightops.query \
+     --question "2025 年第二季度每个月的 SaaS Revenue 是多少？" \
+     --case-id GQ-SAA-002 \
+     --provider fake
+
+   uv run python -m insightops.query \
+     --question "2025 年 6 月哪个活动的 ROAS 相比 4—5 月明显下降？" \
+     --case-id GQ-MKT-006 \
+     --provider fake
+   ```
+
+自由问题也经过相同物理表白名单、AST 与 readonly execution 边界，并明确不做 benchmark 评分：
+
+```bash
+curl --fail --silent --show-error \
+  -H 'Content-Type: application/json' \
+  -d '{"question":"列出一个企业名称"}' \
+  http://127.0.0.1:8000/v1/query
+```
+
+三个推荐 demo questions：
+
+1. `GQ-SAA-002`：2025 年第二季度每个月的 SaaS Revenue 是多少？
+2. `GQ-COM-001`：2025 年 6 月商城的 GMV、Order Count 和 AOV 分别是多少？
+3. `GQ-MKT-006`：2025 年 6 月哪个活动的 ROAS 相比 4—5 月明显下降？
+
+有 `case_id` 时，候选必须通过 M1.2B 的 action、AST、readonly execution 和 exact comparison；失败状态不会
+被改写成成功。无 `case_id` 时仍执行相同 AST 安全分析与 readonly 边界，但返回
+`evaluation_status=not_benchmark_scored`，不会伪造 Gold PASS。
+
+真实 provider 仅用于手工 smoke。将本地 `.env` 设置为 `QUERY_PROVIDER=openai`、提供
+`OPENAI_API_KEY`，并可用 `OPENAI_MODEL` 在允许值 `gpt-5.6-sol`（默认）或官方 alias `gpt-5.6` 中选择，再把
+CLI 的 `--provider` 改为 `openai`。adapter 使用固定运行时依赖 `openai==2.46.0`、Responses API、Pydantic
+Structured Outputs 与显式 low reasoning effort；密钥、原始 provider 异常和 usage 明细不会进入查询响应。
+真实 provider 调用不是 CI 或本轮自动 smoke 的一部分，因此本文不声称它已在线验证。
 
 ## 开发检查
 
@@ -171,4 +271,5 @@ docker compose down -v
 当前边界和设计理由见 [`docs/architecture.md`](docs/architecture.md)，商城 Schema 实施记录见
 [`docs/plans/m1-1c-commerce-schema.md`](docs/plans/m1-1c-commerce-schema.md)，M1.2A 数据与评测基础见
 [`docs/plans/m1-2a-seed-benchmark-foundation.md`](docs/plans/m1-2a-seed-benchmark-foundation.md)。后续工作继续按
-明确里程碑规划，不提前实现 Agent、Text2SQL 或 M1.1D 范围。
+明确里程碑规划；M1.3 的实现边界见
+[`docs/plans/m1-3-text2sql-demo.md`](docs/plans/m1-3-text2sql-demo.md)，不提前实现 Agent、RAG 或前端。

@@ -2,6 +2,7 @@
 
 import hashlib
 import time
+from dataclasses import dataclass
 from pathlib import Path
 
 from sqlalchemy import Engine
@@ -25,6 +26,7 @@ from insightops.evaluation.contracts import (
     EvaluationSuiteManifest,
     ExecuteSqlResponse,
     ExpectedAction,
+    NormalizedResult,
     RequestClarificationResponse,
     StageEvaluationResult,
     StageStatus,
@@ -65,6 +67,15 @@ _STRUCTURE_FAILURE_PRIORITY = (
     EvaluationFailureCode.WILDCARD_SELECT,
     EvaluationFailureCode.UNKNOWN_BIND_PARAMETER,
 )
+
+
+@dataclass(frozen=True)
+class SingleCaseEvaluation:
+    """One M1.2B case result plus its candidate rows, never oracle rows."""
+
+    result: CaseEvaluationResult | None
+    actual_result: NormalizedResult | None
+    abort_code: EvaluationAbortCode | None
 
 
 class EvaluationRunner:
@@ -166,11 +177,97 @@ class EvaluationRunner:
             duration_ms=_duration_ms(started),
         )
 
+    def run_case(
+        self,
+        response: ExecuteSqlResponse | RequestClarificationResponse,
+    ) -> SingleCaseEvaluation:
+        """Evaluate one runtime candidate through the same M1.2B stages and guards."""
+        suite_cases = {case.case_id: case for case in self._suite.cases}
+        catalog_cases = {case.case_id: case for case in self._catalog.cases}
+        suite_case = suite_cases.get(response.case_id)
+        catalog_case = catalog_cases.get(response.case_id)
+        if (
+            suite_case is None
+            or catalog_case is None
+            or suite_case.expected_action is ExpectedAction.DEFERRED
+        ):
+            return SingleCaseEvaluation(
+                result=None,
+                actual_result=None,
+                abort_code=EvaluationAbortCode.INVALID_SUBMISSION,
+            )
+
+        try:
+            validate_benchmark_bundle(
+                self._benchmark_root,
+                self._catalog,
+                self._dataset.manifest,
+                self._business_definition_path,
+            )
+            validate_expected_column_type_bindings(
+                self._suite,
+                self._catalog,
+                self._benchmark_root,
+            )
+        except ValueError:
+            return SingleCaseEvaluation(
+                result=None,
+                actual_result=None,
+                abort_code=EvaluationAbortCode.ORACLE_DIGEST_MISMATCH,
+            )
+
+        try:
+            self._dataset_loader.verify()
+        except SeedDatasetError:
+            return SingleCaseEvaluation(
+                result=None,
+                actual_result=None,
+                abort_code=EvaluationAbortCode.DATASET_VERIFICATION_FAILED,
+            )
+        try:
+            self._readonly_executor.verify_identity()
+        except SqlExecutionError:
+            return SingleCaseEvaluation(
+                result=None,
+                actual_result=None,
+                abort_code=EvaluationAbortCode.READONLY_IDENTITY_VERIFICATION_FAILED,
+            )
+
+        actual_results: list[NormalizedResult] = []
+        try:
+            result = self._evaluate_case(
+                suite_case,
+                catalog_case,
+                response,
+                actual_results=actual_results,
+            )
+        except (ResultNormalizationError, ValueError):
+            return SingleCaseEvaluation(
+                result=None,
+                actual_result=None,
+                abort_code=EvaluationAbortCode.INTERNAL_CONTRACT_VIOLATION,
+            )
+        try:
+            self._dataset_loader.verify()
+        except SeedDatasetError:
+            return SingleCaseEvaluation(
+                result=None,
+                actual_result=None,
+                abort_code=EvaluationAbortCode.DATASET_VERIFICATION_FAILED,
+            )
+        return SingleCaseEvaluation(
+            result=result,
+            actual_result=actual_results[0] if actual_results else None,
+            abort_code=None,
+        )
+
     def _evaluate_case(
         self,
         suite_case: EvaluationSuiteCase,
         catalog_case: BenchmarkCase,
         response: ExecuteSqlResponse | RequestClarificationResponse | None,
+        *,
+        actual_results: list[NormalizedResult] | None = None,
     ) -> CaseEvaluationResult:
         if suite_case.expected_action is ExpectedAction.DEFERRED:
             return build_case_result(
@@ -184,7 +281,12 @@ class EvaluationRunner:
             raise ValueError("validated submission is missing a response")
         if suite_case.expected_action is ExpectedAction.REQUEST_CLARIFICATION:
             return self._evaluate_clarification(suite_case, response)
-        return self._evaluate_sql(suite_case, catalog_case, response)
+        return self._evaluate_sql(
+            suite_case,
+            catalog_case,
+            response,
+            actual_results=actual_results,
+        )
 
     def _evaluate_clarification(
         self,
@@ -220,6 +322,8 @@ class EvaluationRunner:
         suite_case: EvaluationSuiteCase,
         catalog_case: BenchmarkCase,
         response: ExecuteSqlResponse | RequestClarificationResponse,
+        *,
+        actual_results: list[NormalizedResult] | None = None,
     ) -> CaseEvaluationResult:
         if not isinstance(response, ExecuteSqlResponse):
             return _action_failure(
@@ -285,6 +389,9 @@ class EvaluationRunner:
                 candidate_sql_digest=candidate_sql_digest,
                 expected_result_digest=catalog_case.expected_result_digest,
             )
+
+        if actual_results is not None:
+            actual_results.append(actual)
 
         if catalog_case.expected_result_path is None or suite_case.comparison_mode is None:
             raise ValueError("executable case lacks oracle comparison metadata")
