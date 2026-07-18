@@ -20,6 +20,11 @@ jobs:
       DATABASE_NAME: insightops_ci
       DATABASE_USER: insightops_ci
       DATABASE_PASSWORD: ci_app_password
+      READONLY_DATABASE_HOST: 127.0.0.1
+      READONLY_DATABASE_PORT: "3306"
+      READONLY_DATABASE_NAME: insightops_ci
+      READONLY_DATABASE_USER: insightops_ci_readonly
+      READONLY_DATABASE_PASSWORD: ci_readonly_password
     services:
       mysql:
         image: mysql:8.4
@@ -51,6 +56,12 @@ jobs:
 
       - name: Install locked dependencies
         run: uv sync --locked
+
+      - name: Provision candidate SQL readonly identity
+        env:
+          MYSQL_PWD: ci_root_password
+        run: |
+          mysql --host=127.0.0.1 --port=3306 --user=root --execute="CREATE USER IF NOT EXISTS 'insightops_ci_readonly'@'%' IDENTIFIED BY 'ci_readonly_password'; ALTER USER 'insightops_ci_readonly'@'%' IDENTIFIED BY 'ci_readonly_password'; REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'insightops_ci_readonly'@'%'; GRANT SELECT ON insightops_ci.* TO 'insightops_ci_readonly'@'%'; FLUSH PRIVILEGES;"
 
       - name: Check formatting
         run: uv run ruff format --check .
