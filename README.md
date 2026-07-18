@@ -2,6 +2,7 @@
 
 InsightOps 是一个面向企业经营分析场景的大模型应用项目。当前仓库已完成 M0 基础设施、截至
 **M1.1D：Marketing Schema** 的数据库实现，以及 **M1.2A：Seed Dataset & Benchmark Foundation**。
+当前 feature milestone 还提供 **M1.2B：Deterministic SQL Evaluation Harness v1** 的端到端 MVP。
 
 ## 当前能力
 
@@ -16,10 +17,11 @@ InsightOps 是一个面向企业经营分析场景的大模型应用项目。当
 - dataset、schema、business definition、Gold catalog 和 oracle assets 的可校验版本链
 - 可重复的 seed `load`、`verify`、`unload` 生命周期和真实 MySQL benchmark 回归
 - MySQL 8.4 Docker Compose 开发环境
+- MySQL AST 校验、独立 readonly identity、严格结果比较和确定性 JSON evaluation report
 - pytest、Ruff、mypy 和 GitHub Actions
 
-当前不包含产品使用和客服 Schema，也不包含业务 API、登录权限、大模型 API、Text2SQL、RAG、
-Agent、SQL 安全引擎、Memory、MCP、Redis、Celery 或前端。Gold SQL 和 expected results 仅是 benchmark
+当前不包含产品使用和客服 Schema，也不包含业务 API、登录权限、大模型 API、Text2SQL 生成、RAG、
+Agent、生产级 SQL sandbox、Memory、MCP、Redis、Celery 或前端。Gold SQL 和 expected results 仅是 benchmark
 oracle，不是未来 Agent 的检索或 prompt 输入。
 
 ## 环境要求
@@ -53,6 +55,7 @@ oracle，不是未来 Agent 的检索或 prompt 输入。
    ```bash
    docker compose config
    docker compose up -d --wait mysql
+   docker compose --profile tools run --rm mysql-readonly-bootstrap
    docker compose ps
    ```
 
@@ -76,13 +79,29 @@ oracle，不是未来 Agent 的检索或 prompt 输入。
    seed 命令只允许在 `local`、`test` 或 `ci` 环境运行，并要求数据库位于当前 `head`。seed 不会创建
    migration 或专用数据库表，`unload` 只删除 manifest 所有的固定行。
 
-6. 启动 API：
+6. 可选：运行确定性 SQL evaluation。先保持固定 dataset 已加载，再提供包含 28 个 `execute_sql` 和
+   6 个 `request_clarification` response 的 submission JSON：
+
+   ```bash
+   uv run python -m insightops.seed load
+   uv run python -m insightops.evaluation \
+     --suite evaluations/m1_2b/suite.json \
+     --submission /path/to/submission.json \
+     --output /tmp/m1-2b-report.json
+   ```
+
+   candidate SQL 只使用 `READONLY_DATABASE_*` 身份。Writer 身份仅用于 migration、seed lifecycle 和
+   evaluation 前后 dataset verify。完成报告包含状态、failure taxonomy 和 digest；preflight ABORTED report
+   不含 case score 或 evaluation digest。两者都不包含 Gold SQL、expected rows 或 oracle path。`--output` 使用
+   原子写入，并拒绝覆盖 suite、submission、seed、benchmark 或 Business Definitions 资产。
+
+7. 启动 API：
 
    ```bash
    uv run uvicorn insightops.main:app --host 127.0.0.1 --port 8000 --reload
    ```
 
-7. 在另一个终端检查服务：
+8. 在另一个终端检查服务：
 
    ```bash
    curl --fail --silent --show-error http://127.0.0.1:8000/health

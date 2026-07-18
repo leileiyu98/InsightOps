@@ -22,5 +22,21 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  mysql-readonly-bootstrap:
+    image: mysql:8.4
+    profiles: ["tools"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME:?DATABASE_NAME must be set}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD must be set}
+      READONLY_DATABASE_USER: ${READONLY_DATABASE_USER:-insightops_readonly}
+      READONLY_DATABASE_PASSWORD: ${READONLY_DATABASE_PASSWORD:-local_readonly_password_change_me}
+    entrypoint: ["/bin/bash", "/bootstrap-readonly.sh"]
+    volumes:
+      - ./docker/mysql/bootstrap-readonly.sh:/bootstrap-readonly.sh:ro
+    restart: "no"
+
 volumes:
   mysql_data:
