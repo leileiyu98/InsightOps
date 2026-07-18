@@ -89,8 +89,20 @@ execution、normalization 和 comparison 阶段。这个窄入口额外返回 ca
 service。业务摘要由实际 normalized result 确定性渲染，保留原始字符串数值；摘要失败时只省略摘要，不丢失
 已通过评测的 SQL 结果。
 
+## React Demo UI 边界
+
+M1.4 的 `frontend/` 是单页展示层，使用 React、TypeScript、Vite、原生 CSS 和 Fetch API。它只构造严格的
+`question`/可选 `case_id` 请求，并以 runtime guard 校验 API JSON 后展示；Text2SQL、clarification truth、
+evaluation、SQL 安全、执行和 summary 都仍由 `QueryService` 负责。API 返回的 SQL、表格、摘要和澄清内容只经
+React 文本节点渲染，前端没有 SQL 编辑或二次执行入口，也不持久化查询状态。
+
+开发时 Vite 仅代理 `/v1` 与 `/health`。production 时现有 FastAPI 应用在 build 目录存在的条件下托管根
+`index.html` 和 `/assets/*`；静态资源配置不构造 query service、provider 或数据库 engine。没有
+`frontend/dist` 时根页面返回稳定的 503 提示，而既有 API 与 health 路由保持不变。当前 SPA 只有根页面，
+因此不增加 router 或 history fallback。
+
 ## 当前仍未实现
 
 M1.1D 之外的产品使用和客服表，以及认证授权、RAG、Agent 工作流、生产级 SQL sandbox、Memory、MCP、
-异步任务、缓存、前端和复杂可观测性均不属于当前架构实现。M1.3 也不提供会话、多轮重试、向量检索或
-多 provider 路由。
+异步任务、缓存和复杂可观测性均不属于当前架构实现。M1.4 也不提供多页面 Dashboard、会话、多轮重试、
+向量检索或多 provider 路由。

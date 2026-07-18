@@ -3,7 +3,7 @@
 InsightOps 是一个面向企业经营分析场景的大模型应用项目。当前仓库已完成 M0 基础设施、截至
 **M1.1D：Marketing Schema** 的数据库实现，以及 **M1.2A：Seed Dataset & Benchmark Foundation**。
 当前 feature milestone 还提供 **M1.2B：Deterministic SQL Evaluation Harness v1**，以及
-**M1.3：Text2SQL Demo MVP** 的端到端查询路径。
+**M1.3：Text2SQL Demo MVP** 的端到端查询路径和 **M1.4：React Demo UI**。
 
 ## 当前能力
 
@@ -22,14 +22,17 @@ InsightOps 是一个面向企业经营分析场景的大模型应用项目。当
 - `POST /v1/query` 与 CLI Text2SQL 演示入口
 - oracle-free context builder、结构化 provider 合同、离线 fake provider 和单一 OpenAI adapter
 - benchmark 单 case 评测、自由问题安全执行与基于实际结果的简短业务摘要
+- React、TypeScript 与 Vite 构建的单页 Analytics Copilot，支持开发代理和 FastAPI production 托管
 - pytest、Ruff、mypy 和 GitHub Actions
 
 当前不包含产品使用和客服 Schema，也不包含登录权限、RAG、Agent、生产级 SQL sandbox、Memory、MCP、
-Redis、Celery 或前端。Gold SQL 和 expected results 仅是 benchmark oracle，不是 provider 的检索或 prompt 输入。
+Redis、Celery、多轮会话或复杂 Dashboard。Gold SQL 和 expected results 仅是 benchmark oracle，不是 provider
+的检索或 prompt 输入。
 
 ## 环境要求
 
 - [uv](https://docs.astral.sh/uv/) 0.11 或更高版本
+- Node.js 22.12 或更高版本（CI 固定使用 22.12；前端依赖由 `package-lock.json` 锁定）
 - Docker Engine
 - Docker Compose v2
 - `curl`（用于手工健康检查）
@@ -118,6 +121,43 @@ Redis、Celery 或前端。Gold SQL 和 expected results 仅是 benchmark oracle
 
 `/health` 只表示 API 进程存活，不检查数据库。数据库就绪由 Compose healthcheck 和 Alembic 命令分别验证。
 
+## React Demo UI
+
+开发模式使用两个进程。先按“本地启动”完成 MySQL、readonly identity、migration、seed 与 FastAPI 启动，
+然后在另一个终端运行：
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+浏览器访问 `http://127.0.0.1:5173`。Vite 将相对路径 `/v1` 和 `/health` 代理到本机 FastAPI；前端源码不保存
+后端地址、provider 配置或凭证。
+
+production build：
+
+```bash
+cd frontend
+npm ci
+npm run build
+cd ..
+uv run uvicorn insightops.main:app --host 127.0.0.1 --port 8000
+```
+
+构建产物位于被 Git 忽略的 `frontend/dist/`。FastAPI 启动后访问 `http://127.0.0.1:8000/` 即可使用同一页面，
+`/assets/*` 由 FastAPI 托管；如果尚未 build，根页面返回稳定提示，但 `/health` 和 `/v1/query` 保持可用。
+
+默认 `QUERY_PROVIDER=fake`，四个页面示例均可完全离线演示，不需要 OpenAI API key：
+
+1. `GQ-SAA-002`：2025 年第二季度每个月的 SaaS Revenue 是多少？
+2. `GQ-COM-001`：2025 年 6 月的 GMV、订单数和 AOV 是多少？
+3. `GQ-MKT-006`：Marketing ROAS 应该使用哪一种收入定义？
+4. 无 case ID：列出一个企业名称
+
+真实 OpenAI provider 是可选的手工 smoke 路径，不纳入 CI；没有真实 key 时仍可完成全部 UI 演示。演示结束后
+可运行 `uv run python -m insightops.seed unload` 卸载固定 seed 数据。
+
 ## 五分钟 Text2SQL 演示
 
 以下步骤可从 clean checkout 直接执行。默认 `QUERY_PROVIDER=fake`，不需要 `OPENAI_API_KEY`，整个演示不访问
@@ -199,11 +239,11 @@ curl --fail --silent --show-error \
   http://127.0.0.1:8000/v1/query
 ```
 
-三个推荐 demo questions：
+三个 benchmark demo questions：
 
 1. `GQ-SAA-002`：2025 年第二季度每个月的 SaaS Revenue 是多少？
-2. `GQ-COM-001`：2025 年 6 月商城的 GMV、Order Count 和 AOV 分别是多少？
-3. `GQ-MKT-006`：2025 年 6 月哪个活动的 ROAS 相比 4—5 月明显下降？
+2. `GQ-COM-001`：2025 年 6 月的 GMV、订单数和 AOV 是多少？
+3. `GQ-MKT-006`：Marketing ROAS 应该使用哪一种收入定义？
 
 有 `case_id` 时，候选必须通过 M1.2B 的 action、AST、readonly execution 和 exact comparison；失败状态不会
 被改写成成功。无 `case_id` 时仍执行相同 AST 安全分析与 readonly 边界，但返回
@@ -222,6 +262,13 @@ uv run ruff format --check .
 uv run ruff check .
 uv run mypy --strict src tests scripts alembic
 uv run pytest
+
+cd frontend
+npm ci
+npm run lint
+npm run typecheck
+npm run test -- --run
+npm run build
 ```
 
 验证迁移可回滚和重新执行：
@@ -235,8 +282,9 @@ uv run alembic upgrade head
 ## 持续集成与远程验证
 
 GitHub Actions 在推送到 `main` 或创建、更新 Pull Request 时运行。CI 使用 MySQL 8.4
-service，并依次验证锁定依赖安装、Ruff 格式和 lint、mypy、Alembic 升级与回滚、pytest，
-最后启动 API 并请求 `GET /health` 进行 smoke test。
+service。Python job 依次验证锁定依赖安装、Ruff 格式和 lint、mypy、Alembic 升级与回滚、pytest，
+最后启动 API 并请求 `GET /health` 进行 smoke test。独立 frontend job 使用正式 Node setup、`npm ci`、ESLint、
+TypeScript、Vitest 和 Vite production build；两类自动测试都不连接真实 OpenAI API，前端 job 也不连接 MySQL。
 
 推送后应在仓库的 **Actions** 页面确认 `CI` workflow 成功结束。远程检查与本地
 “开发检查”使用相同的锁文件和命令；如果远程失败，应先查看失败步骤和日志，不应通过
@@ -272,4 +320,5 @@ docker compose down -v
 [`docs/plans/m1-1c-commerce-schema.md`](docs/plans/m1-1c-commerce-schema.md)，M1.2A 数据与评测基础见
 [`docs/plans/m1-2a-seed-benchmark-foundation.md`](docs/plans/m1-2a-seed-benchmark-foundation.md)。后续工作继续按
 明确里程碑规划；M1.3 的实现边界见
-[`docs/plans/m1-3-text2sql-demo.md`](docs/plans/m1-3-text2sql-demo.md)，不提前实现 Agent、RAG 或前端。
+[`docs/plans/m1-3-text2sql-demo.md`](docs/plans/m1-3-text2sql-demo.md)，M1.4 的前端边界见
+[`docs/plans/m1-4-react-demo-ui.md`](docs/plans/m1-4-react-demo-ui.md)，不提前实现 Agent、RAG、登录或多轮会话。

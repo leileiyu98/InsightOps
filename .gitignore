@@ -15,6 +15,9 @@ __pycache__/
 # Build and test artifacts
 build/
 dist/
+frontend/node_modules/
+frontend/coverage/
+frontend/*.tsbuildinfo
 *.egg-info/
 .coverage
 htmlcov/
