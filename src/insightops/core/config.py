@@ -1,8 +1,9 @@
 """Environment-backed application configuration."""
 
 from pathlib import Path
+from typing import Literal
 
-from pydantic import SecretStr
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy import URL
 
@@ -24,6 +25,10 @@ class Settings(BaseSettings):
     database_name: str
     database_user: str
     database_password: SecretStr
+    query_provider: Literal["fake", "openai"] = "fake"
+    openai_api_key: SecretStr | None = None
+    openai_model: Literal["gpt-5.6-sol", "gpt-5.6"] = "gpt-5.6-sol"
+    openai_timeout_seconds: float = Field(default=30.0, gt=0, le=120)
 
     @property
     def database_url(self) -> URL:

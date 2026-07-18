@@ -72,8 +72,25 @@ writer 在整次评测前后调用现有 `DatasetLoader.verify()`；candidate en
 用户。run envelope 的 run ID、时间、耗时和 host 不进入 deterministic digest，因此相同 suite/submission/
 dataset 可产生一致摘要。
 
+## Text2SQL Demo 边界
+
+`insightops.query` 是 M1.3 的应用服务边界：自然语言问题先进入 oracle-free context builder，再由一个
+`QueryProvider` 返回 Pydantic 校验后的 SQL 或澄清合同。fake provider 为测试和离线演示提供固定候选；OpenAI
+adapter 是唯一真实 provider，使用 Responses API Structured Outputs，读取环境密钥并把 SDK 异常映射为稳定
+应用错误；固定的 app lifespan/CLI finally 负责关闭 provider client 和 composition root 创建的数据库 engine。
+provider 无权提供数据库凭证、执行上限、预期结果或 evaluator 配置。
+
+带 `case_id` 的请求由 `EvaluationRunner.run_case()` 进入与 M1.2B 整套评测相同的 action、AST、readonly
+execution、normalization 和 comparison 阶段。这个窄入口额外返回 candidate 的实际 normalized rows，供 API
+展示，但不返回 expected rows。无 `case_id` 的自由问题复用同一 analyzer 和 readonly executor，并在前后验证
+固定 dataset；它不会读取 comparison oracle，成功状态始终是 `not_benchmark_scored`。
+
+`POST /v1/query` 只负责 HTTP 合同和错误映射，核心流程位于 `QueryService`。CLI 复用相同 composition root 和
+service。业务摘要由实际 normalized result 确定性渲染，保留原始字符串数值；摘要失败时只省略摘要，不丢失
+已通过评测的 SQL 结果。
+
 ## 当前仍未实现
 
-M1.1D 之外的产品使用和客服表，以及业务 API、认证授权、大模型提供商、Text2SQL 生成、RAG、Agent 工作流、
-生产级 SQL sandbox、Memory、MCP、异步任务、缓存、前端和复杂可观测性均不属于
-当前架构实现。
+M1.1D 之外的产品使用和客服表，以及认证授权、RAG、Agent 工作流、生产级 SQL sandbox、Memory、MCP、
+异步任务、缓存、前端和复杂可观测性均不属于当前架构实现。M1.3 也不提供会话、多轮重试、向量检索或
+多 provider 路由。

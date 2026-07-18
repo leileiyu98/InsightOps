@@ -32,6 +32,7 @@ def analyze_candidate_sql(
     required_tables: Collection[str],
     allowed_tables: Collection[str],
     allowed_bind_parameters: Collection[str],
+    enforce_required_tables: bool = True,
 ) -> SqlAnalysisResult:
     """Parse and classify candidate SQL using only supplied metadata and AST state."""
     if not sql.strip():
@@ -101,10 +102,11 @@ def analyze_candidate_sql(
     known_tables = referenced_tables & normalized_allowed_tables
     if unknown_tables:
         violations.add(EvaluationFailureCode.UNKNOWN_TABLE)
-    if normalized_required_tables - known_tables:
-        violations.add(EvaluationFailureCode.MISSING_REQUIRED_TABLE)
-    if known_tables - normalized_required_tables:
-        violations.add(EvaluationFailureCode.EXTRA_TABLE)
+    if enforce_required_tables:
+        if normalized_required_tables - known_tables:
+            violations.add(EvaluationFailureCode.MISSING_REQUIRED_TABLE)
+        if known_tables - normalized_required_tables:
+            violations.add(EvaluationFailureCode.EXTRA_TABLE)
 
     if has_projection_wildcard:
         violations.add(EvaluationFailureCode.WILDCARD_SELECT)
